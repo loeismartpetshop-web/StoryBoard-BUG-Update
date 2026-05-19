@@ -3,999 +3,2726 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Storyboard UX/UI — แผน FINAL RAW (Sheet · Supabase · Drive)</title>
+<title>Storyboard UX/UI · Loei Smart — Line Catalog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#0b0b0c;
-    --paper:#f3efe6;
-    --paper-2:#ebe5d6;
-    --line:#1a1a1a;
-    --accent:#ff5b1f;
-    --accent-2:#1f6feb;
-    --green:#1f8a4c;
-    --yellow:#f0c400;
-    --muted:#6a6359;
-    --grid:rgba(0,0,0,0.06);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Sarabun','IBM Plex Mono',sans-serif}
-  body{
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-  .wrap{max-width:1280px;margin:0 auto;padding:48px 28px 96px}
+/* ============================================================
+   DESIGN TOKENS — Editorial Blueprint
+   ============================================================ */
+:root{
+  --ink:#0a0a0b;
+  --paper:#f1ece1;
+  --paper-2:#e6dfcd;
+  --paper-3:#d9d1bb;
+  --line:#181818;
+  --accent:#e94b1f;       /* burnt orange */
+  --accent-2:#2563eb;     /* brand blue from system */
+  --accent-3:#7c3aed;     /* brand purple from system */
+  --green:#16a34a;
+  --yellow:#f5b400;
+  --rose:#dc2626;
+  --muted:#6a6359;
+  --muted-2:#928a7c;
+  --grid:rgba(0,0,0,0.05);
+  --shadow:8px 8px 0 var(--line);
+  --shadow-sm:4px 4px 0 var(--line);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Sarabun','IBM Plex Mono',sans-serif;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:32px 32px;
+  min-height:100vh;
+}
+.wrap{max-width:1340px;margin:0 auto;padding:48px 24px 120px}
 
-  /* Header */
-  header.top{
-    border:2px solid var(--line);
-    background:var(--paper-2);
-    padding:28px 32px;
-    position:relative;
-    box-shadow: 8px 8px 0 var(--line);
-    margin-bottom:48px;
-  }
-  header.top::before{
-    content:"STORYBOARD · UX/UI · v1.0";
-    position:absolute; top:-13px; left:24px;
-    background:var(--ink); color:var(--paper);
-    font-family:'IBM Plex Mono',monospace; font-size:11px;
-    padding:4px 10px; letter-spacing:1.5px;
-  }
-  header.top h1{
-    font-family:'Bricolage Grotesque',sans-serif;
-    font-weight:800; font-size:clamp(32px,5vw,56px);
-    line-height:0.95; margin:0 0 10px; letter-spacing:-1.5px;
-  }
-  header.top h1 em{font-style:normal;color:var(--accent);font-family:'Bricolage Grotesque',sans-serif}
-  header.top p{font-size:15px;color:var(--muted);margin:6px 0 0;max-width:780px;line-height:1.55}
-  .meta-row{
-    display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;
-    font-family:'IBM Plex Mono',monospace;font-size:11px;
-  }
-  .tag{
-    border:1.5px solid var(--line); padding:5px 10px;
-    background:var(--paper); letter-spacing:0.5px;
-  }
-  .tag.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .tag.accent{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.mono{font-family:'IBM Plex Mono',monospace}
+.display{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-0.5px}
+h1.display{font-weight:800;letter-spacing:-1.5px;line-height:0.95}
+h2.display,h3.display,h4.display{font-weight:700}
 
-  /* Section title */
-  .section-title{
-    display:flex;align-items:flex-end;gap:14px;
-    margin:64px 0 24px;padding-bottom:12px;
-    border-bottom:2px solid var(--line);
-  }
-  .section-title .num{
-    font-family:'IBM Plex Mono',monospace;font-size:13px;
-    background:var(--ink);color:var(--paper);
-    padding:6px 12px;letter-spacing:1.5px;
-  }
-  .section-title h2{
-    font-family:'Bricolage Grotesque',sans-serif;
-    font-weight:700;font-size:clamp(22px,3vw,34px);
-    margin:0;letter-spacing:-0.8px;line-height:1;
-  }
-  .section-title .sub{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;
-    color:var(--muted);margin-left:auto;letter-spacing:0.5px;
-  }
+/* ============================================================
+   HEADER
+   ============================================================ */
+header.top{
+  border:2.5px solid var(--line);
+  background:var(--paper-2);
+  padding:32px 36px;
+  position:relative;
+  box-shadow:var(--shadow);
+  margin-bottom:56px;
+  overflow:hidden;
+}
+header.top::before{
+  content:"STORYBOARD · UX/UI · LOEI SMART · v2.0 · MOBILE-FIRST";
+  position:absolute;top:-14px;left:28px;
+  background:var(--ink);color:var(--paper);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  padding:5px 12px;letter-spacing:1.8px;
+}
+header.top h1{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:800;font-size:clamp(36px,5.5vw,68px);
+  line-height:0.92;margin:0 0 14px;letter-spacing:-2px;
+}
+header.top h1 em{font-style:normal;color:var(--accent);font-family:'Bricolage Grotesque',sans-serif}
+header.top .lede{
+  font-size:16px;color:var(--muted);max-width:860px;line-height:1.6;margin:0;
+}
+.meta-row{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+}
+.tag{
+  border:1.5px solid var(--line);padding:5px 11px;
+  background:var(--paper);letter-spacing:0.5px;
+}
+.tag.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tag.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tag.blue{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
 
-  /* Frame / Panel */
-  .frame{
-    border:2px solid var(--line);
-    background:var(--paper);
-    position:relative;
-    box-shadow: 6px 6px 0 var(--line);
-  }
-  .frame .label{
-    position:absolute;top:-12px;left:18px;
-    background:var(--paper-2);
-    border:1.5px solid var(--line);
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10px;padding:3px 10px;
-    letter-spacing:1.5px;
-  }
-  .frame .corner{
-    position:absolute;font-family:'IBM Plex Mono',monospace;
-    font-size:10px;color:var(--muted);letter-spacing:1px;
-  }
-  .frame .corner.tr{top:8px;right:14px}
-  .frame .corner.br{bottom:8px;right:14px}
+/* corner stamp */
+.corner-stamp{
+  position:absolute;top:24px;right:36px;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--muted-2);text-align:right;line-height:1.5;
+  letter-spacing:1px;
+}
 
-  /* SECTION 1 — Architecture */
-  .arch{
-    display:grid;grid-template-columns:1fr;gap:0;
-    padding:48px 32px 32px;
-  }
-  .arch-flow{
-    display:grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap:16px;align-items:stretch;
-    margin-top:8px;
-  }
-  .node{
-    border:2px solid var(--line);
-    padding:16px 14px;
-    background:var(--paper-2);
-    position:relative;
-    min-height:130px;
-    display:flex;flex-direction:column;justify-content:space-between;
-  }
-  .node.hero{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .node.hero .pill{background:var(--accent);color:var(--paper);border-color:var(--accent)}
-  .node .pill{
-    display:inline-block;font-family:'IBM Plex Mono',monospace;
-    font-size:10px;border:1.5px solid var(--line);
-    padding:2px 8px;letter-spacing:1px;margin-bottom:8px;
-    background:var(--paper);
-  }
-  .node h3{
-    font-family:'Bricolage Grotesque',sans-serif;
-    margin:0 0 4px;font-size:18px;letter-spacing:-0.3px;font-weight:700;
-  }
-  .node p{font-size:12px;line-height:1.45;margin:0;color:var(--muted)}
-  .node.hero p{color:#bdb6a6}
-  .node .speed{
-    font-family:'IBM Plex Mono',monospace;font-size:10px;
-    margin-top:10px;
-  }
-  .speed .old{text-decoration:line-through;color:#b88}
-  .speed .new{color:var(--green);font-weight:600}
-  .node.hero .speed .new{color:#7ddc9e}
+/* ============================================================
+   SECTION HEAD
+   ============================================================ */
+.section-head{
+  display:flex;align-items:flex-end;gap:16px;
+  margin:72px 0 28px;padding-bottom:14px;
+  border-bottom:2.5px solid var(--line);
+  flex-wrap:wrap;
+}
+.section-head .num{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+  background:var(--ink);color:var(--paper);
+  padding:7px 13px;letter-spacing:1.8px;flex-shrink:0;
+}
+.section-head h2{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;font-size:clamp(24px,3.2vw,38px);
+  margin:0;letter-spacing:-1px;line-height:1;
+}
+.section-head .sub{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;
+  color:var(--muted);margin-left:auto;letter-spacing:1px;
+}
+.section-intro{
+  font-size:15px;color:var(--muted);line-height:1.65;
+  margin:0 0 28px;max-width:880px;
+}
 
-  .arrow-row{
-    display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
-    margin:8px 0 4px;align-items:center;
-  }
-  .arrow{
-    text-align:center;font-family:'IBM Plex Mono',monospace;
-    font-size:11px;color:var(--muted);position:relative;
-  }
-  .arrow::before{
-    content:"";display:block;height:2px;background:var(--line);
-    margin-bottom:6px;
-  }
-  .arrow span{background:var(--paper);padding:0 8px}
+/* ============================================================
+   PHONE MOCK — iPhone 17 Pro Max
+   Frame: Titanium · Dynamic Island · 19.5:9 aspect
+   ============================================================ */
+.phone{
+  /* Titanium frame */
+  width:300px;flex-shrink:0;
+  background:linear-gradient(145deg,#3a3a3c 0%,#1c1c1e 30%,#2c2c2e 50%,#1c1c1e 70%,#3a3a3c 100%);
+  border-radius:54px;
+  padding:11px 10px;
+  position:relative;
+  box-shadow:
+    /* Outer shadow */
+    0 30px 60px -15px rgba(0,0,0,0.45),
+    0 12px 30px -10px rgba(0,0,0,0.3),
+    /* Inner bezel highlight */
+    inset 0 0 0 1px rgba(255,255,255,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.5),
+    /* Glass reflection */
+    inset 1px 0 0 rgba(255,255,255,0.04),
+    inset -1px 0 0 rgba(255,255,255,0.04);
+  font-family:'Sarabun',sans-serif;
+}
 
-  .arch-note{
-    margin-top:24px;
-    display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;
-  }
-  .arch-note .item{
-    border-left:4px solid var(--accent);
-    padding:8px 14px;background:var(--paper-2);
-  }
-  .arch-note .item:nth-child(2){border-color:var(--accent-2)}
-  .arch-note .item:nth-child(3){border-color:var(--green)}
-  .arch-note .item b{
-    font-family:'Bricolage Grotesque',sans-serif;
-    display:block;font-size:14px;margin-bottom:2px;
-  }
-  .arch-note .item span{font-size:12px;color:var(--muted);line-height:1.5}
+/* Side buttons — left: action + volume up/down · right: power */
+.phone::before{
+  /* Power button (right side) */
+  content:"";position:absolute;
+  top:118px;right:-2px;
+  width:3px;height:60px;
+  background:linear-gradient(90deg,#1c1c1e 0%,#2c2c2e 50%,#3a3a3c 100%);
+  border-radius:0 2px 2px 0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.phone::after{
+  /* Volume + action buttons (left side) — combined */
+  content:"";position:absolute;
+  top:88px;left:-2px;
+  width:3px;height:42px;
+  background:linear-gradient(-90deg,#1c1c1e 0%,#2c2c2e 50%,#3a3a3c 100%);
+  border-radius:2px 0 0 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    /* Volume up */
+    0 56px 0 -1px #2c2c2e,
+    /* Volume up extends */
+    1px 56px 0 -1px rgba(255,255,255,0.08),
+    /* Volume down */
+    0 110px 0 -1px #2c2c2e,
+    1px 110px 0 -1px rgba(255,255,255,0.08);
+}
 
-  /* SECTION 2 — Phases */
-  .phases{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-    margin-top:12px;
-  }
-  .phase{
-    border:2px solid var(--line);
-    background:var(--paper);
-    padding:0;
-    box-shadow:6px 6px 0 var(--line);
-    display:flex;flex-direction:column;
-  }
-  .phase header{
-    background:var(--ink);color:var(--paper);
-    padding:14px 18px;
-    display:flex;align-items:baseline;gap:10px;
-    border-bottom:2px solid var(--line);
-  }
-  .phase header .ph-num{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;background:var(--accent);
-    color:var(--paper);padding:3px 8px;letter-spacing:1px;
-  }
-  .phase:nth-child(2) header .ph-num{background:var(--accent-2)}
-  .phase:nth-child(3) header .ph-num{background:var(--green)}
-  .phase header h3{
-    font-family:'Bricolage Grotesque',sans-serif;
-    margin:0;font-size:18px;font-weight:700;letter-spacing:-0.3px;
-  }
-  .phase .body{padding:18px;flex:1;display:flex;flex-direction:column}
-  .phase .body p.lede{
-    font-size:13px;line-height:1.55;margin:0 0 14px;color:var(--muted);
-  }
-  .mock{
-    border:1.5px dashed var(--line);
-    background:var(--paper-2);
-    padding:14px;margin-bottom:14px;
-    position:relative;font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-  }
-  .mock::before{
-    content:"MOCKUP";position:absolute;top:-9px;left:10px;
-    background:var(--paper);padding:0 6px;font-size:9px;
-    letter-spacing:1.5px;color:var(--muted);
-  }
-  .sheet-row{
-    display:grid;grid-template-columns:24px 1fr 70px 60px;
-    gap:6px;padding:5px 0;border-bottom:1px dotted #999;align-items:center;
-  }
-  .sheet-row.head{font-weight:600;color:var(--ink);border-bottom:1px solid var(--ink)}
-  .badge{
-    font-size:9px;padding:1px 6px;border:1px solid var(--line);
-    text-align:center;letter-spacing:0.5px;
-  }
-  .badge.sent{background:var(--green);color:#fff;border-color:var(--green)}
-  .badge.cancel{background:#999;color:#fff;border-color:#999}
-  .badge.new{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
-  .badge.ship{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
-  .strike{text-decoration:line-through;opacity:0.5}
+/* Inner screen container */
+.phone .screen{
+  width:100%;
+  height:600px;
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  background:#f0f2f5;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    inset 0 0 24px rgba(0,0,0,0.15);
+}
+.phone .screen.dark{background:#000}
 
-  .menu-bar{
-    background:var(--ink);color:var(--paper);
-    padding:6px 10px;font-size:11px;margin-bottom:8px;
-    display:flex;gap:14px;
-  }
-  .menu-bar span:hover{color:var(--accent);cursor:pointer}
-  .clear-btn{
-    display:inline-block;background:var(--accent);color:var(--paper);
-    padding:6px 12px;font-family:'IBM Plex Mono',monospace;
-    font-size:11px;letter-spacing:1px;border:1.5px solid var(--ink);
-    box-shadow:3px 3px 0 var(--ink);margin-top:8px;
-  }
+/* Dynamic Island — pill shape, true to iPhone 15 Pro+ */
+.phone .screen::before{
+  content:"";
+  position:absolute;
+  top:11px;left:50%;
+  transform:translateX(-50%);
+  width:110px;height:34px;
+  background:#000;
+  border-radius:20px;
+  z-index:60;
+  box-shadow:
+    0 0 0 0.5px rgba(255,255,255,0.04),
+    0 2px 8px rgba(0,0,0,0.3);
+}
 
-  .feature-list{margin:0;padding:0;list-style:none;font-size:13px}
-  .feature-list li{
-    padding:8px 0;border-bottom:1px dotted #aaa;
-    display:flex;gap:10px;align-items:flex-start;
-  }
-  .feature-list li::before{
-    content:"→";font-family:'IBM Plex Mono',monospace;
-    color:var(--accent);font-weight:700;flex-shrink:0;
-  }
-  .feature-list li b{font-weight:600}
+/* Front camera dot inside Dynamic Island */
+.phone .screen::after{
+  content:"";
+  position:absolute;
+  top:21px;
+  left:calc(50% + 38px);
+  transform:translateX(-50%);
+  width:8px;height:8px;
+  background:radial-gradient(circle at 30% 30%,#1a1a2e 0%,#000 60%,#0a0a14 100%);
+  border-radius:50%;
+  z-index:61;
+  box-shadow:
+    inset 0 0 0 0.5px rgba(60,80,120,0.4),
+    inset -1px -1px 2px rgba(0,0,0,0.8),
+    inset 1px 1px 1px rgba(40,60,100,0.3);
+}
 
-  .timing{
-    margin-top:auto;padding-top:14px;border-top:2px solid var(--line);
-    font-family:'IBM Plex Mono',monospace;font-size:11px;
-    display:flex;justify-content:space-between;color:var(--muted);
-  }
-  .timing b{color:var(--ink)}
+/* Status bar — iOS native style */
+.phone .status-bar{
+  height:54px;
+  background:transparent;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:18px 28px 0;
+  font-family:-apple-system,'SF Pro Display','Sarabun',sans-serif;
+  font-size:13px;
+  color:#000;
+  font-weight:600;
+  letter-spacing:-0.2px;
+  position:relative;
+  z-index:20;
+}
+.phone .screen.dark .status-bar{color:#fff}
+.phone .status-bar .time{
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:-0.3px;
+  font-variant-numeric:tabular-nums;
+}
+.phone .status-bar .right{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  font-size:12px;
+}
 
-  /* SECTION 3 — Admin pages storyboard */
-  .panels{
-    display:grid;grid-template-columns: 1fr 1fr;gap:28px;margin-top:12px;
-  }
-  .panel-frame{
-    border:2px solid var(--line);background:var(--paper);
-    box-shadow:6px 6px 0 var(--line);overflow:hidden;
-  }
-  .panel-frame .ph-label{
-    background:var(--paper-2);border-bottom:2px solid var(--line);
-    padding:10px 16px;display:flex;justify-content:space-between;align-items:center;
-    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;
-  }
-  .panel-frame .ph-label b{
-    font-family:'Bricolage Grotesque',sans-serif;
-    font-size:14px;font-weight:700;letter-spacing:-0.3px;
-  }
-  .panel-frame .ph-body{padding:18px}
+/* iOS-style status icons (signal/wifi/battery) */
+.ios-signal{
+  display:inline-flex;align-items:flex-end;gap:1.5px;height:10px;
+}
+.ios-signal i{
+  width:3px;background:currentColor;border-radius:0.5px;display:block;
+}
+.ios-signal i:nth-child(1){height:3px}
+.ios-signal i:nth-child(2){height:5px}
+.ios-signal i:nth-child(3){height:7px}
+.ios-signal i:nth-child(4){height:9px}
 
-  /* Browser mock */
-  .browser{
-    border:1.5px solid var(--line);background:#fff;
-    margin-top:10px;font-family:'Sarabun',sans-serif;font-size:12px;
-  }
-  .browser .chrome{
-    background:var(--paper-2);padding:6px 10px;
-    border-bottom:1.5px solid var(--line);
-    display:flex;align-items:center;gap:6px;
-  }
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);display:inline-block}
-  .browser .url{
-    background:#fff;border:1px solid var(--line);
-    padding:2px 8px;font-family:'IBM Plex Mono',monospace;
-    font-size:10px;margin-left:8px;flex:1;color:var(--muted);
-  }
+.ios-wifi{
+  position:relative;width:14px;height:10px;
+}
+.ios-wifi::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 50% 100%,currentColor 0 1.5px,transparent 1.6px),
+    radial-gradient(circle at 50% 100%,transparent 0 3px,currentColor 3.1px 4px,transparent 4.1px),
+    radial-gradient(circle at 50% 100%,transparent 0 5.5px,currentColor 5.6px 6.5px,transparent 6.6px);
+}
 
-  /* Admin layout mock */
-  .admin-mock{position:relative;background:#fff;min-height:340px;overflow:hidden}
-  .am-topbar{
-    background:var(--ink);color:var(--paper);padding:8px 12px;
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:11px;
-  }
-  .am-topbar .gear{
-    width:22px;height:22px;border:1.5px solid var(--paper);
-    display:inline-flex;align-items:center;justify-content:center;
-    font-size:13px;
-  }
-  .am-status{
-    background:var(--yellow);color:var(--ink);padding:8px 12px;
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:11px;border-bottom:1.5px solid var(--line);
-  }
-  .am-status .pulse{
-    width:8px;height:8px;border-radius:50%;background:var(--green);
-    display:inline-block;margin-right:6px;
-    box-shadow:0 0 0 0 var(--green);
-    animation:pulse 1.6s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(31,138,76,.6)}
-    70%{box-shadow:0 0 0 8px rgba(31,138,76,0)}
-    100%{box-shadow:0 0 0 0 rgba(31,138,76,0)}
-  }
-  .am-content{padding:14px;min-height:200px}
-  .am-card{
-    border:1.5px solid var(--line);padding:10px 12px;
-    margin-bottom:10px;background:var(--paper-2);
-    display:flex;justify-content:space-between;
-    font-size:11px;
-  }
-  .am-bottombar{
-    background:var(--paper-2);border-top:1.5px solid var(--line);
-    padding:10px 12px;display:flex;justify-content:space-between;align-items:center;
-    font-size:11px;
-  }
-  .save-btn{
-    background:var(--accent);color:var(--paper);padding:5px 14px;
-    font-family:'IBM Plex Mono',monospace;font-size:10px;
-    border:1.5px solid var(--ink);letter-spacing:1px;
-  }
-  .arrow-btns{display:flex;gap:4px}
-  .arrow-btns span{
-    width:24px;height:24px;border:1.5px solid var(--line);
-    background:#fff;display:inline-flex;align-items:center;justify-content:center;
-  }
+.ios-battery{
+  width:24px;height:11px;
+  border:1px solid currentColor;
+  border-radius:3px;
+  padding:1px;
+  position:relative;
+  opacity:0.95;
+}
+.ios-battery::after{
+  content:"";position:absolute;
+  right:-2.5px;top:50%;transform:translateY(-50%);
+  width:1.5px;height:5px;
+  background:currentColor;
+  border-radius:0 1px 1px 0;
+  opacity:0.5;
+}
+.ios-battery i{
+  display:block;height:100%;
+  background:currentColor;
+  border-radius:1.5px;
+  width:80%;
+}
 
-  /* Fixed sticky markers */
-  .sticky-tag{
-    position:absolute;font-family:'IBM Plex Mono',monospace;
-    font-size:9px;background:var(--accent);color:var(--paper);
-    padding:2px 6px;letter-spacing:1px;z-index:5;
-    border:1.5px solid var(--ink);
-  }
+/* Home indicator bar */
+.phone .screen .home-indicator{
+  position:absolute;
+  bottom:8px;left:50%;
+  transform:translateX(-50%);
+  width:120px;height:5px;
+  background:#000;
+  border-radius:3px;
+  opacity:0.85;
+  z-index:80;
+}
+.phone .screen.dark .home-indicator{
+  background:#fff;
+  opacity:0.6;
+}
 
-  /* Order queue mock */
-  .order-queue{font-size:11px}
-  .order-card{
-    border:1.5px solid var(--line);padding:8px 10px;margin-bottom:8px;
-    background:#fff;display:grid;
-    grid-template-columns: 60px 1fr auto;gap:10px;align-items:center;
-  }
-  .order-card .id{
-    font-family:'IBM Plex Mono',monospace;font-size:10px;
-    background:var(--ink);color:var(--paper);padding:3px 6px;text-align:center;
-  }
-  .order-card .info b{font-family:'Bricolage Grotesque',sans-serif;display:block;margin-bottom:2px;font-size:12px}
-  .order-card .info span{color:var(--muted);font-size:10px}
-  .status-pick{
-    display:flex;gap:3px;
-  }
-  .status-pick span{
-    padding:2px 6px;font-size:9px;border:1px solid var(--line);
-    font-family:'IBM Plex Mono',monospace;cursor:pointer;
-  }
-  .status-pick span.on{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
+/* Overlay status bar — floating on top of dark modals */
+.phone .status-bar.overlay-status{
+  position:absolute;
+  top:0;left:0;right:0;
+  z-index:55;
+  color:#fff;
+  pointer-events:none;
+}
 
-  /* Receipt mock */
-  .receipt{
-    background:#fff;border:1.5px dashed var(--line);
-    padding:16px;font-family:'IBM Plex Mono',monospace;font-size:11px;
-    line-height:1.7;position:relative;
-  }
-  .receipt::before,.receipt::after{
-    content:"";position:absolute;left:0;right:0;height:12px;
-    background:radial-gradient(circle at 6px 0,transparent 5px,#fff 5px) 0 0/12px 12px;
-  }
-  .receipt::before{top:-6px;transform:rotate(180deg)}
-  .receipt::after{bottom:-6px}
-  .receipt h4{
-    font-family:'Bricolage Grotesque',sans-serif;text-align:center;
-    margin:0 0 4px;font-size:16px;letter-spacing:-0.3px;
-  }
-  .receipt .ln{border-top:1px dashed var(--line);margin:8px 0}
-  .receipt .row{display:flex;justify-content:space-between}
-  .receipt .tot{font-weight:700;font-size:13px}
+/* Phone label */
+.phone-label{
+  text-align:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;color:var(--muted);
+  margin-top:18px;letter-spacing:1.5px;
+}
+.phone-label b{color:var(--ink);font-weight:600}
+.phone-label .device{
+  display:block;
+  font-size:9px;
+  color:var(--muted-2);
+  margin-top:3px;
+  letter-spacing:1.2px;
+}
 
-  /* SECTION 4 — Bug fix */
-  .bugs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}
-  .bug-card{
-    border:2px solid var(--line);background:var(--paper);
-    box-shadow:6px 6px 0 var(--line);
-    display:grid;grid-template-columns:1fr 1fr;
-  }
-  .bug-card .before,.bug-card .after{padding:18px;position:relative}
-  .bug-card .before{background:#fff3f0;border-right:2px dashed var(--line)}
-  .bug-card .after{background:#f0fff4}
-  .bug-card h4{
-    font-family:'Bricolage Grotesque',sans-serif;
-    margin:0 0 4px;font-size:13px;letter-spacing:0.5px;
-    text-transform:uppercase;
-  }
-  .bug-card h4 .x{color:#c33}
-  .bug-card h4 .c{color:var(--green)}
-  .bug-card .scene{
-    margin-top:10px;border:1.5px solid var(--line);background:#fff;
-    height:160px;position:relative;overflow:hidden;font-size:10px;
-  }
-  .scene .bar{
-    background:var(--ink);color:var(--paper);padding:4px 8px;
-    font-family:'IBM Plex Mono',monospace;font-size:9px;
-    display:flex;justify-content:space-between;
-  }
-  .scene .content-fake{
-    padding:8px;line-height:1.4;color:var(--muted);font-size:9px;
-  }
-  .scene .content-fake p{margin:0 0 6px}
-  .scene .floating{
-    position:absolute;background:var(--accent);color:#fff;
-    padding:3px 7px;font-family:'IBM Plex Mono',monospace;font-size:9px;
-    border:1.5px solid var(--ink);letter-spacing:1px;
-  }
-  .scroll-marker{
-    position:absolute;right:4px;top:50%;transform:translateY(-50%);
-    font-family:'IBM Plex Mono',monospace;font-size:8px;
-    writing-mode:vertical-rl;color:var(--accent);letter-spacing:2px;
-  }
-  .bug-title-row{
-    grid-column:1/3;background:var(--ink);color:var(--paper);
-    padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;
-    letter-spacing:1.5px;display:flex;justify-content:space-between;
-  }
-  .bug-title-row b{
-    font-family:'Bricolage Grotesque',sans-serif;font-size:14px;
-    letter-spacing:-0.3px;font-weight:700;text-transform:none;
-  }
-  .css-hint{
-    margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;
-    background:var(--ink);color:#7ddc9e;padding:8px 10px;line-height:1.5;
-  }
-  .css-hint .comment{color:#888}
+/* ============================================================
+   SCENE FRAME (container)
+   ============================================================ */
+.scene{
+  border:2.5px solid var(--line);
+  background:var(--paper);
+  position:relative;
+  box-shadow:var(--shadow);
+  padding:0;
+  margin-bottom:32px;
+}
+.scene-label{
+  position:absolute;top:-14px;left:24px;
+  background:var(--paper-2);
+  border:1.5px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;padding:4px 12px;
+  letter-spacing:1.8px;z-index:5;
+}
+.scene-label.alt{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.scene-num{
+  position:absolute;top:-14px;right:24px;
+  background:var(--accent);color:#fff;
+  border:1.5px solid var(--ink);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;padding:4px 12px;
+  letter-spacing:1.8px;z-index:5;font-weight:600;
+}
+.scene-body{padding:36px 32px 32px}
+.scene-grid{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:36px;align-items:flex-start;
+}
+.scene-info h3{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:24px;margin:0 0 6px;letter-spacing:-0.7px;font-weight:700;
+}
+.scene-info .role{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--muted);letter-spacing:1.5px;margin-bottom:14px;
+}
+.scene-info .desc{
+  font-size:14px;line-height:1.65;color:#2a2a2a;margin:0 0 16px;
+}
+.spec-table{
+  border-top:1.5px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+}
+.spec-table .row{
+  display:grid;grid-template-columns:90px 1fr;
+  border-bottom:1px solid #c5beae;padding:7px 0;
+}
+.spec-table .row b{color:var(--muted);font-weight:500;letter-spacing:0.5px}
+.spec-table .row span{color:var(--ink)}
+.spec-table .row span.hl{color:var(--accent);font-weight:600}
 
+.bullets{margin:14px 0 0;padding:0;list-style:none}
+.bullets li{
+  font-size:13px;padding:6px 0;
+  display:flex;gap:10px;line-height:1.55;
+}
+.bullets li::before{
+  content:"▸";color:var(--accent);font-weight:700;flex-shrink:0;
+  font-family:'IBM Plex Mono',monospace;
+}
+
+/* ============================================================
+   PHONE INTERNALS — SCENE 1: SPLASH
+   ============================================================ */
+.shimmer{
+  background:linear-gradient(90deg,#e8e8e8 25%,#f5f5f5 50%,#e8e8e8 75%);
+  background-size:600px 100%;
+  animation:shimmer 1.4s infinite linear;
+  border-radius:6px;
+}
+@keyframes shimmer{
+  0%{background-position:-600px 0}
+  100%{background-position:600px 0}
+}
+.splash-nav{
+  background:#fff;padding:8px 14px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid #eee;
+}
+.splash-logo-real{
+  width:36px;height:36px;background:linear-gradient(135deg,var(--accent-2),var(--accent-3));
+  border-radius:8px;color:#fff;font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bricolage Grotesque',sans-serif;
+}
+.splash-search{flex:1;height:30px;border-radius:20px}
+.splash-cart{width:30px;height:30px;border-radius:50%}
+.splash-body-mock{padding:14px 12px}
+.splash-title-skel{height:14px;width:110px;margin-bottom:14px}
+.splash-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.splash-card{padding:8px}
+.splash-card .si{width:100%;aspect-ratio:1/1;border-radius:10px;margin-bottom:6px}
+.splash-card .sl1{height:10px;width:80%;margin-bottom:4px;border-radius:4px}
+.splash-card .sl2{height:9px;width:55%;margin-bottom:6px;border-radius:4px}
+.splash-card .sp{height:14px;width:45%;margin-bottom:8px;border-radius:4px}
+.splash-card .sb{height:24px;width:100%;border-radius:10px}
+
+/* SCENE 2 — Promo overlay */
+.promo-screen{
+  background:rgba(10,10,11,0.92);
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:60px 20px 40px;
+  flex-direction:column;gap:14px;
+}
+.promo-img{
+  width:100%;aspect-ratio:3/4;background:
+    linear-gradient(135deg,#ff5b1f,#dc2626 60%,#7c3aed);
+  border-radius:14px;box-shadow:0 14px 30px rgba(0,0,0,0.5);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;font-size:24px;text-align:center;
+  letter-spacing:-0.5px;line-height:1.1;
+  position:relative;overflow:hidden;
+}
+.promo-img::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.25),transparent 50%);
+}
+.promo-img span{position:relative;z-index:2}
+.promo-img small{display:block;font-size:11px;font-weight:400;margin-top:8px;opacity:0.9}
+.promo-dots-row{display:flex;gap:6px}
+.promo-dots-row span{
+  width:6px;height:6px;background:rgba(255,255,255,0.4);
+  border-radius:50%;
+}
+.promo-dots-row span.on{background:#fff;width:18px;border-radius:3px}
+
+/* SCENE 3-5: catalog */
+.catalog-nav{
+  background:#fff;padding:9px 12px;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  position:relative;z-index:10;
+}
+.catalog-nav .logo{
+  width:32px;height:32px;background:linear-gradient(135deg,var(--accent-2),var(--accent-3));
+  border-radius:8px;color:#fff;font-weight:800;font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bricolage Grotesque',sans-serif;flex-shrink:0;
+}
+.catalog-nav .cat-btn{
+  font-size:10px;padding:5px 8px;border:1px solid #ddd;
+  border-radius:14px;background:#fafafa;white-space:nowrap;
+  font-family:'Sarabun';
+}
+.catalog-nav .search{
+  flex:1;height:28px;background:#f3f4f6;
+  border-radius:14px;display:flex;align-items:center;
+  padding:0 10px;font-size:10px;color:#aaa;
+}
+.catalog-nav .cart{
+  width:30px;height:30px;border-radius:50%;
+  background:#f3f4f6;display:flex;align-items:center;justify-content:center;
+  font-size:14px;position:relative;flex-shrink:0;
+}
+.catalog-nav .cart .badge{
+  position:absolute;top:-2px;right:-2px;
+  background:var(--accent-2);color:#fff;
+  width:14px;height:14px;border-radius:50%;
+  font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:700;
+}
+
+.cat-section-title{
+  padding:14px 12px 8px;font-size:14px;font-weight:700;
+  color:#1f2937;position:relative;
+}
+.cat-section-title::after{
+  content:"";position:absolute;left:12px;bottom:4px;
+  width:30px;height:2.5px;background:var(--accent-2);border-radius:2px;
+}
+.product-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px 14px;
+}
+.prod-card{
+  background:#fff;border-radius:14px;padding:6px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  display:flex;flex-direction:column;gap:4px;
+}
+.prod-card .pi{
+  background:#f3f4f6;width:100%;aspect-ratio:1/1;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;color:#cbd5e1;
+}
+.prod-card .pn{font-size:10px;font-weight:600;color:#1f2937;padding:0 4px;line-height:1.3;margin-top:2px}
+.prod-card .pp{font-size:13px;font-weight:800;color:var(--rose);padding:0 4px}
+.prod-card .pb{
+  background:var(--accent-2);color:#fff;font-size:9px;font-weight:600;
+  padding:5px 0;border-radius:8px;text-align:center;margin-top:2px;
+}
+
+/* SCENE 6: Product popup */
+.popup-overlay{
+  background:rgba(0,0,0,0.55);
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:60px 16px 30px;
+}
+.popup-card{
+  background:#fff;border-radius:18px;padding:14px;width:100%;
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
+}
+.popup-img{
+  width:100%;aspect-ratio:1/0.8;border-radius:10px;
+  background:linear-gradient(135deg,#fff5e6,#ffe4cc);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;color:var(--accent);font-size:36px;
+}
+.popup-name{font-size:14px;font-weight:700;margin:0 0 4px;color:#111}
+.popup-desc{font-size:10px;color:#6b7280;line-height:1.45;margin-bottom:6px}
+.popup-stock{font-size:9px;font-weight:700;color:var(--green);margin-bottom:6px}
+.popup-price{font-size:18px;font-weight:800;color:var(--rose);margin-bottom:8px}
+.popup-sizes{display:flex;gap:4px;margin-bottom:10px}
+.popup-sizes span{
+  font-size:9px;padding:4px 8px;border:1.2px solid #ddd;
+  border-radius:8px;font-weight:600;
+}
+.popup-sizes span.on{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
+.popup-actions{
+  display:flex;gap:6px;border-top:1px solid #f3f4f6;padding-top:10px;align-items:center;
+}
+.popup-qty{
+  border:1.2px solid #ddd;border-radius:8px;padding:2px;
+  display:flex;align-items:center;font-size:11px;font-weight:700;
+}
+.popup-qty span{padding:3px 7px;color:#374151}
+.popup-qty .v{padding:3px 6px;min-width:18px;text-align:center}
+.popup-btn-cart,.popup-btn-buy{
+  font-size:10px;font-weight:700;padding:6px 0;border-radius:8px;
+  text-align:center;flex:1;
+}
+.popup-btn-cart{background:#fff;border:1.5px solid var(--accent-2);color:var(--accent-2)}
+.popup-btn-buy{background:var(--accent-2);color:#fff;flex:1.6}
+
+/* SCENE 7: cart drawer */
+.drawer-overlay{
+  background:rgba(0,0,0,0.55);
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;
+}
+.drawer{
+  background:#fff;width:100%;
+  border-radius:20px 20px 0 0;padding:14px;
+  max-height:85%;display:flex;flex-direction:column;
+}
+.drawer-head{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;font-weight:700;color:#111;
+  padding-bottom:10px;border-bottom:1px solid #f3f4f6;
+}
+.drawer-head .x{color:#9ca3af;font-size:14px}
+.cust-id{font-size:9px;color:#9ca3af;margin:6px 0 8px;font-family:'IBM Plex Mono',monospace}
+.cart-item{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 0;border-bottom:1px solid #f3f4f6;
+}
+.cart-item .ck{
+  width:14px;height:14px;border:1.5px solid var(--accent-2);
+  border-radius:3px;background:var(--accent-2);position:relative;flex-shrink:0;
+}
+.cart-item .ck::after{
+  content:"";position:absolute;top:2px;left:4px;
+  width:3px;height:6px;border:solid #fff;border-width:0 1.5px 1.5px 0;
+  transform:rotate(45deg);
+}
+.cart-item .ci{
+  width:32px;height:32px;background:#f3f4f6;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:14px;
+}
+.cart-item .info{flex:1;min-width:0}
+.cart-item .nm{font-size:10px;font-weight:600;color:#111}
+.cart-item .sub{font-size:8px;color:#9ca3af;margin-top:1px}
+.cart-item .pr{font-size:10px;font-weight:700;color:var(--rose);white-space:nowrap}
+.cart-item .qx{
+  border:1.2px solid #e5e7eb;border-radius:10px;
+  padding:1px 2px;font-size:9px;display:flex;align-items:center;
+}
+.cart-item .qx span{padding:2px 4px}
+.cart-foot{
+  border-top:1.5px solid #f3f4f6;padding-top:10px;margin-top:6px;
+}
+.cart-foot .tot{
+  display:flex;justify-content:space-between;font-weight:700;
+  font-size:12px;margin-bottom:8px;
+}
+.cart-foot .tot b{color:var(--rose);font-size:14px}
+.btn-checkout{
+  background:linear-gradient(135deg,var(--accent-2),var(--accent-3));
+  color:#fff;text-align:center;font-size:12px;font-weight:700;
+  padding:10px;border-radius:12px;
+}
+
+/* SCENE 8: checkout */
+.checkout-head{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;padding-bottom:10px;
+  border-bottom:1px solid #f3f4f6;
+}
+.checkout-head .back{color:var(--accent-2);font-size:16px}
+.co-section{margin-top:10px}
+.co-title{font-size:11px;font-weight:700;color:#374151;margin-bottom:6px}
+.del-tabs{display:flex;background:#f3f4f6;border-radius:10px;padding:2px}
+.del-tabs span{
+  flex:1;text-align:center;font-size:9px;font-weight:600;
+  padding:5px 0;color:#6b7280;border-radius:8px;
+}
+.del-tabs span.on{background:#fff;color:#111;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.map-mock{
+  height:80px;background:
+    linear-gradient(45deg,#dbeafe 25%,transparent 25%) -10px 0/20px 20px,
+    linear-gradient(-45deg,#dbeafe 25%,transparent 25%) -10px 0/20px 20px,
+    #eff6ff;
+  border-radius:10px;margin:8px 0;
+  position:relative;border:1px solid #e5e7eb;
+}
+.map-mock .pin{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-100%);font-size:18px;
+}
+.pin-card{
+  background:#fff;border:1px solid #e5e7eb;border-radius:8px;
+  padding:6px 8px;font-size:9px;margin-bottom:6px;
+}
+.pin-card b{display:block;font-size:9.5px;color:#111;margin-bottom:2px}
+.pin-card .addr{color:#16a34a;font-size:8.5px;line-height:1.4}
+.input-row{
+  background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;
+  padding:6px 8px;margin-bottom:5px;font-size:9px;color:#9ca3af;
+}
+.input-row.filled{color:#111;background:#fff}
+.pay-tabs{display:flex;gap:4px;margin-bottom:8px}
+.pay-tabs span{
+  flex:1;text-align:center;font-size:8.5px;font-weight:600;
+  padding:6px 0;border:1.2px solid #e5e7eb;border-radius:8px;
+  background:#fff;color:#6b7280;
+}
+.pay-tabs span.on{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
+.bank-list{display:flex;flex-direction:column;gap:5px}
+.bank-row{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 8px;background:#fafafa;
+  border:1px solid #e5e7eb;border-radius:8px;
+}
+.bank-row .b-logo{
+  width:22px;height:22px;border-radius:6px;
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  color:#fff;font-size:8px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.bank-row .b-logo.k{background:#16a34a}
+.bank-row .b-logo.s{background:#7c3aed}
+.bank-row .info{flex:1;min-width:0}
+.bank-row .info b{display:block;font-size:9.5px}
+.bank-row .info span{font-size:8.5px;color:#6b7280;font-family:'IBM Plex Mono',monospace}
+.bank-row .cp{
+  font-size:8px;padding:3px 6px;background:var(--accent-2);
+  color:#fff;border-radius:6px;font-weight:600;
+}
+
+.slip-upload{
+  margin-top:8px;border:1.5px dashed #cbd5e1;border-radius:10px;
+  padding:14px;text-align:center;font-size:10px;color:#9ca3af;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+
+/* SCENE 9: QR pay */
+.qr-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 10px;background:#fef3c7;border-radius:8px;
+  font-size:9px;color:#92400e;margin-bottom:8px;
+}
+.qr-header b{font-size:13px;color:#dc2626;display:block;font-weight:800}
+.qr-display{
+  background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;
+  padding:14px;text-align:center;
+}
+.qr-display .bank-nm{font-size:9px;font-weight:700;color:#374151;margin-bottom:6px}
+.qr-code-img{
+  width:90px;height:90px;margin:0 auto;
+  background:
+    linear-gradient(45deg,#000 25%,transparent 25%) 0 0/16px 16px,
+    linear-gradient(-45deg,#000 25%,transparent 25%) 0 0/16px 16px,
+    linear-gradient(45deg,transparent 75%,#000 75%) 0 0/16px 16px,
+    linear-gradient(-45deg,transparent 75%,#000 75%) 0 0/16px 16px,
+    #fff;
+  border:6px solid #fff;box-shadow:0 0 0 1.5px #111;
+  position:relative;
+}
+.qr-code-img::after{
+  content:"QR";position:absolute;inset:0;
+  background:#fff;width:24px;height:24px;
+  margin:auto;display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:700;border-radius:3px;
+}
+
+/* SCENE 10: Order confirm receipt */
+.receipt-screen{
+  background:#f0f2f5;padding:14px;height:calc(100% - 54px);overflow:auto;
+}
+.receipt{
+  background:#fff;border-radius:14px;padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  font-family:'IBM Plex Mono',monospace;font-size:9px;line-height:1.6;
+  position:relative;
+}
+.receipt::before,.receipt::after{
+  content:"";position:absolute;left:0;right:0;height:8px;
+  background:radial-gradient(circle at 5px 0,transparent 4px,#fff 4px) 0 0/10px 10px;
+}
+.receipt::before{top:-4px;transform:rotate(180deg)}
+.receipt::after{bottom:-4px}
+.receipt h4{
+  font-family:'Bricolage Grotesque',sans-serif;
+  text-align:center;font-size:14px;font-weight:700;
+  margin:0 0 4px;
+}
+.receipt .ln{border-top:1px dashed #999;margin:6px 0}
+.receipt .row{display:flex;justify-content:space-between;margin:2px 0}
+.receipt .tot{font-weight:700;font-size:11px}
+
+/* ============================================================
+   SECTION: ARCHITECTURE — 4 LAYER MAP
+   ============================================================ */
+.arch-map{
+  border:2.5px solid var(--line);
+  background:var(--paper-2);
+  box-shadow:var(--shadow);
+  padding:36px 32px 28px;
+  position:relative;
+}
+.arch-flow{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.node{
+  border:2px solid var(--line);
+  padding:18px 14px;
+  background:var(--paper);
+  position:relative;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:160px;
+}
+.node.hero{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.node.hero .pill{background:var(--accent);color:#fff;border-color:var(--accent)}
+.node .pill{
+  display:inline-block;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;border:1.5px solid var(--line);
+  padding:3px 8px;letter-spacing:1px;margin-bottom:10px;
+  background:#fff;
+}
+.node h4{
+  font-family:'Bricolage Grotesque',sans-serif;
+  margin:0 0 4px;font-size:18px;font-weight:700;letter-spacing:-0.3px;
+}
+.node p{font-size:12px;line-height:1.5;margin:0;color:var(--muted)}
+.node.hero p{color:#bdb6a6}
+.node .role{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  margin-top:12px;color:var(--muted-2);letter-spacing:0.5px;
+}
+.node.hero .role{color:#7ddc9e}
+.arrows{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  margin:10px 0;
+}
+.ar{
+  text-align:center;font-family:'IBM Plex Mono',monospace;
+  font-size:11px;color:var(--muted);position:relative;
+}
+.ar::before{
+  content:"";display:block;height:2px;background:var(--line);
+  margin-bottom:6px;
+}
+.ar span{background:var(--paper-2);padding:0 8px}
+
+/* ============================================================
+   FLOW DIAGRAM — order flow
+   ============================================================ */
+.flow-steps{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+  margin-top:20px;align-items:stretch;
+}
+.flow-step{
+  background:var(--paper);border:2px solid var(--line);
+  padding:14px 12px;position:relative;
+  border-right:none;
+}
+.flow-step:last-child{border-right:2px solid var(--line)}
+.flow-step .n{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  background:var(--ink);color:var(--paper);
+  padding:3px 7px;letter-spacing:1px;display:inline-block;margin-bottom:8px;
+}
+.flow-step h5{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+  font-size:13px;margin:0 0 4px;letter-spacing:-0.2px;
+}
+.flow-step p{font-size:11px;color:var(--muted);margin:0;line-height:1.45}
+.flow-step::after{
+  content:"";position:absolute;top:50%;right:-10px;
+  width:0;height:0;border-style:solid;border-width:8px 0 8px 10px;
+  border-color:transparent transparent transparent var(--line);
+  z-index:2;
+}
+.flow-step:last-child::after{display:none}
+.flow-step.success{background:#f0fdf4;border-color:var(--green)}
+.flow-step.success .n{background:var(--green)}
+.flow-step.success::after{border-left-color:var(--green)}
+
+/* ============================================================
+   ADMIN PANELS — STORYBOARD
+   ============================================================ */
+.admin-panels{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
+.admin-panel{
+  border:2.5px solid var(--line);background:var(--paper);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.admin-panel .ah{
+  background:var(--ink);color:var(--paper);
+  padding:12px 16px;display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;
+}
+.admin-panel .ah b{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:14px;font-weight:700;letter-spacing:-0.3px;text-transform:none;
+}
+.admin-panel .ab{padding:18px}
+
+/* Admin mockup */
+.admin-mock{
+  border:1.5px solid var(--line);background:#fff;
+  border-radius:10px;overflow:hidden;
+  font-family:'Sarabun';
+}
+.am-head{
+  background:#fff;padding:10px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #f3f4f6;
+  position:sticky;top:0;
+}
+.am-head h6{font-size:13px;font-weight:700;margin:0;display:flex;align-items:center;gap:6px}
+.am-head h6::before{content:"⚙";font-size:14px}
+.am-head .x{color:#9ca3af}
+.am-lock{
+  background:#f0fdf4;border:1px solid #bbf7d0;
+  padding:8px 11px;font-size:11px;color:#15803d;
+  border-radius:8px;margin:8px 12px;display:flex;align-items:center;gap:6px;
+}
+.am-lock .dot{width:7px;height:7px;background:#22c55e;border-radius:50%}
+.am-lock.checking{background:#fffbeb;border-color:#fde68a;color:#92400e}
+.am-lock.checking .dot{background:#f59e0b}
+.am-lock.blocked{background:#fef2f2;border-color:#fecaca;color:#b91c1c}
+.am-lock.blocked .dot{background:#ef4444}
+.am-section{
+  padding:10px 14px;border-bottom:1px solid #f3f4f6;
+}
+.am-section .t{
+  font-size:10px;font-weight:700;color:#9ca3af;
+  text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;
+}
+.am-color-row{display:flex;gap:6px;align-items:center}
+.am-color-sw{
+  width:22px;height:22px;border-radius:6px;border:2px solid #fff;
+  box-shadow:0 0 0 1px #e5e7eb;cursor:pointer;
+}
+.am-color-sw.on{box-shadow:0 0 0 2px var(--ink)}
+.am-toggle{
+  width:34px;height:18px;background:#e5e7eb;border-radius:10px;
+  position:relative;
+}
+.am-toggle::after{
+  content:"";position:absolute;top:2px;left:2px;
+  width:14px;height:14px;border-radius:50%;background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
+.am-toggle.on{background:var(--accent-2)}
+.am-toggle.on::after{left:18px}
+.am-cat-tab{
+  padding:6px 8px 6px 18px;border:1px solid #e5e7eb;
+  border-radius:8px;font-size:10px;font-weight:600;
+  background:#fafafa;margin-bottom:4px;
+  display:flex;justify-content:space-between;align-items:center;position:relative;
+}
+.am-cat-tab.active{background:#1f2937;color:#fff;border-color:#1f2937}
+.am-cat-tab.locked::before{
+  content:"🔒";position:absolute;left:5px;top:50%;transform:translateY(-50%);
+  font-size:8px;opacity:0.85;
+}
+.am-cat-tab.locked{opacity:0.6}
+.am-cat-tab span:last-child{font-size:9px;opacity:0.6}
+.am-slider{
+  background:#f3f4f6;height:4px;border-radius:2px;
+  position:relative;margin:8px 0;
+}
+.am-slider::after{
+  content:"";position:absolute;top:-4px;left:35%;
+  width:12px;height:12px;background:var(--accent-2);
+  border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2);
+}
+.am-save-bar{
+  position:relative;background:linear-gradient(135deg,#1f2937,#111827);
+  color:#fff;padding:11px;text-align:center;
+  font-weight:700;font-size:11px;border-radius:10px;margin:10px 12px 12px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.am-save-bar.sticky-badge::after{
+  content:"sticky";position:absolute;top:-7px;right:6px;
+  background:var(--accent);color:#fff;font-size:8px;padding:1.5px 5px;
+  border-radius:4px;letter-spacing:1px;font-family:'IBM Plex Mono',monospace;
+}
+.am-scroll-btn{
+  width:24px;height:24px;border-radius:50%;background:#fff;
+  border:1px solid #e5e7eb;color:#374151;font-size:11px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+
+/* CALLOUTS */
+.callout-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  margin-top:18px;
+}
+.callout{
+  border:1.5px solid var(--line);background:#fff;
+  padding:11px 13px;font-size:11px;line-height:1.5;
+}
+.callout b{
+  display:block;font-family:'Bricolage Grotesque',sans-serif;
+  font-size:13px;margin-bottom:3px;color:var(--ink);
+}
+.callout.blue{border-left:4px solid var(--accent-2)}
+.callout.orange{border-left:4px solid var(--accent)}
+.callout.green{border-left:4px solid var(--green)}
+.callout.purple{border-left:4px solid var(--accent-3)}
+
+/* ============================================================
+   STATE MATRIX
+   ============================================================ */
+.matrix{
+  border:2.5px solid var(--line);background:var(--paper);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.matrix-row{
+  display:grid;grid-template-columns:140px repeat(4,1fr);
+  border-bottom:1.5px solid var(--line);
+}
+.matrix-row:last-child{border-bottom:none}
+.matrix-row.head{background:var(--ink);color:var(--paper)}
+.matrix-cell{
+  padding:14px 16px;border-right:1.5px solid var(--line);
+  font-size:13px;line-height:1.5;
+}
+.matrix-cell:last-child{border-right:none}
+.matrix-cell b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;margin-bottom:4px}
+.matrix-cell .mono-s{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.matrix-row.head .matrix-cell{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px}
+.matrix-row.head .matrix-cell b{font-family:inherit;font-size:11px;margin-bottom:0}
+.state-pill{
+  display:inline-block;padding:3px 8px;font-size:10px;font-weight:600;
+  border-radius:4px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;
+}
+.state-pill.ok{background:#dcfce7;color:#15803d}
+.state-pill.warn{background:#fef3c7;color:#92400e}
+.state-pill.err{background:#fee2e2;color:#b91c1c}
+.state-pill.info{background:#dbeafe;color:#1e40af}
+
+/* ============================================================
+   COMPONENT INVENTORY GRID
+   ============================================================ */
+.inventory{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.inv-card{
+  border:2px solid var(--line);background:var(--paper);
+  padding:18px 16px;box-shadow:var(--shadow-sm);
+}
+.inv-card .ic-num{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--muted);letter-spacing:1.5px;
+}
+.inv-card h5{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;font-size:16px;margin:4px 0 6px;letter-spacing:-0.3px;
+}
+.inv-card .desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.inv-card .tags{display:flex;gap:4px;flex-wrap:wrap}
+.inv-card .tags span{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  padding:2px 6px;border:1px solid var(--line);
+  letter-spacing:0.5px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  margin-top:80px;padding:28px 32px;
+  border:2.5px solid var(--line);
+  background:var(--ink);color:var(--paper);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+  box-shadow:8px 8px 0 var(--accent);
+}
+.footer h3{
+  font-family:'Bricolage Grotesque',sans-serif;
+  margin:0;font-size:24px;letter-spacing:-0.5px;
+}
+.footer .desc{font-size:13px;color:#bdb6a6;margin-top:6px;max-width:540px;line-height:1.55}
+.footer .stamp{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:1.8px;
+}
+
+/* ============================================================
+   SECTION 06 — DASHBOARD (future update)
+   Brand colors + Bricolage typography — ใช้สไตล์ v2
+   ============================================================ */
+.dashboard-grid{
+  display:grid;grid-template-columns:1.4fr 0.6fr;gap:28px;margin-top:16px;
+  align-items:flex-start;
+}
+
+/* Browser chrome (reuse pattern) */
+.dash-browser{
+  border:2.5px solid var(--line);background:var(--paper);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.dash-browser-chrome{
+  background:var(--paper-2);border-bottom:2px solid var(--line);
+  padding:10px 14px;display:flex;align-items:center;gap:6px;
+}
+.dash-browser-chrome .dot{
+  width:10px;height:10px;border-radius:50%;background:var(--line);
+}
+.dash-browser-chrome .dot:nth-child(1){background:#ff5f57}
+.dash-browser-chrome .dot:nth-child(2){background:#febc2e}
+.dash-browser-chrome .dot:nth-child(3){background:#28c840}
+.dash-browser-chrome .url{
+  background:#fff;border:1px solid var(--line);
+  padding:4px 10px;font-family:'IBM Plex Mono',monospace;
+  font-size:11px;margin-left:10px;flex:1;color:var(--muted);letter-spacing:0.3px;
+}
+
+/* Dashboard shell */
+.dash-shell{background:#fff;min-height:420px;font-size:12px}
+.dash-top{
+  background:var(--ink);color:var(--paper);padding:12px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.2px;
+}
+.dash-top b{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+  letter-spacing:-0.2px;text-transform:none;font-size:14px;
+}
+.dash-actions{display:flex;gap:6px;align-items:center}
+.dash-actions span{
+  border:1px solid var(--paper);padding:4px 9px;background:rgba(255,255,255,0.08);
+  cursor:pointer;letter-spacing:1px;
+}
+.dash-actions span:hover{background:var(--accent);border-color:var(--accent)}
+.dash-subbar{
+  background:#fef3c7;border-bottom:1.5px solid var(--line);
+  padding:9px 16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#92400e;
+}
+.dash-subbar b{color:var(--green);font-weight:700}
+.dash-subbar .pulse-dot{
+  display:inline-block;width:8px;height:8px;background:var(--green);
+  border-radius:50%;margin-right:4px;vertical-align:middle;
+  animation:dashpulse 1.6s infinite;
+}
+@keyframes dashpulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.5;transform:scale(0.85)}
+}
+
+/* KPI cards */
+.kpi-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  padding:14px;background:var(--paper-2);border-bottom:1.5px solid var(--line);
+}
+.kpi-card{
+  border:2px solid var(--line);background:#fff;padding:12px 11px;
+  min-height:96px;display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;transition:transform 0.15s, box-shadow 0.15s;cursor:pointer;
+}
+.kpi-card:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--line)}
+.kpi-card .k-label{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.2px;color:var(--muted);
+}
+.kpi-card strong{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:28px;line-height:1;
+  letter-spacing:-0.8px;margin:8px 0 4px;color:var(--ink);font-weight:800;
+}
+.kpi-card .delta{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green);letter-spacing:0.3px;
+}
+.kpi-card.warn{border-color:var(--accent);background:linear-gradient(135deg,#fff,#fff5f0)}
+.kpi-card.warn strong{color:var(--accent)}
+.kpi-card.warn .delta{color:var(--accent)}
+.kpi-card.info{border-color:var(--accent-2)}
+.kpi-card.info strong{color:var(--accent-2)}
+.kpi-card.info .delta{color:var(--accent-2)}
+.kpi-card.success{border-color:var(--green)}
+.kpi-card.success strong{color:var(--green)}
+
+/* Dashboard content area */
+.dash-content{
+  display:grid;grid-template-columns:1.15fr 0.85fr;gap:14px;padding:14px;
+}
+.dash-box{
+  border:2px solid var(--line);background:#fff;min-height:170px;
+  display:flex;flex-direction:column;
+}
+.dash-box h4{
+  margin:0;padding:10px 12px;background:var(--paper-2);
+  border-bottom:1.5px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;
+  display:flex;justify-content:space-between;gap:8px;text-transform:uppercase;
+}
+.dash-box h4 b{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:13px;letter-spacing:-0.3px;
+  text-transform:none;font-weight:700;
+}
+.dash-box .body{padding:12px;flex:1}
+
+/* Bar chart */
+.bar-chart{
+  height:160px;padding:18px 14px 22px;display:flex;align-items:end;gap:10px;
+}
+.bar-chart span{
+  flex:1;min-width:18px;background:var(--accent-2);border:2px solid var(--line);
+  box-shadow:2px 2px 0 var(--line);position:relative;
+}
+.bar-chart span:nth-child(2n){background:var(--green)}
+.bar-chart span:nth-child(3n){background:var(--accent)}
+.bar-chart span:nth-child(4n){background:var(--accent-3)}
+.bar-chart span::after{
+  content:attr(data-day);position:absolute;bottom:-20px;left:50%;
+  transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;
+  font-size:10px;color:var(--muted);letter-spacing:0.5px;
+}
+.bar-chart span::before{
+  content:attr(data-val);position:absolute;top:-16px;left:50%;
+  transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;
+  font-size:8.5px;color:var(--ink);font-weight:600;opacity:0;
+  transition:opacity 0.15s;
+}
+.bar-chart span:hover::before{opacity:1}
+
+/* System health */
+.health-list{padding:12px}
+.health-item{
+  display:grid;grid-template-columns:80px 1fr auto;gap:10px;align-items:center;
+  padding:9px 0;border-bottom:1px dotted #b8b1a0;
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+}
+.health-item:last-child{border-bottom:0}
+.health-item b{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:14px;
+  letter-spacing:-0.2px;font-weight:700;color:var(--ink);
+}
+.health-item span{color:var(--muted)}
+.health-pill{
+  border:1.5px solid var(--green);padding:3px 8px;background:#dcfce7;color:var(--green);
+  text-align:center;font-size:9.5px;font-weight:600;letter-spacing:0.5px;
+}
+.health-pill.warn{background:#fef3c7;color:#92400e;border-color:#f59e0b}
+.health-pill.err{background:#fee2e2;color:#b91c1c;border-color:#ef4444}
+
+/* Action queue */
+.dash-queue{padding:12px}
+.dash-task{
+  border:2px solid var(--line);background:var(--paper-2);
+  padding:10px 12px;margin-bottom:10px;display:grid;grid-template-columns:auto 1fr auto;
+  gap:12px;align-items:center;transition:transform 0.15s, box-shadow 0.15s;
+  cursor:pointer;
+}
+.dash-task:hover{transform:translateX(2px);box-shadow:3px 3px 0 var(--line)}
+.dash-task:last-child{margin-bottom:0}
+.dash-task .no{
+  background:var(--ink);color:var(--paper);padding:4px 8px;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.5px;
+}
+.dash-task b{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:14px;
+  letter-spacing:-0.2px;font-weight:700;display:block;margin-bottom:2px;
+}
+.dash-task .desc{font-size:11px;color:var(--muted);line-height:1.45}
+.dash-task .badge{
+  font-size:9.5px;padding:3px 8px;border:1.5px solid var(--line);
+  text-align:center;letter-spacing:0.5px;font-weight:600;
+  font-family:'IBM Plex Mono',monospace;white-space:nowrap;
+}
+.dash-task .badge.new{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.dash-task .badge.check{background:#fef3c7;color:#92400e;border-color:#f59e0b}
+.dash-task .badge.ready{background:#dcfce7;color:var(--green);border-color:var(--green)}
+
+/* Side panel (Dashboard Flow) */
+.dash-mini{
+  border:2.5px solid var(--line);background:var(--paper);
+  box-shadow:var(--shadow);padding:22px;
+}
+.dash-mini .ph-num{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  background:var(--accent);color:#fff;padding:4px 10px;letter-spacing:1.5px;
+  display:inline-block;margin-bottom:10px;
+}
+.dash-mini h3{
+  font-family:'Bricolage Grotesque',sans-serif;margin:0 0 8px;
+  font-size:24px;letter-spacing:-0.7px;line-height:1;font-weight:700;
+}
+.dash-mini p.intro{
+  font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 16px;
+}
+.insight-strip{
+  border:2px solid var(--line);background:#fff;margin:14px 0 14px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+}
+.insight-strip > div{
+  padding:10px 12px;border-bottom:1px dotted #b8b1a0;
+  display:flex;justify-content:space-between;gap:10px;align-items:center;
+}
+.insight-strip > div:last-child{border-bottom:0}
+.insight-strip > div b{
+  color:var(--accent);font-family:'Bricolage Grotesque',sans-serif;
+  font-size:14px;letter-spacing:-0.2px;font-weight:700;
+}
+.dash-mini .feature-list{margin:14px 0 0;padding:0;list-style:none;font-size:13px}
+.dash-mini .feature-list li{
+  padding:8px 0;border-bottom:1px dotted #b8b1a0;
+  display:flex;gap:10px;align-items:flex-start;line-height:1.5;
+}
+.dash-mini .feature-list li:last-child{border-bottom:0}
+.dash-mini .feature-list li::before{
+  content:"→";font-family:'IBM Plex Mono',monospace;
+  color:var(--accent);font-weight:700;flex-shrink:0;
+}
+.dash-mini .timing{
+  margin-top:14px;padding-top:12px;border-top:2px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  display:flex;justify-content:space-between;color:var(--muted);letter-spacing:0.5px;
+}
+.dash-mini .timing b{color:var(--ink)}
+
+/* Section feature list (Dashboard) */
+.dash-feature-list{margin:18px 0 0;padding:0;list-style:none;font-size:13px}
+.dash-feature-list li{
+  padding:9px 0;border-bottom:1px dotted #b8b1a0;
+  display:flex;gap:10px;align-items:flex-start;line-height:1.55;
+}
+.dash-feature-list li::before{
+  content:"▸";color:var(--accent);font-weight:700;flex-shrink:0;
+  font-family:'IBM Plex Mono',monospace;
+}
+
+/* ============================================================
+   RESPONSIVE — Desktop · iPad · Mobile
+   ============================================================ */
+
+/* iPad Pro (1024px and below) — keep most 2-col layouts but tighten */
+@media(max-width:1100px){
+  .wrap{padding:40px 20px 100px}
+  header.top{padding:26px 28px}
+  .arch-flow{grid-template-columns:repeat(2,1fr)}
+  .arrows{display:none}
+  .flow-steps{grid-template-columns:repeat(3,1fr)}
+  .flow-step:nth-child(3)::after{display:none}
+  .inventory{grid-template-columns:repeat(3,1fr)}
+  .dashboard-grid{grid-template-columns:1fr;gap:24px}
+  .kpi-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+/* iPad standard (768-980px) */
+@media(max-width:980px){
+  .wrap{padding:36px 18px 80px}
+  .arch-flow{grid-template-columns:repeat(2,1fr)}
+  .flow-steps{grid-template-columns:repeat(2,1fr)}
+  .flow-step{border-right:2px solid var(--line);border-bottom:none}
+  .flow-step:nth-child(2n)::after,
+  .flow-step:last-child::after{display:none}
+  .admin-panels,.scene-grid{grid-template-columns:1fr;gap:28px}
+  .scene-grid > div:first-child{display:flex;justify-content:center}
+  .callout-row,.inventory{grid-template-columns:repeat(2,1fr)}
+  .matrix-row{grid-template-columns:1fr 1fr}
+  .matrix-row.head{display:none}
+  .matrix-cell{border-bottom:1.5px dotted #c5beae}
+  .matrix-cell:last-child{border-bottom:none}
+  /* Dashboard */
+  .dash-content{grid-template-columns:1fr;gap:14px}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-task{grid-template-columns:auto 1fr;gap:10px}
+  .dash-task .badge{grid-column:2;justify-self:start;margin-top:4px}
+}
+
+/* Small tablet / Large mobile (700px and below) */
+@media(max-width:700px){
+  .wrap{padding:28px 14px 60px}
+  header.top{padding:22px 18px}
+  header.top h1{font-size:clamp(28px,7vw,42px)}
+  .corner-stamp{display:none}
+  .section-head{margin:48px 0 20px;gap:10px}
+  .section-head .sub{display:none}
+  .callout-row{grid-template-columns:1fr 1fr}
+  .inventory{grid-template-columns:1fr 1fr}
+  .matrix-row{grid-template-columns:1fr}
+  .matrix-cell{border-right:none;border-bottom:1.5px dotted #c5beae;padding:10px 14px}
+  .matrix-cell:first-child{background:var(--paper-2);font-weight:700}
+  /* Phone */
+  .phone{width:100%;max-width:300px;margin:0 auto}
+  .scene-body{padding:30px 18px 24px}
+  /* Dashboard */
+  .kpi-grid{grid-template-columns:repeat(2,1fr);padding:10px;gap:8px}
+  .kpi-card{min-height:84px;padding:10px 9px}
+  .kpi-card strong{font-size:22px}
+  .dash-top{flex-direction:column;align-items:flex-start;gap:8px}
+  .dash-subbar{flex-direction:column;gap:6px;font-size:10px}
+  .bar-chart{height:130px;padding:18px 10px 22px;gap:6px}
+  .dash-mini{padding:16px}
+  .dash-mini h3{font-size:20px}
+}
+
+/* Mobile (480px and below) */
+@media(max-width:480px){
+  .wrap{padding:22px 10px 50px}
+  header.top{padding:18px 14px}
+  header.top h1{font-size:28px;letter-spacing:-1px}
+  header.top .lede{font-size:13px}
+  .meta-row{gap:6px}
+  .tag{font-size:9.5px;padding:4px 8px}
+  .section-head{margin:40px 0 16px}
+  .section-head .num{font-size:11px;padding:5px 10px}
+  .section-head h2{font-size:22px}
+  .section-intro{font-size:13px}
+  .scene-label,.scene-num{font-size:9px;padding:3px 9px}
+  .scene-body{padding:24px 14px 18px}
+  .callout-row,.inventory{grid-template-columns:1fr}
+  .arch-flow{grid-template-columns:1fr}
+  .flow-steps{grid-template-columns:1fr}
+  .flow-step{border-right:2px solid var(--line)}
+  /* Phone */
+  .phone{width:100%;max-width:280px}
+  .phone .screen{height:540px}
+  /* Dashboard mobile */
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .dash-actions span{font-size:9px;padding:3px 7px}
+  .dash-task{grid-template-columns:1fr}
+  .dash-task .no{justify-self:flex-start}
+  .dash-task .badge{justify-self:flex-start}
+  .health-item{grid-template-columns:60px 1fr auto;font-size:9.5px;gap:6px}
+  .health-item b{font-size:12px}
   /* Footer */
-  .footer{
-    margin-top:64px;padding:24px;border:2px solid var(--line);
-    background:var(--ink);color:var(--paper);
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-    box-shadow:6px 6px 0 var(--accent);
-  }
-  .footer .stamp{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;
-  }
-  .footer h3{
-    font-family:'Bricolage Grotesque',sans-serif;margin:0;font-size:20px;
-    letter-spacing:-0.4px;
-  }
-
-  /* Decorative crosshairs */
-  .crosshair{
-    position:absolute;width:12px;height:12px;pointer-events:none;
-  }
-  .crosshair::before,.crosshair::after{
-    content:"";position:absolute;background:var(--line);
-  }
-  .crosshair::before{width:12px;height:1.5px;top:5px;left:0}
-  .crosshair::after{width:1.5px;height:12px;left:5px;top:0}
-
-  @media(max-width:980px){
-    .arch-flow,.arrow-row{grid-template-columns:repeat(2,1fr)}
-    .phases,.panels,.bugs,.arch-note{grid-template-columns:1fr}
-  }
+  .footer{padding:20px;flex-direction:column;align-items:flex-start;gap:10px}
+  .footer h3{font-size:20px}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- HEADER -->
-  <header class="top">
-    <h1>Storyboard <em>UX/UI</em><br>เเพลนอัพเดท</h1>
-    <p>แผนพัฒนา 4 ส่วน ครอบคลุมตั้งแต่ข้อมูล (Sheet · Supabase · Drive) → ระบบเคลียร์ออเดอร์ 3 เฟส → หน้าเว็บ/หลังบ้านแอดมิน → การแก้บั๊ก sticky elements บนแถบหลังบ้าน</p>
-    <div class="meta-row">
-      <span class="tag dark">PROJECT · RAW</span>
-      <span class="tag">STACK · Vercel + Supabase + Drive + Sheet</span>
-      <span class="tag accent">FRAMES · 04</span>
-      <span class="tag">LAST UPDATE · 19 MAY 2026</span>
-    </div>
-  </header>
-
-  <!-- SECTION 1 -->
-  <div class="section-title">
-    <span class="num">01 / FRAME</span>
-    <h2>การวางดราฟ — เเพลนอัพเดทพัฒนา</h2>
-    <span class="sub">ARCHITECTURE · DATA FLOW</span>
+<!-- =============================================================
+   HEADER
+   ============================================================= -->
+<header class="top">
+  <h1>Storyboard <em>UX/UI</em><br>KodangLoeiSmartPetShop</h1>
+  <br>KodangLoeiSmartPetShop</h1>
+  <p class="lede">storyboard ละเอียดของระบบสั่งซื้อสินค้าผ่านเว็บ + LINE — ครอบคลุมทุก scene ตั้งแต่ลูกค้าเข้าเว็บครั้งแรกจนสั่งซื้อเสร็จ + ระบบหลังบ้านแอดมินที่จัดการได้ทั้ง โลโก้ · โปรโมชั่น · บัญชีธนาคาร · QR · UI · สี · หมวดสินค้า — รองรับ multi-admin lock system</p>
+  <div class="meta-row">
+    <span class="tag dark">PROJECT · LOEI SMART</span>
+    <span class="tag">STACK · Vercel + Supabase + Drive + GAS</span>
+    <span class="tag blue">PWA · iOS + Android</span>
+    <span class="tag accent">SCENES · 11 + 1 FUTURE</span>
+    <span class="tag">MAP · Longdo TH</span>
+    <span class="tag">PAYMENT · Bank · QR · COD</span>
   </div>
+  <div class="corner-stamp">
+    FILE / KUNANON<br>
+    5,024 LINES<br>
+    LAST UPDATE 19/05/26
+  </div>
+</header>
 
-  <div class="frame arch">
-    <span class="label">SYSTEM MAP</span>
-    <span class="corner tr">FIG-01</span>
+<!-- =============================================================
+   SECTION 01 — ARCHITECTURE
+   ============================================================= -->
+<div class="section-head">
+  <span class="num">01 / MAP</span>
+  <h2>WorkFlow ระบบโดยรวม</h2>
+  <span class="sub">DATA & SERVICE LAYERS</span>
+</div>
+<p class="section-intro">
+  ระบบใช้ <b>Supabase</b> เป็นทางด่วนหลักของข้อมูลสินค้า/สต็อก/ออเดอร์ — <b>Drive</b> เก็บรูปภาพ (ไม่เสีย storage Supabase) — <b>Google Sheet ผ่าน GAS</b> เป็นฐานสำรองที่คนดูง่ายและ mirror ออเดอร์ลงตามรอบ — <b>Vercel</b> เป็นหน้าร้าน static ที่โหลดเร็ว
+</p>
 
-    <div class="arch-flow">
-      <div class="node">
-        <div>
-          <span class="pill">USER</span>
-          <h3>ลูกค้า</h3>
-          <p>เปิดหน้าเว็บผ่านมือถือ / กดดูสินค้า · เลือกหมวด · สั่งซื้อ</p>
-        </div>
-        <div class="speed">CLIENT · BROWSER</div>
+<div class="arch-map">
+  <div class="arch-flow">
+    <div class="node">
+      <div>
+        <span class="pill">CLIENT</span>
+        <h4>ลูกค้า / แอดมิน</h4>
+        <p>เปิดผ่านมือถือ (PWA) หรือลิงก์ใน LINE — Add to Home Screen ได้</p>
       </div>
-
-      <div class="node hero">
-        <div>
-          <span class="pill">FRONT</span>
-          <h3>Vercel</h3>
-          <p>หน้าร้าน (Landing + หมวดสินค้า) · HTML/CSS/JS เป็นโครงสร้างบ้าน</p>
-        </div>
-        <div class="speed"><span class="new">⚡ Static · ms-level</span></div>
-      </div>
-
-      <div class="node">
-        <div>
-          <span class="pill">DB</span>
-          <h3>Supabase</h3>
-          <p>เก็บ ชื่อสินค้า · ราคา · หมวด · สต็อก · ลิงก์รูป (เบามาก ใช้ยาวๆได้)</p>
-        </div>
-        <div class="speed">
-          <span class="old">Sheet 5–10s</span>
-          <span class="new">→ Supabase &lt;1s</span>
-        </div>
-      </div>
-
-      <div class="node">
-        <div>
-          <span class="pill">FILES</span>
-          <h3>Google Drive</h3>
-          <p>โกดังรูปภาพ — ไม่เสีย storage เพิ่ม · Supabase เก็บแค่ URL</p>
-        </div>
-        <div class="speed">IMAGE CDN</div>
-      </div>
-
-      <div class="node">
-        <div>
-          <span class="pill">BACKUP</span>
-          <h3>Google Sheet</h3>
-          <p>ฐานหลังบ้าน/สำรองที่คนดูง่าย · Mirror ออเดอร์จาก Supabase</p>
-        </div>
-        <div class="speed">HUMAN-READABLE</div>
-      </div>
+      <div class="role">USER · BROWSER · PWA</div>
     </div>
 
-    <div class="arrow-row">
-      <div class="arrow"><span>request</span></div>
-      <div class="arrow"><span>read · write</span></div>
-      <div class="arrow"><span>image url</span></div>
-      <div class="arrow"><span>fetch</span></div>
-      <div class="arrow"><span>mirror</span></div>
+    <div class="node hero">
+      <div>
+        <span class="pill">FRONT</span>
+        <h4>Vercel</h4>
+        <p>หน้าร้าน static · HTML/CSS/JS · navbar, catalog, cart, checkout, admin panel — โครงสร้างบ้านทั้งหมด</p>
+      </div>
+      <div class="role">⚡ STATIC · ms-level</div>
     </div>
 
-    <div class="arch-note">
-      <div class="item">
-        <b>ทำไมถึงเปลี่ยน</b>
-        <span>เดิมเว็บถาม Sheet/GAS รถติด 5–10 วินาที · ย้ายไปถาม Supabase แทน โหลดสินค้า/หมวด/สต็อกเร็วขึ้นมาก</span>
+    <div class="node">
+      <div>
+        <span class="pill">DB / API</span>
+        <h4>Supabase</h4>
+        <p>เก็บ categories · products · sizes · banks · qrs · app_settings · orders — มี Edge Function <code>submit-order</code></p>
       </div>
-      <div class="item">
-        <b>ทำไมรูปยังอยู่ Drive</b>
-        <span>Supabase เก็บแค่ลิงก์ URL ขนาดเล็กมาก ไม่เสียค่า Storage เพิ่ม — ใช้ Drive เป็นโกดังต่อไปได้</span>
+      <div class="role">REST + RPC · &lt;1s</div>
+    </div>
+
+    <div class="node">
+      <div>
+        <span class="pill">FILES</span>
+        <h4>Google Drive</h4>
+        <p>โกดังรูปภาพ — โลโก้ · promo · ภาพสินค้า · QR code · สลิป — Supabase เก็บแค่ URL</p>
       </div>
-      <div class="item">
-        <b>บทบาทของ Sheet</b>
-        <span>ยังเป็นฐานหลังบ้านสำรองที่ดูง่าย เปิดเช็คได้ทุกเมื่อ ไม่ทิ้ง — แค่ไม่ใช่ทางหลักของเว็บอีก</span>
-      </div>
+      <div class="role">IMAGE CDN</div>
     </div>
   </div>
 
-  <!-- SECTION 2 -->
-  <div class="section-title">
-    <span class="num">02 / FRAME</span>
-    <h2>ระบบเคลียร์ออเดอร์ — 3 เฟส</h2>
-    <span class="sub">CLEARING WORKFLOW · PHASED ROLLOUT</span>
+  <div class="arrows">
+    <div class="ar"><span>open / load</span></div>
+    <div class="ar"><span>fetch catalog</span></div>
+    <div class="ar"><span>thumbnail url</span></div>
+    <div class="ar"><span>mirror order</span></div>
   </div>
 
-  <div class="phases">
-
-    <!-- PHASE 1 -->
-    <div class="phase">
-      <header>
-        <span class="ph-num">PHASE 01</span>
-        <h3>ปุ่มเคลียร์ใน Sheet (Manual)</h3>
-      </header>
-      <div class="body">
-        <p class="lede">เริ่มจากของง่าย — เพิ่มเมนูใน Google Sheet ให้กดเคลียร์เองได้ ลบเฉพาะออเดอร์ที่ส่งแล้ว/ยกเลิก</p>
-
-        <div class="mock">
-          <div class="menu-bar">
-            <span>ไฟล์</span><span>แก้ไข</span>
-            <span style="color:var(--accent)">▸ จัดการออเดอร์</span>
-            <span>มุมมอง</span>
-          </div>
-          <div style="background:#fff;border:1px solid #999;padding:6px;margin-bottom:6px;font-size:10px">
-            ↳ เคลียร์ออเดอร์ที่ <b>ส่งแล้ว</b> / <b>ยกเลิก</b><br>
-            ↳ ดูสรุปรอบที่ผ่านมา
-          </div>
-
-          <div class="sheet-row head">
-            <span>#</span><span>ออเดอร์</span><span>ยอด</span><span>สถานะ</span>
-          </div>
-          <div class="sheet-row strike">
-            <span>01</span><span>ร้านป้าน้อย</span><span>340</span><span class="badge sent">ส่งแล้ว</span>
-          </div>
-          <div class="sheet-row strike">
-            <span>02</span><span>RS-009</span><span>120</span><span class="badge cancel">ยกเลิก</span>
-          </div>
-          <div class="sheet-row">
-            <span>03</span><span>ร้านพี่ปุ้ย</span><span>890</span><span class="badge ship">จัดส่ง</span>
-          </div>
-          <div class="sheet-row">
-            <span>04</span><span>RS-012</span><span>250</span><span class="badge new">ใหม่</span>
-          </div>
-        </div>
-
-        <ul class="feature-list">
-          <li><b>ลบเฉพาะ</b> ส่งแล้ว · ยกเลิก</li>
-          <li><b>ห้ามแตะ</b> ออเดอร์ใหม่ · รอคอนเฟิร์ม · กำลังจัดส่ง</li>
-          <li>เก็บ <b>log เบา</b> — วันที่ · จำนวน · ยอดรวม · คนกดเคลียร์</li>
-          <li>ใช้ <b>รหัส/ชื่อร้าน</b> แทนชื่อ-เบอร์ลูกค้า</li>
-        </ul>
-
-        <div class="timing">
-          <span>RISK · <b>LOW</b></span>
-          <span>SCOPE · <b>Sheet only</b></span>
-        </div>
-      </div>
+  <div class="arch-flow" style="margin-top:6px">
+    <div class="node" style="background:transparent;border-style:dashed;min-height:auto">
+      <span class="pill" style="margin-bottom:6px">EXT</span>
+      <h4 style="font-size:14px">Longdo Map TH</h4>
+      <p style="font-size:11px">Pin จัดส่ง + reverse geocode</p>
     </div>
-
-    <!-- PHASE 2 -->
-    <div class="phase">
-      <header>
-        <span class="ph-num">PHASE 02</span>
-        <h3>Sync ทั้ง 3 แหล่งให้ตรงกัน</h3>
-      </header>
-      <div class="body">
-        <p class="lede">เคลียร์ทีเดียวต้องครอบ Sheet + Supabase + ไฟล์สลิปใน Drive ให้ข้อมูลตรงกันทุกที่</p>
-
-        <div class="mock">
-          <div style="font-weight:600;margin-bottom:6px">⌁ CLEAR ROUND #017</div>
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px;font-size:10px">
-            <span>①</span><span>Sheet — ลบแถว ส่งแล้ว/ยกเลิก</span><span style="color:var(--green)">✓ 12 rows</span>
-            <span>②</span><span>Supabase — mark <code>cleared = true</code></span><span style="color:var(--green)">✓ sync</span>
-            <span>③</span><span>Drive — ลบไฟล์สลิปที่เกี่ยว</span><span style="color:var(--green)">✓ 12 imgs</span>
-          </div>
-          <div class="clear-btn">▸ RUN CLEAR</div>
-        </div>
-
-        <ul class="feature-list">
-          <li>ทำใน <b>transaction เดียว</b> หรือ rollback ได้ถ้าพัง</li>
-          <li>เช็คตรงกัน 100% ก่อนปิดงาน — กัน data drift</li>
-          <li><b>ลบสลิปด้วย</b> เพื่อไม่ให้ Drive บวม</li>
-          <li>ส่งสรุปกลับเป็น <b>log แถวเดียว</b> ใน Sheet</li>
-        </ul>
-
-        <div class="timing">
-          <span>RISK · <b>MEDIUM</b></span>
-          <span>SCOPE · <b>3 systems</b></span>
-        </div>
-      </div>
+    <div class="node" style="background:transparent;border-style:dashed;min-height:auto">
+      <span class="pill" style="margin-bottom:6px">EXT</span>
+      <h4 style="font-size:14px">Google Sheet + GAS</h4>
+      <p style="font-size:11px">ฐานสำรองดูง่าย · mirror ทุกออเดอร์ · log ทุก save</p>
     </div>
-
-    <!-- PHASE 3 -->
-    <div class="phase">
-      <header>
-        <span class="ph-num">PHASE 03</span>
-        <h3>Auto Clear ตามรอบส่งของ</h3>
-      </header>
-      <div class="body">
-        <p class="lede">เมื่อระบบนิ่ง ตั้งเวลาอัตโนมัติ เคลียร์เฉพาะออเดอร์ ส่งแล้ว เท่านั้น</p>
-
-        <div class="mock">
-          <div style="font-weight:600;margin-bottom:8px">⏱ SCHEDULE</div>
-          <div style="background:#fff;border:1px solid #999;padding:8px;font-size:10px;line-height:1.7">
-            พฤหัสฯ <b>23:00</b> &nbsp;·&nbsp; ศุกร์ <b>00:05</b><br>
-            <span style="color:var(--muted)">→ ทุกสัปดาห์อัตโนมัติ</span>
-          </div>
-
-          <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:10px">
-            <div style="background:#e8f7ed;border:1px solid var(--green);padding:6px;text-align:center">
-              <b style="color:var(--green)">ส่งแล้ว</b><br>→ เคลียร์
-            </div>
-            <div style="background:#ffeae3;border:1px solid var(--accent);padding:6px;text-align:center">
-              <b style="color:var(--accent)">จัดส่ง</b><br>→ ข้าม
-            </div>
-          </div>
-        </div>
-
-        <ul class="feature-list">
-          <li>เคลียร์เฉพาะ <b>ส่งแล้ว</b> เท่านั้น</li>
-          <li>ออเดอร์ <b>กำลังจัดส่ง</b> รอรอบถัดไป</li>
-          <li>แจ้งเตือนทาง LINE/Email ก่อนเริ่ม</li>
-          <li><b>กดยกเลิกได้</b> ถ้ามีเหตุไม่คาดคิด</li>
-        </ul>
-
-        <div class="timing">
-          <span>RISK · <b>HIGH</b></span>
-          <span>SCOPE · <b>Cron + Hooks</b></span>
-        </div>
-      </div>
+    <div class="node" style="background:transparent;border-style:dashed;min-height:auto">
+      <span class="pill" style="margin-bottom:6px">EXT</span>
+      <h4 style="font-size:14px">LINE LIFF (optional)</h4>
+      <p style="font-size:11px">ดึง <code>lineUserId · lineDisplayName</code></p>
+    </div>
+    <div class="node" style="background:transparent;border-style:dashed;min-height:auto">
+      <span class="pill" style="margin-bottom:6px">SYNC</span>
+      <h4 style="font-size:14px">Sync Indicator</h4>
+      <p style="font-size:11px">แถบลอย "กำลังบันทึก..." · เขียว/แดงตามสถานะ</p>
     </div>
   </div>
+</div>
 
-  <!-- SECTION 3 -->
-  <div class="section-title">
-    <span class="num">03 / FRAME</span>
-    <h2>หน้าเว็บ & หลังบ้านแอดมิน</h2>
-    <span class="sub">PAGES STORYBOARD</span>
+<div class="callout-row">
+  <div class="callout blue">
+    <b>Mirror Strategy</b>
+    Supabase = primary · Sheet = fire-and-forget mirror — ถ้า Sheet ล้มเหลวไม่กระทบ user
   </div>
+  <div class="callout orange">
+    <b>Stock Validation</b>
+    Edge Function ตรวจสต็อกก่อน insert · ถ้าไม่พอ → return <code>insufficientItems</code>
+  </div>
+  <div class="callout green">
+    <b>Offline Queue</b>
+    ถ้า GAS ล่ม → enqueue + retry · ปุ่ม sync indicator โชว์สถานะ
+  </div>
+  <div class="callout purple">
+    <b>Multi-Admin Lock</b>
+    Heartbeat lock บนหมวดหมู่ — admin คนอื่นแก้พร้อมกันไม่ได้ มีปุ่ม "บังคับยึด Lock"
+  </div>
+</div>
 
-  <div class="panels">
+<!-- =============================================================
+   SECTION 02 — USER JOURNEY (Customer flow)
+   ============================================================= -->
+<div class="section-head">
+  <span class="num">02 / FLOW</span>
+  <h2>เส้นทางลูกค้า — Customer Journey</h2>
+  <span class="sub">11 SCENES · MOBILE-FIRST</span>
+</div>
+<p class="section-intro">
+  ลูกค้ามาจาก LINE หรือพิมพ์ URL → เห็น Splash Skeleton → เห็น Promo Modal → เข้าหน้า Catalog → กดสินค้าดูรายละเอียดใน Popup → เพิ่มลงตะกร้า → ไปหน้า Checkout (เลือกจัดส่ง/รับเอง + วิธีจ่าย + แนบสลิป) → กดส่งคำสั่งซื้อ → เห็นใบเสร็จ → เซฟภาพยืนยันกับพนักงาน
+</p>
 
-    <!-- Left: หมวดสินค้า + คิวออเดอร์ -->
-    <div class="panel-frame">
-      <div class="ph-label">
-        <b>SCENE A · หลังบ้าน Admin</b>
-        <span>desktop · 1280w</span>
-      </div>
-      <div class="ph-body">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.55">
-          เดิมเป็น Landing เลื่อนลงอย่างเดียว → เพิ่ม <b>แท็บหมวดสินค้า</b> ให้แก้ไขแยกหมวด · เพิ่ม <b>แท็บออเดอร์</b> ให้เห็นคิวและปรับสถานะ
-        </p>
-
-        <div class="browser">
-          <div class="chrome">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="url">raw-shop.app / admin / orders</span>
-          </div>
-          <div style="display:flex;background:var(--paper-2);border-bottom:1.5px solid var(--line);font-size:11px">
-            <span style="padding:8px 12px">หมวดสินค้า</span>
-            <span style="padding:8px 12px;background:var(--ink);color:var(--paper);font-weight:600">ออเดอร์คิว</span>
-            <span style="padding:8px 12px">รายงาน</span>
-          </div>
-
-          <div class="order-queue" style="padding:12px">
-            <div class="order-card">
-              <span class="id">#0421</span>
-              <div class="info">
-                <b>ร้านป้าน้อย · 4 รายการ</b>
-                <span>340 ฿ · 10 นาทีที่แล้ว</span>
-              </div>
-              <div class="status-pick">
-                <span>ใหม่</span><span class="on">ยืนยัน</span><span>จัดส่ง</span><span>ส่งแล้ว</span>
+<!-- SCENE 1 - SPLASH -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 01</span>
+  <span class="scene-num">SPLASH</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="status-bar">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
               </div>
             </div>
-            <div class="order-card">
-              <span class="id">#0422</span>
-              <div class="info">
-                <b>RS-012 · 2 รายการ</b>
-                <span>250 ฿ · 3 นาทีที่แล้ว</span>
-              </div>
-              <div class="status-pick">
-                <span class="on">ใหม่</span><span>ยืนยัน</span><span>จัดส่ง</span><span>ส่งแล้ว</span>
+            <div class="splash-nav">
+              <div class="splash-logo-real">LS</div>
+              <div class="splash-search skel shimmer"></div>
+              <div class="splash-cart skel shimmer"></div>
+            </div>
+            <div class="splash-body-mock">
+              <div class="splash-title-skel skel shimmer"></div>
+              <div class="splash-cards">
+                <div class="splash-card">
+                  <div class="si skel shimmer"></div>
+                  <div class="sl1 skel shimmer"></div>
+                  <div class="sl2 skel shimmer"></div>
+                  <div class="sp skel shimmer"></div>
+                  <div class="sb skel shimmer"></div>
+                </div>
+                <div class="splash-card">
+                  <div class="si skel shimmer"></div>
+                  <div class="sl1 skel shimmer"></div>
+                  <div class="sl2 skel shimmer"></div>
+                  <div class="sp skel shimmer"></div>
+                  <div class="sb skel shimmer"></div>
+                </div>
+                <div class="splash-card">
+                  <div class="si skel shimmer"></div>
+                  <div class="sl1 skel shimmer"></div>
+                  <div class="sl2 skel shimmer"></div>
+                  <div class="sp skel shimmer"></div>
+                  <div class="sb skel shimmer"></div>
+                </div>
+                <div class="splash-card">
+                  <div class="si skel shimmer"></div>
+                  <div class="sl1 skel shimmer"></div>
+                  <div class="sl2 skel shimmer"></div>
+                  <div class="sp skel shimmer"></div>
+                  <div class="sb skel shimmer"></div>
+                </div>
               </div>
             </div>
-            <div class="order-card">
-              <span class="id">#0420</span>
-              <div class="info">
-                <b>ร้านพี่ปุ้ย · 7 รายการ</b>
-                <span>890 ฿ · 1 ชม. ที่แล้ว</span>
-              </div>
-              <div class="status-pick">
-                <span>ใหม่</span><span>ยืนยัน</span><span class="on">จัดส่ง</span><span>ส่งแล้ว</span>
-              </div>
-            </div>
+            <div class="home-indicator"></div>
           </div>
         </div>
-
-        <ul class="feature-list" style="margin-top:14px">
-          <li><b>แอดมินเห็นคิวทั้งหมด</b> · เปลี่ยนสถานะ · ยกเลิกได้</li>
-          <li><b>ลูกค้าไม่เห็น</b> รายการหลังจากกดสั่งซื้อแล้ว</li>
-          <li>ระบบ <b>แมพ / ชื่อ / เบอร์</b> อาจเอาออก (พิจารณาภายหลัง)</li>
-        </ul>
+        <div class="phone-label"><b>01</b> · #splashScreen<span class="device">iPhone 17 Pro Max</span></div>
       </div>
-    </div>
-
-    <!-- Right: ใบเสร็จ -->
-    <div class="panel-frame">
-      <div class="ph-label">
-        <b>SCENE B · ใบเสร็จลูกค้า</b>
-        <span>mobile · post-checkout</span>
-      </div>
-      <div class="ph-body">
-        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.55">
-          หลังลูกค้ากดสั่งซื้อ → โชว์ใบเสร็จทันที <b>เซฟภาพได้</b> เพื่อยืนยันกับพนักงาน (รองรับเซลนอกพื้นที่ที่ลูกค้าดูในแอป + กดสั่งตอนนั้น)
-        </p>
-
-        <div class="receipt">
-          <h4>RAW · ใบเสร็จ</h4>
-          <div style="text-align:center;font-size:10px;color:var(--muted)">ORDER · #0422 · 19 MAY 26</div>
-          <div class="ln"></div>
-          <div class="row"><span>น้ำตาลทราย × 2</span><span>120</span></div>
-          <div class="row"><span>น้ำมันพืช × 1</span><span>130</span></div>
-          <div class="ln"></div>
-          <div class="row tot"><span>รวม</span><span>250 ฿</span></div>
-          <div class="ln"></div>
-          <div style="text-align:center;font-size:10px;color:var(--muted)">โปรดยืนยันกับพนักงาน</div>
-          <div style="text-align:center;margin-top:8px">
-            <span style="background:var(--ink);color:var(--paper);padding:4px 10px;font-size:10px">▸ เซฟภาพใบเสร็จ</span>
-          </div>
+      <div class="scene-info">
+        <h3>Splash Skeleton Loader</h3>
+        <div class="role">PURPOSE · FIRST IMPRESSION</div>
+        <p class="desc">เมื่อเข้าเว็บครั้งแรก โชว์ skeleton ที่หน้าตา <b>เหมือนเลย์เอาท์จริง</b> — navbar + grid สินค้า — เพื่อลด perceived loading time และทำให้ลูกค้ารู้สึกว่าโหลดเร็ว</p>
+        <div class="spec-table">
+          <div class="row"><b>z-index</b><span>99999 (สูงสุด)</span></div>
+          <div class="row"><b>animation</b><span class="hl">shimmer 1.4s infinite</span></div>
+          <div class="row"><b>fade-out</b><span>opacity 0.5s · เมื่อ catalog โหลดเสร็จ</span></div>
+          <div class="row"><b>logo</b><span>โหลดจริงทันที (ไม่ skeleton)</span></div>
+          <div class="row"><b>responsive</b><span>2col mobile · 3col tablet · 4col desktop</span></div>
         </div>
-
-        <ul class="feature-list" style="margin-top:14px">
-          <li>โชว์ <b>ทันที</b> หลังกดสั่งซื้อ</li>
-          <li>เซฟภาพได้เพื่อ <b>ยืนยันกับพนักงาน</b></li>
-          <li>รองรับ <b>เซลนอกพื้นที่</b> + ลูกค้าทั่วไป (LINE)</li>
-          <li>ลูกค้าประจำส่วนใหญ่สั่งผ่าน <b>LINE</b> อยู่แล้ว</li>
+        <ul class="bullets">
+          <li>โลโก้แสดงทันทีเพื่อสร้าง brand recognition</li>
+          <li>Skeleton ใช้ <code>linear-gradient</code> + animation = เบามาก</li>
+          <li>หายไปเมื่อ catalog data พร้อม (Supabase หรือ Sheet)</li>
         </ul>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- SECTION 4 -->
-  <div class="section-title">
-    <span class="num">04 / FRAME</span>
-    <h2>แก้บั๊ก — Sticky Elements บนแถบหลังบ้าน</h2>
-    <span class="sub">BUG FIX · BEFORE / AFTER</span>
+<!-- SCENE 2 - PROMO -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 02</span>
+  <span class="scene-num">PROMO</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen dark">
+            <div class="status-bar">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="promo-screen">
+              <div class="promo-img">
+                <span>โปร 11.11<br><small>ลดสูงสุด 50%<br>ส่งฟรีทั่วประเทศ</small></span>
+              </div>
+              <div class="promo-dots-row">
+                <span class="on"></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div style="font-size:9px;color:#aaa;margin-top:6px">แตะที่อื่นเพื่อปิด</div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>02</b> · #promoScreen<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>Promotion Modal</h3>
+        <div class="role">PURPOSE · ANNOUNCEMENT</div>
+        <p class="desc">หลัง splash หายไป → โชว์ promo modal เด้ง — แอดมินอัปโหลดได้หลายรูปจากหลังบ้าน — <b>เลื่อนซ้าย/ขวาได้</b> (swipe) — กดที่อื่นปิด</p>
+        <div class="spec-table">
+          <div class="row"><b>z-index</b><span>99998</span></div>
+          <div class="row"><b>bg</b><span>rgba(0,0,0,0.9)</span></div>
+          <div class="row"><b>multiple</b><span>รองรับหลายรูป + dots indicator</span></div>
+          <div class="row"><b>swap</b><span>fade 0.4s ระหว่างรูป</span></div>
+          <div class="row"><b>dismiss</b><span class="hl">แตะที่อื่น → fade out</span></div>
+        </div>
+        <ul class="bullets">
+          <li>แอดมินจัดการรูปได้จาก section "รูปภาพโปรโมชั่น"</li>
+          <li>กดที่รูปในแอดมินเพื่อลบ</li>
+          <li>โชว์เฉพาะ session แรก (กดข้ามแล้วไม่เด้งซ้ำในเซสชั่นเดียว)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 3 - CATALOG -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 03</span>
+  <span class="scene-num">CATALOG</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="status-bar">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="catalog-nav">
+              <div class="logo">LS</div>
+              <div class="cat-btn">หมวด ▾</div>
+              <div class="search">🔍 ค้นหา...</div>
+              <div class="cart">🛒<span class="badge">2</span></div>
+            </div>
+            <div class="cat-section-title">อาหารสุนัข</div>
+            <div class="product-grid">
+              <div class="prod-card">
+                <div class="pi">🐕</div>
+                <div class="pn">อาหารสุนัข Premium</div>
+                <div class="pp">฿320</div>
+                <div class="pb">+ ใส่ตะกร้า</div>
+              </div>
+              <div class="prod-card">
+                <div class="pi">🐩</div>
+                <div class="pn">อาหารลูกสุนัข</div>
+                <div class="pp">฿280</div>
+                <div class="pb">+ ใส่ตะกร้า</div>
+              </div>
+              <div class="prod-card">
+                <div class="pi">🦴</div>
+                <div class="pn">ขนมขัดฟัน</div>
+                <div class="pp">฿85</div>
+                <div class="pb">+ ใส่ตะกร้า</div>
+              </div>
+              <div class="prod-card">
+                <div class="pi">🍖</div>
+                <div class="pn">เนื้อแห้งสด</div>
+                <div class="pp">฿150</div>
+                <div class="pb">+ ใส่ตะกร้า</div>
+              </div>
+            </div>
+            <div class="cat-section-title">อาหารแมว</div>
+            <div class="product-grid">
+              <div class="prod-card">
+                <div class="pi">🐱</div>
+                <div class="pn">อาหารแมวเกรดพรีเมียม</div>
+                <div class="pp">฿420</div>
+                <div class="pb">+ ใส่ตะกร้า</div>
+              </div>
+              <div class="prod-card">
+                <div class="pi">🐈</div>
+                <div class="pn">อาหารแมวสำเร็จรูป</div>
+                <div class="pp">฿180</div>
+                <div class="pb">+ ใส่ตะกร้า</div>
+              </div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>03</b> · #catalogContent<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>Catalog · หน้าหลัก</h3>
+        <div class="role">PURPOSE · BROWSE & DISCOVER</div>
+        <p class="desc">หน้าจอหลักที่ลูกค้าใช้เวลาเยอะที่สุด — โครงสร้าง navbar sticky + รายการสินค้าแบบ grid ตามหมวดหมู่ — รองรับการกรองด้วย dropdown หมวดหมู่ และค้นหาด้วยช่อง search แบบ live filter</p>
+        <div class="spec-table">
+          <div class="row"><b>navbar</b><span class="hl">sticky top:0 · z-index ระดับ 50</span></div>
+          <div class="row"><b>logo</b><span>คลิกเปิด admin auth modal</span></div>
+          <div class="row"><b>grid</b><span>มือถือ 2col · เดสก์ท็อป 4col (ปรับได้)</span></div>
+          <div class="row"><b>cart badge</b><span>นับ qty รวมทุก item · realtime</span></div>
+          <div class="row"><b>card tap</b><span>เปิด #productPopupModal</span></div>
+        </div>
+        <ul class="bullets">
+          <li>หมวดหมู่จัดลำดับด้วย <code>sort_order</code> ดึงจาก Supabase</li>
+          <li>Card style ปรับได้: radius, shadow, padding, columns, gap — แยกมือถือ/เดสก์ท็อป</li>
+          <li>Theme color/gradient ปรับจากหลังบ้านได้ทั้งหมด</li>
+          <li>Section title มีขีดสั้นๆ ใต้ชื่อ — accent ด้วย <code>--theme-color</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 4 - PRODUCT POPUP -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 04</span>
+  <span class="scene-num">PRODUCT</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="popup-overlay">
+              <div class="popup-card">
+                <div class="popup-img">🐕</div>
+                <h6 class="popup-name">อาหารสุนัข Premium 5kg</h6>
+                <div class="popup-desc">สูตรเข้มข้น มีโปรตีนสูง เหมาะกับสุนัขโตทุกสายพันธุ์</div>
+                <div class="popup-stock">✓ มีสินค้า (เหลือ 12 ชิ้น)</div>
+                <div class="popup-price">฿320</div>
+                <div style="font-size:9px;color:#6b7280;font-weight:700;margin-bottom:4px">เลือกขนาด</div>
+                <div class="popup-sizes">
+                  <span>1kg</span>
+                  <span class="on">5kg</span>
+                  <span>10kg</span>
+                </div>
+                <div class="popup-actions">
+                  <div class="popup-qty"><span>−</span><span class="v">1</span><span>+</span></div>
+                  <div class="popup-btn-cart">🛒 เพิ่ม</div>
+                  <div class="popup-btn-buy">ซื้อเลย</div>
+                </div>
+              </div>
+            </div>
+            <div class="status-bar overlay-status">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>04</b> · #productPopupModal<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>Product Popup</h3>
+        <div class="role">PURPOSE · DETAIL & DECIDE</div>
+        <p class="desc">เมื่อลูกค้ากดที่ card สินค้า — เด้ง modal โชว์รายละเอียดเต็ม รูปขนาดใหญ่ คำอธิบาย สถานะสต็อก ตัวเลือกขนาด/รสชาติ และปุ่มซื้อ 2 ปุ่ม</p>
+        <div class="spec-table">
+          <div class="row"><b>z-index</b><span>9999</span></div>
+          <div class="row"><b>max-width</b><span>420px</span></div>
+          <div class="row"><b>stock</b><span class="hl">เขียวมี · แดงหมด · แสดงจำนวนคงเหลือ</span></div>
+          <div class="row"><b>sizes</b><span>แต่ละขนาดมีราคาแยก · เปลี่ยน → ราคาอัปเดต</span></div>
+          <div class="row"><b>actions</b><span>+ เพิ่ม (ค้าง popup) · ซื้อเลย (เปิด cart)</span></div>
+        </div>
+        <ul class="bullets">
+          <li>QTY ปุ่ม +/− ภายใน popup · sync กับ <code>quantities[pid]</code></li>
+          <li>Stock = 0 → ปุ่มทั้งหมด disabled</li>
+          <li>ปุ่ม "ซื้อเลย" = addToCart + เปิด cart drawer ทันที</li>
+          <li>เลือกขนาด → ราคาในการ์ดด้านนอกอัปเดตด้วย (sync)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 5 - CART -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 05</span>
+  <span class="scene-num">CART</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="drawer-overlay">
+              <div class="drawer">
+                <div class="drawer-head">
+                  <span>🛒 ตะกร้าสินค้า</span>
+                  <span class="x">✕</span>
+                </div>
+                <div class="cust-id">CUST · LS-A7F9D2</div>
+                <div class="cart-item">
+                  <div class="ck"></div>
+                  <div class="ci">🐕</div>
+                  <div class="info">
+                    <div class="nm">อาหารสุนัข Premium</div>
+                    <div class="sub">ขนาด 5kg · เหลือ 12</div>
+                  </div>
+                  <div class="qx"><span>−</span><span>2</span><span>+</span></div>
+                  <div class="pr">฿640</div>
+                </div>
+                <div class="cart-item">
+                  <div class="ck"></div>
+                  <div class="ci">🦴</div>
+                  <div class="info">
+                    <div class="nm">ขนมขัดฟัน</div>
+                    <div class="sub">ขนาด M</div>
+                  </div>
+                  <div class="qx"><span>−</span><span>1</span><span>+</span></div>
+                  <div class="pr">฿85</div>
+                </div>
+                <div class="cart-foot">
+                  <div class="tot"><span>รวมทั้งหมด</span><b>฿725</b></div>
+                  <div class="btn-checkout">ยืนยันการสั่งซื้อ</div>
+                </div>
+              </div>
+            </div>
+            <div class="status-bar overlay-status">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>05</b> · #cartDrawer [view=cart]<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>Cart Drawer</h3>
+        <div class="role">PURPOSE · REVIEW BEFORE PAY</div>
+        <p class="desc">Drawer slide ขึ้นจากด้านล่าง — ลูกค้ารีวิวสินค้า ปรับจำนวน เลือก/ไม่เลือกด้วย checkbox ก่อนกดยืนยัน — มี customer ID เฉพาะตัว เก็บแบบ persistent</p>
+        <div class="spec-table">
+          <div class="row"><b>position</b><span>bottom · slide up · max-height 82vh</span></div>
+          <div class="row"><b>customer ID</b><span class="hl">LS-XXXXXX · localStorage · ตลอดอายุเครื่อง</span></div>
+          <div class="row"><b>checkbox</b><span>uncheck → ไม่นับใน total · opacity 0.45</span></div>
+          <div class="row"><b>qty -</b><span>เป็น 0 → ลบรายการ</span></div>
+          <div class="row"><b>view switch</b><span>data-view="cart" ↔ "checkout"</span></div>
+        </div>
+        <ul class="bullets">
+          <li>กดยืนยัน → เปลี่ยน drawer view เป็น checkout (ไม่เปิดหน้าใหม่)</li>
+          <li>ตะกร้าว่าง → ไม่ให้กดยืนยัน + toast</li>
+          <li>Customer ID ใช้ track ลูกค้าซ้ำใน Sheet/Supabase</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 6 - CHECKOUT -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 06</span>
+  <span class="scene-num">CHECKOUT</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="drawer-overlay">
+              <div class="drawer" style="max-height:95%;padding-bottom:60px">
+                <div class="checkout-head">
+                  <span class="back">‹</span>
+                  <span style="flex:1">ชำระเงิน</span>
+                  <span style="color:#9ca3af">✕</span>
+                </div>
+                <div class="co-section">
+                  <div class="co-title">การจัดส่ง</div>
+                  <div class="del-tabs">
+                    <span class="on">จัดส่งตามที่อยู่</span>
+                    <span>รับที่ร้าน</span>
+                  </div>
+                  <div class="map-mock">
+                    <div class="pin">📍</div>
+                  </div>
+                  <div class="pin-card">
+                    <b>ตำแหน่งหมุด</b>
+                    <div class="addr">ต.หนองวัวซอ อ.หนองวัวซอ จ.อุดรธานี 41360</div>
+                  </div>
+                  <div class="input-row filled">ปาริชาติ พรหมศิริ</div>
+                  <div class="input-row filled">081-234-5678</div>
+                  <div class="input-row">บ้านเลขที่ / ตำบล / อำเภอ</div>
+                </div>
+                <div class="co-section">
+                  <div class="co-title">วิธีชำระเงิน</div>
+                  <div class="pay-tabs">
+                    <span class="on">🏦 โอน</span>
+                    <span>📱 QR</span>
+                    <span>💵 COD</span>
+                  </div>
+                  <div class="bank-list">
+                    <div class="bank-row">
+                      <div class="b-logo k">K</div>
+                      <div class="info">
+                        <b>กสิกรไทย</b>
+                        <span>123-4-56789-0</span>
+                      </div>
+                      <span class="cp">คัดลอก</span>
+                    </div>
+                    <div class="bank-row">
+                      <div class="b-logo s">S</div>
+                      <div class="info">
+                        <b>ไทยพาณิชย์</b>
+                        <span>987-6-54321-0</span>
+                      </div>
+                      <span class="cp">คัดลอก</span>
+                    </div>
+                  </div>
+                  <div class="slip-upload">📎 แนบหลักฐานสลิป *</div>
+                </div>
+              </div>
+            </div>
+            <div class="status-bar overlay-status">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>06</b> · #cartDrawer [view=checkout]<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>Checkout</h3>
+        <div class="role">PURPOSE · ADDRESS + PAY</div>
+        <p class="desc">หน้าชำระเงินแบ่ง 3 section — การจัดส่ง · วิธีชำระเงิน · สรุปคำสั่งซื้อ — มี Longdo Map สำหรับ pin จัดส่ง + reverse geocode อัตโนมัติ — รองรับ 3 วิธีจ่าย (โอน/QR/COD)</p>
+        <div class="spec-table">
+          <div class="row"><b>delivery</b><span>tabs · delivery / pickup (รับที่ร้าน)</span></div>
+          <div class="row"><b>map</b><span class="hl">Longdo Map · ลากหมุด → reverse geocode</span></div>
+          <div class="row"><b>pin debounce</b><span>350ms ก่อนยิง API</span></div>
+          <div class="row"><b>banks/qrs</b><span>โหลดจาก Supabase · สูงสุด 5 ต่อประเภท</span></div>
+          <div class="row"><b>copy account</b><span>คัดลอกเลขบัญชี → toast</span></div>
+          <div class="row"><b>slip required</b><span>โอน/QR ต้องแนบ · COD ไม่ต้อง</span></div>
+        </div>
+        <ul class="bullets">
+          <li>ปุ่ม "ใช้ตำแหน่งปัจจุบัน" → ขอ geolocation permission</li>
+          <li>QR pay → โชว์ countdown timer 30:00 + QR ของแต่ละธนาคาร</li>
+          <li>Pickup mode → ซ่อน map + กรอกแค่ชื่อ+เบอร์</li>
+          <li>Validate: ชื่อ/เบอร์/ที่อยู่/สลิป(ถ้าโอน) ก่อนส่ง</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 7 - QR PAYMENT -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 07</span>
+  <span class="scene-num">QR PAY</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="drawer-overlay">
+              <div class="drawer" style="max-height:90%;padding-bottom:40px">
+                <div class="checkout-head">
+                  <span class="back">‹</span>
+                  <span style="flex:1">ชำระเงิน · QR</span>
+                  <span style="color:#9ca3af">✕</span>
+                </div>
+                <div class="co-section">
+                  <div class="pay-tabs">
+                    <span>🏦 โอน</span>
+                    <span class="on">📱 QR</span>
+                    <span>💵 COD</span>
+                  </div>
+                  <div class="qr-header">
+                    <div>ยอดที่ต้องชำระ<br><b>฿725</b></div>
+                    <div>⏱ <b style="font-size:12px;color:#dc2626">29:42</b></div>
+                  </div>
+                  <div style="display:flex;gap:5px;margin-bottom:8px">
+                    <span style="font-size:9px;padding:5px 8px;background:var(--accent-2);color:#fff;border-radius:8px;font-weight:600">PromptPay</span>
+                    <span style="font-size:9px;padding:5px 8px;border:1px solid #ddd;border-radius:8px;font-weight:600">KBank</span>
+                    <span style="font-size:9px;padding:5px 8px;border:1px solid #ddd;border-radius:8px;font-weight:600">SCB</span>
+                  </div>
+                  <div class="qr-display">
+                    <div class="bank-nm">📱 PromptPay (Loei Smart)</div>
+                    <div class="qr-code-img"></div>
+                    <div style="font-size:9px;color:#6b7280;margin-top:8px">สแกนเพื่อชำระเงิน</div>
+                  </div>
+                  <div class="slip-upload" style="margin-top:10px">📎 แนบหลักฐานสลิป *</div>
+                </div>
+              </div>
+            </div>
+            <div class="status-bar overlay-status">
+              <span class="time">9:41</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>07</b> · #payQrPanel<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>QR Payment Sub-flow</h3>
+        <div class="role">PURPOSE · SCAN & UPLOAD SLIP</div>
+        <p class="desc">เมื่อเลือก QR — โชว์ tab ของแต่ละธนาคาร/PromptPay ที่แอดมินตั้งไว้ + countdown timer 30 นาที + ภาพ QR ขนาดใหญ่ที่สแกนได้ — บังคับแนบสลิปก่อนส่ง</p>
+        <div class="spec-table">
+          <div class="row"><b>timer</b><span class="hl">30:00 → 0:00 · format mm:ss</span></div>
+          <div class="row"><b>multiple QRs</b><span>สูงสุด 5 รายการ · tab เลือก</span></div>
+          <div class="row"><b>QR source</b><span>รูปจาก Drive · URL ใน Supabase</span></div>
+          <div class="row"><b>fallback</b><span>ไม่มีรูป → โชว์ icon + ข้อความ</span></div>
+          <div class="row"><b>slip</b><span>image/* · upload + preview + ลบได้</span></div>
+        </div>
+        <ul class="bullets">
+          <li>Timer หมด → ปุ่มส่งยังกดได้ (เผื่อ UX) แต่แจ้งเตือน</li>
+          <li>สลิป preview = thumbnail พร้อมปุ่ม ✕ ลบ</li>
+          <li>Base64 encode สลิป → ส่งใน payload</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 8 - SUBMIT ORDER -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 08</span>
+  <span class="scene-num">SUBMIT</span>
+  <div class="scene-body">
+    <div style="font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:24px;max-width:900px">
+      เมื่อกดปุ่ม <b>"ส่งคำสั่งซื้อ"</b> → ระบบทำงานตามลำดับ flow นี้ พร้อม error handling 3 case: success / stock_error / network_error
+    </div>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="n">01</span>
+        <h5>Validate</h5>
+        <p>เช็คชื่อ · เบอร์ · ที่อยู่ · สลิป (ถ้าโอน/QR)</p>
+      </div>
+      <div class="flow-step">
+        <span class="n">02</span>
+        <h5>Build Payload</h5>
+        <p>customerId, items, total, slipBase64, stockChanges</p>
+      </div>
+      <div class="flow-step">
+        <span class="n">03</span>
+        <h5>POST Supabase</h5>
+        <p>Edge Function /submit-order · ตรวจสต็อก · insert</p>
+      </div>
+      <div class="flow-step">
+        <span class="n">04</span>
+        <h5>Mirror Sheet</h5>
+        <p>fire-and-forget · GAS endpoint · ไม่ block user</p>
+      </div>
+      <div class="flow-step">
+        <span class="n">05</span>
+        <h5>Reset Cart</h5>
+        <p>clear cart · close drawer · poll stock อัปเดต</p>
+      </div>
+      <div class="flow-step success">
+        <span class="n">06</span>
+        <h5>Show Receipt</h5>
+        <p>Toast "ส่งสำเร็จ" + รหัสคำสั่งซื้อ</p>
+      </div>
+    </div>
+
+    <div class="callout-row" style="grid-template-columns:repeat(3,1fr);margin-top:24px">
+      <div class="callout green">
+        <b>SUCCESS</b>
+        Toast "ส่งคำสั่งซื้อสำเร็จ" · cart ปิด · sync badge เขียว · stock อัปเดตอัตโนมัติ
+      </div>
+      <div class="callout orange">
+        <b>STOCK_ERROR</b>
+        Supabase return <code>insufficientItems</code> → เปิด modal "สินค้าบางรายการไม่พอ" + แสดงรายการ
+      </div>
+      <div class="callout">
+        <b style="color:var(--rose)">NETWORK_ERROR</b>
+        ใส่ queue + retry อัตโนมัติ · sync indicator แดง · ปุ่มกดได้อีกครั้ง
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 9 - RECEIPT -->
+<div class="scene">
+  <span class="scene-label alt">SCENE 09</span>
+  <span class="scene-num">RECEIPT</span>
+  <div class="scene-body">
+    <div class="scene-grid">
+      <div>
+        <div class="phone">
+          <div class="screen">
+            <div class="status-bar">
+              <span class="time">9:43</span>
+              <div class="right">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-wifi"></span>
+                <span class="ios-battery"><i></i></span>
+              </div>
+            </div>
+            <div class="receipt-screen">
+              <div class="receipt">
+                <h4>LOEI SMART</h4>
+                <div style="text-align:center;font-size:8px;color:#6b7280">ใบเสร็จคำสั่งซื้อ</div>
+                <div class="ln"></div>
+                <div class="row"><span>ORDER</span><span>LS-0822</span></div>
+                <div class="row"><span>วันที่</span><span>19/05/2026</span></div>
+                <div class="row"><span>ลูกค้า</span><span>LS-A7F9D2</span></div>
+                <div class="ln"></div>
+                <div class="row"><span>อาหารสุนัข Pre × 2</span><span>640</span></div>
+                <div class="row"><span style="padding-left:6px;color:#6b7280">ขนาด 5kg</span><span></span></div>
+                <div class="row"><span>ขนมขัดฟัน × 1</span><span>85</span></div>
+                <div class="ln"></div>
+                <div class="row tot"><span>รวม</span><span>฿725</span></div>
+                <div class="ln"></div>
+                <div class="row"><span>การจัดส่ง</span><span>Delivery</span></div>
+                <div class="row"><span>การชำระ</span><span>โอน · KBank</span></div>
+                <div class="ln"></div>
+                <div style="text-align:center;font-size:8px;color:#6b7280;margin-top:4px">ยืนยันคำสั่งซื้อกับพนักงานใน LINE</div>
+                <div style="text-align:center;margin-top:8px">
+                  <span style="background:#1f2937;color:#fff;padding:4px 10px;font-size:9px;border-radius:4px;display:inline-flex;align-items:center;gap:4px">📥 เซฟภาพใบเสร็จ</span>
+                </div>
+              </div>
+              <div style="font-size:9px;color:#9ca3af;text-align:center;margin-top:12px">ขอบคุณที่สั่งซื้อ · แอดมินจะติดต่อกลับเร็วๆนี้</div>
+            </div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-label"><b>09</b> · #receiptScreen<span class="device">iPhone 17 Pro Max</span></div>
+      </div>
+      <div class="scene-info">
+        <h3>ใบเสร็จ + Confirmation</h3>
+        <div class="role">PURPOSE · CONFIRM & ARCHIVE</div>
+        <p class="desc">ใบเสร็จหลังกดสั่งซื้อ — โชว์ทันทีในหน้าเว็บ ไม่ต้องเปิดอีเมล — รองรับการ <b>เซฟภาพ</b> เพื่อยืนยันกับพนักงานใน LINE (สำหรับลูกค้าประจำ + เซลนอกพื้นที่)</p>
+        <div class="spec-table">
+          <div class="row"><b>order id</b><span class="hl">LS-XXXX · auto generate</span></div>
+          <div class="row"><b>customer id</b><span>persistent · จาก localStorage</span></div>
+          <div class="row"><b>save image</b><span>html2canvas → download PNG</span></div>
+          <div class="row"><b>style</b><span>thermal receipt look · jagged edges</span></div>
+          <div class="row"><b>data source</b><span>cart snapshot + customer + payment</span></div>
+        </div>
+        <ul class="bullets">
+          <li>ใช้ ID สั้น อ่านง่าย (LS-0822) ไม่ใช่ UUID เต็ม</li>
+          <li>โชว์ผ่าน toast หรือ inline section หลัง cart drawer ปิด</li>
+          <li>เซฟภาพ → ลูกค้าส่งในไลน์แอดมินทันที (workflow จริง)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================================
+   SECTION 03 — ADMIN PANEL STORYBOARD
+   ============================================================= -->
+<div class="section-head">
+  <span class="num">03 / ADMIN</span>
+  <h2>หลังบ้านแอดมิน</h2>
+  <span class="sub">ADMIN PANEL · MULTI-USER</span>
+</div>
+<p class="section-intro">
+  แอดมินเข้าผ่านโลโก้มุมบน → ใส่รหัสผ่าน → เข้า admin modal — มีระบบ <b>Multi-Admin Lock</b> ป้องกันแก้พร้อมกัน · เห็นว่าใครยึด lock อยู่ · มีปุ่ม "บังคับยึด" · ทุกการแก้ไขมี dirty tracking + sync indicator
+</p>
+
+<div class="admin-panels">
+  <div class="admin-panel">
+    <div class="ah">
+      <b>SCENE 10 · LOGIN + LOCK</b>
+      <span>ENTRY</span>
+    </div>
+    <div class="ab">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.55">
+        คลิกโลโก้มุมบนซ้าย → auth modal ถามรหัสผ่าน — ถูก → เปิด admin modal + ตรวจ lock อัตโนมัติ
+      </p>
+      <div class="admin-mock">
+        <div class="am-head">
+          <h6>หลังบ้าน (Admin)</h6>
+          <span class="x">✕</span>
+        </div>
+        <div class="am-lock checking">
+          <div class="dot"></div>
+          <span>กำลังตรวจสอบสิทธิ์แก้ไข...</span>
+        </div>
+        <div class="am-section">
+          <div class="t">สถานะ Lock — 3 states</div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div class="am-lock" style="margin:0">
+              <div class="dot"></div>
+              <span>คุณมีสิทธิ์แก้ไข (Admin 1/3)</span>
+            </div>
+            <div class="am-lock checking" style="margin:0">
+              <div class="dot"></div>
+              <span>กำลังตรวจสอบ...</span>
+            </div>
+            <div class="am-lock blocked" style="margin:0">
+              <div class="dot"></div>
+              <span style="flex:1">Admin อื่นกำลังแก้ไข</span>
+              <span style="font-size:9px;background:#fff;border:1px solid #ef4444;color:#ef4444;padding:2px 6px;border-radius:4px;font-weight:700">บังคับยึด</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="bullets" style="margin-top:12px">
+        <li><b>Heartbeat lock</b> renew ทุก ~30s · timeout → ปล่อย lock</li>
+        <li><b>3 states</b>: held (เขียว) · checking (เหลือง) · blocked/lost/offline (แดง)</li>
+        <li>Lock <b>per category</b> — admin หลายคนแก้ต่างหมวดพร้อมกันได้</li>
+        <li>ปุ่ม <b>"บังคับยึด Lock"</b> สำหรับกรณีฉุกเฉิน</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="bugs" style="grid-template-columns:1fr">
-
-    <!-- BUG 1 -->
-    <div class="bug-card" style="grid-template-columns:1fr">
-      <div class="bug-title-row">
-        <b>① แถบสถานะ Admin (Admin 1/3)</b>
-        <span>STICKY · TOP</span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr">
-        <div class="before">
-          <h4><span class="x">✕</span> ก่อนแก้</h4>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5">แถบ Admin 1/3 ไม่ถูกล็อค — เลื่อนลงแล้วโดนเลื่อนกลบ ต้องเลื่อนกลับขึ้นบนสุดถึงจะเห็น</div>
-          <div class="scene">
-            <div class="bar"><span>STATUS · Admin 1/3</span><span>↑</span></div>
-            <div class="content-fake" style="position:absolute;top:0;left:0;right:0;bottom:0;padding-top:30px">
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-            </div>
-            <div class="scroll-marker">SCROLL ↓</div>
+  <div class="admin-panel">
+    <div class="ah">
+      <b>SCENE 11 · CONTROL PANEL</b>
+      <span>EDIT</span>
+    </div>
+    <div class="ab">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.55">
+        Admin modal เลื่อนยาว — 8 section ต่อเนื่องกัน + ปุ่ม "บันทึกทั้งหมด" sticky ที่ล่างสุด
+      </p>
+      <div class="admin-mock">
+        <div class="am-head">
+          <h6>หลังบ้าน (Admin)</h6>
+          <span class="x">✕</span>
+        </div>
+        <div class="am-section">
+          <div class="t">รูปแบบ Card</div>
+          <div style="display:flex;gap:5px">
+            <span style="flex:1;padding:6px;font-size:10px;background:var(--ink);color:#fff;border-radius:6px;text-align:center;font-weight:600">แบบที่ 1 · ขอบมน</span>
+            <span style="flex:1;padding:6px;font-size:10px;border:1.2px solid #ddd;border-radius:6px;text-align:center;font-weight:600">แบบที่ 2 · เหลี่ยม</span>
           </div>
         </div>
-        <div class="after">
-          <h4><span class="c">✓</span> หลังแก้</h4>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5">ลอยติดด้านบนตลอด — ไม่ว่าจะเลื่อนยาวขนาดไหนแถบสถานะยังเห็นชัด</div>
-          <div class="scene">
-            <div class="floating" style="top:6px;left:6px;right:6px"><span style="float:left">STATUS · Admin 1/3</span><span style="float:right">●</span></div>
-            <div class="content-fake" style="position:absolute;top:30px;left:0;right:0;bottom:0">
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-            </div>
-            <div class="scroll-marker">SCROLL ↓</div>
+        <div class="am-section">
+          <div class="t">สีธีม</div>
+          <div class="am-color-row">
+            <div class="am-color-sw on" style="background:#2563EB"></div>
+            <div class="am-color-sw" style="background:#7C3AED"></div>
+            <div class="am-color-sw" style="background:#16a34a"></div>
+            <div class="am-color-sw" style="background:#dc2626"></div>
+            <div class="am-color-sw" style="background:#f5b400"></div>
+            <span style="margin-left:auto;font-size:10px;color:#6b7280;display:flex;align-items:center;gap:4px">Gradient <div class="am-toggle"></div></span>
           </div>
-          <div class="css-hint">
-            <span class="comment">/* status bar */</span><br>
-            position: sticky; top: 0;<br>
-            z-index: 50;
+        </div>
+        <div class="am-section">
+          <div class="t">ปรับรูปร่าง Card (มือถือ)</div>
+          <div style="font-size:9px;color:#6b7280;display:flex;justify-content:space-between"><span>ความโค้ง</span><span style="color:#111;font-weight:600">18px</span></div>
+          <div class="am-slider"></div>
+          <div style="font-size:9px;color:#6b7280;display:flex;justify-content:space-between"><span>เงา</span><span style="color:#111;font-weight:600">10</span></div>
+          <div class="am-slider"></div>
+        </div>
+        <div class="am-section">
+          <div class="t">จัดการสินค้า · หมวด</div>
+          <div class="am-cat-tab active">
+            <span>อาหารสุนัข</span>
+            <span>12</span>
+          </div>
+          <div class="am-cat-tab">
+            <span>อาหารแมว</span>
+            <span>8</span>
+          </div>
+          <div class="am-cat-tab locked">
+            <span>ของเล่น</span>
+            <span>5</span>
+          </div>
+        </div>
+        <div class="am-save-bar sticky-badge">
+          💾 บันทึกทั้งหมด
+          <span class="am-scroll-btn">↓</span>
+        </div>
+      </div>
+      <ul class="bullets" style="margin-top:12px">
+        <li><b>Save bar sticky</b> ที่ bottom + scroll toggle (↓/↑)</li>
+        <li>Slider ปรับ UI แยก <b>มือถือ / เดสก์ท็อป</b></li>
+        <li>หมวดที่ admin อื่นยึดอยู่ → 🔒 + opacity 0.6</li>
+        <li>Dirty tracking → <code>markAdminDirty</code> ทุกการเปลี่ยนแปลง</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN INVENTORY -->
+<h3 class="display" style="margin:48px 0 20px;font-size:22px">รายการ Section ใน Admin Panel</h3>
+<div class="inventory">
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 01</div>
+    <h5>โลโก้ร้านค้า</h5>
+    <div class="desc">แสดงบน navbar — เปลี่ยนได้ผ่าน upload</div>
+    <div class="tags"><span>UPLOAD</span><span>DRIVE</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 02</div>
+    <h5>โลโก้ Splash</h5>
+    <div class="desc">แยกจาก navbar — โชว์ตอนโหลดเว็บครั้งแรก</div>
+    <div class="tags"><span>UPLOAD</span><span>DRIVE</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 03</div>
+    <h5>รูปโปรโมชั่น</h5>
+    <div class="desc">หลายรูป · เลื่อนซ้าย/ขวา · เด้งตอนเข้าเว็บ</div>
+    <div class="tags"><span>MULTIPLE</span><span>DRIVE</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 04</div>
+    <h5>บัญชีธนาคาร</h5>
+    <div class="desc">สูงสุด 5 บัญชี · ชื่อ · เลข · เจ้าของ · โลโก้</div>
+    <div class="tags"><span>CRUD</span><span>MAX-5</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 05</div>
+    <h5>QR Code</h5>
+    <div class="desc">สูงสุด 5 รายการ · ชื่อ · โลโก้ · รูป QR</div>
+    <div class="tags"><span>CRUD</span><span>MAX-5</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 06</div>
+    <h5>หน้าตา (UI)</h5>
+    <div class="desc">Template · สี · Gradient · Slider ปรับ Card</div>
+    <div class="tags"><span>THEME</span><span>RESPONSIVE</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 07</div>
+    <h5>สีพื้นหลัง</h5>
+    <div class="desc">Page bg · Outer card · Inner box</div>
+    <div class="tags"><span>COLOR</span><span>3-LAYER</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 08</div>
+    <h5>สีตัวหนังสือ</h5>
+    <div class="desc">ชื่อ · ราคา · รายละเอียด · หมวด · ปุ่ม</div>
+    <div class="tags"><span>COLOR</span><span>5-FIELD</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 09</div>
+    <h5>จัดการสินค้า</h5>
+    <div class="desc">CRUD หมวดหมู่ + สินค้า + sizes + stock + รูป</div>
+    <div class="tags"><span>CRUD</span><span>DRAG</span><span>LOCK</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 10</div>
+    <h5>Save Bar Sticky</h5>
+    <div class="desc">ปุ่ม "บันทึกทั้งหมด" + scroll toggle · sticky bottom</div>
+    <div class="tags"><span>STICKY</span><span>UX</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 11</div>
+    <h5>Sync Indicator</h5>
+    <div class="desc">ลอยบนสุด · กำลังบันทึก / สำเร็จ / ผิดพลาด</div>
+    <div class="tags"><span>FLOATING</span><span>FEEDBACK</span></div>
+  </div>
+  <div class="inv-card">
+    <div class="ic-num">SECTION · 12</div>
+    <h5>Toast Messages</h5>
+    <div class="desc">แจ้งสั้นๆ ที่ bottom · 2.2s auto-hide</div>
+    <div class="tags"><span>FEEDBACK</span></div>
+  </div>
+</div>
+
+<!-- =============================================================
+   SECTION 04 — STATE MATRIX
+   ============================================================= -->
+<div class="section-head">
+  <span class="num">04 / STATES</span>
+  <h2>States Matrix</h2>
+  <span class="sub">UI STATE REFERENCE</span>
+</div>
+<p class="section-intro">
+  ตารางสรุป state ของ component หลัก — สี · พฤติกรรม · trigger — ใช้อ้างอิงเวลา dev/design ทำงานเพื่อให้สอดคล้องกันทั้งระบบ
+</p>
+
+<div class="matrix">
+  <div class="matrix-row head">
+    <div class="matrix-cell"><b>COMPONENT</b></div>
+    <div class="matrix-cell"><b>DEFAULT</b></div>
+    <div class="matrix-cell"><b>ACTIVE / LOADING</b></div>
+    <div class="matrix-cell"><b>SUCCESS</b></div>
+    <div class="matrix-cell"><b>ERROR / BLOCKED</b></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Save Button</b><div class="mono-s">#saveAdminBtn</div></div>
+    <div class="matrix-cell">linear-gradient #1f2937→#111827<br><span class="state-pill info">IDLE</span></div>
+    <div class="matrix-cell">linear-gradient #fbbf24→#f59e0b<br><span class="state-pill warn">SAVING</span></div>
+    <div class="matrix-cell">linear-gradient #22c55e→#16a34a<br><span class="state-pill ok">SUCCESS</span></div>
+    <div class="matrix-cell">linear-gradient #ef4444→#dc2626<br><span class="state-pill err">ERROR</span></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Admin Lock Bar</b><div class="mono-s">.admin-lock-bar</div></div>
+    <div class="matrix-cell">bg #f9fafb · gray<br><span class="state-pill info">CHECKING</span></div>
+    <div class="matrix-cell">bg #fffbeb · pulse<br><span class="state-pill warn">VERIFYING</span></div>
+    <div class="matrix-cell">bg #f0fdf4 · green<br><span class="state-pill ok">HELD</span></div>
+    <div class="matrix-cell">bg #fef2f2 · red<br><span class="state-pill err">BLOCKED/LOST</span></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Sync Indicator</b><div class="mono-s">.sync-indicator</div></div>
+    <div class="matrix-cell">hidden by default</div>
+    <div class="matrix-cell">dot #fbbf24 · pulse<br><span class="state-pill warn">SAVING</span></div>
+    <div class="matrix-cell">dot #22c55e · static<br><span class="state-pill ok">DONE</span></div>
+    <div class="matrix-cell">dot #ef4444 · static<br><span class="state-pill err">FAILED</span></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Product Stock</b><div class="mono-s">.popup-stock</div></div>
+    <div class="matrix-cell">— (loading)</div>
+    <div class="matrix-cell">"กำลังตรวจสต็อก..."</div>
+    <div class="matrix-cell">"✓ มีสินค้า (เหลือ N)"<br><span class="state-pill ok">IN STOCK</span></div>
+    <div class="matrix-cell">"✕ สินค้าหมด" · ปุ่ม disabled<br><span class="state-pill err">OUT</span></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Cart Item</b><div class="mono-s">.cart-item</div></div>
+    <div class="matrix-cell">checked · opacity 1</div>
+    <div class="matrix-cell">qty +/− interactive</div>
+    <div class="matrix-cell">unchecked · opacity 0.45<br><span class="state-pill info">EXCLUDED</span></div>
+    <div class="matrix-cell">stock not enough · highlight<br><span class="state-pill err">STOCK!</span></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Pin Address</b><div class="mono-s">#pinAddressPreview</div></div>
+    <div class="matrix-cell">"— ยังไม่ได้เลือก —"</div>
+    <div class="matrix-cell">"กำลังค้นหาที่อยู่..." (loading)</div>
+    <div class="matrix-cell">"ต.... อ.... จ...."<br><span class="state-pill ok">RESOLVED</span></div>
+    <div class="matrix-cell">"ไม่สามารถดึงที่อยู่ได้"<br><span class="state-pill err">FAILED</span></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>QR Timer</b><div class="mono-s">#qrTimer</div></div>
+    <div class="matrix-cell">30:00 (start)</div>
+    <div class="matrix-cell">N:NN · นับถอยหลัง</div>
+    <div class="matrix-cell">— (orderr submitted)</div>
+    <div class="matrix-cell">0:00 · ขึ้นแดง<br><span class="state-pill err">EXPIRED</span></div>
+  </div>
+</div>
+
+<!-- =============================================================
+   SECTION 05 — VISUAL DESIGN TOKENS
+   ============================================================= -->
+<div class="section-head">
+  <span class="num">05 / TOKENS</span>
+  <h2>Visual Tokens</h2>
+  <span class="sub">DESIGN SYSTEM</span>
+</div>
+<p class="section-intro">
+  ค่าหลักที่ใช้ทั่วทั้งระบบ — แอดมินปรับ theme/sizes ได้ผ่าน admin panel แต่ structural tokens (font, spacing, z-index) ตายตัว
+</p>
+
+<div class="callout-row" style="grid-template-columns:repeat(4,1fr)">
+  <div class="callout blue">
+    <b>Theme</b>
+    <div style="display:flex;gap:4px;margin-top:6px">
+      <div style="width:18px;height:18px;background:#2563EB;border-radius:4px"></div>
+      <div style="width:18px;height:18px;background:#7C3AED;border-radius:4px"></div>
+      <div style="width:18px;height:18px;background:#16a34a;border-radius:4px"></div>
+      <div style="width:18px;height:18px;background:#dc2626;border-radius:4px"></div>
+      <div style="width:18px;height:18px;background:#f5b400;border-radius:4px"></div>
+    </div>
+    <span class="mono" style="font-size:10px;color:var(--muted);margin-top:6px;display:block">default #2563EB · gradient → #7C3AED</span>
+  </div>
+  <div class="callout orange">
+    <b>Font</b>
+    <span style="font-family:'Sarabun';font-size:14px;font-weight:700">Sarabun</span><br>
+    <span class="mono" style="font-size:10px;color:var(--muted)">400 · 500 · 600 · 700 · 800<br>preconnect + preload</span>
+  </div>
+  <div class="callout green">
+    <b>Radius</b>
+    <span class="mono" style="font-size:11px;color:var(--ink)">--ui-radius: <b>18px</b><br>--inner-radius: <b>14px</b><br>card: 14–20px · btn: 8–12px</span>
+  </div>
+  <div class="callout purple">
+    <b>Z-Index</b>
+    <span class="mono" style="font-size:11px;color:var(--ink)">splash: <b>99999</b><br>toast/sync: <b>99999</b><br>modal: <b>9500–9999</b><br>admin lock: <b>125</b><br>navbar: <b>50</b></span>
+  </div>
+</div>
+
+<!-- =============================================================
+   SECTION 06 — DASHBOARD (FUTURE UPDATE)
+   ============================================================= -->
+<div class="section-head">
+  <span class="num">06 / FUTURE</span>
+  <h2>Dashboard ภาพรวมหลังบ้าน</h2>
+  <span class="sub">ADMIN DASHBOARD · OPERATIONS</span>
+</div>
+<p class="section-intro">
+  แผนงานเฟสถัดไป — หน้า <b>Dashboard กลาง</b> ที่รวบยอดขาย · ออเดอร์ · สต็อก · สถานะ sync ระหว่าง Sheet · Supabase · Drive ไว้หน้าเดียว เพื่อให้แอดมินเห็นภาพรวมก่อนเข้าไปทำงานเฉพาะจุด (แทนที่ landing page เลื่อนลงแบบเดิม)
+</p>
+
+<div class="dashboard-grid">
+
+  <!-- Main Dashboard Browser -->
+  <div class="dash-browser">
+    <div class="dash-browser-chrome">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="url">loei-smart.app / admin / dashboard</span>
+    </div>
+
+    <div class="dash-shell">
+      <div class="dash-top">
+        <b>LOEI SMART · DASHBOARD</b>
+        <div class="dash-actions">
+          <span>SYNC NOW</span>
+          <span>EXPORT</span>
+        </div>
+      </div>
+
+      <div class="dash-subbar">
+        <span><span class="pulse-dot"></span>สถานะข้อมูล <b>ONLINE</b> · อัปเดตล่าสุด 16:05</span>
+        <span>Sheet ↔ Supabase ↔ Drive</span>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card success">
+          <span class="k-label">TODAY SALES</span>
+          <strong>12,840</strong>
+          <span class="delta">+18% จากเมื่อวาน</span>
+        </div>
+        <div class="kpi-card info">
+          <span class="k-label">NEW ORDERS</span>
+          <strong>24</strong>
+          <span class="delta">8 รอยืนยัน</span>
+        </div>
+        <div class="kpi-card warn">
+          <span class="k-label">LOW STOCK</span>
+          <strong>6</strong>
+          <span class="delta">ต้องเช็กวันนี้</span>
+        </div>
+        <div class="kpi-card">
+          <span class="k-label">CLEAR READY</span>
+          <strong>31</strong>
+          <span class="delta">ส่งแล้วพร้อมเคลียร์</span>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="dash-content">
+        <!-- Bar Chart -->
+        <div class="dash-box">
+          <h4><b>ยอดขายรายวัน</b><span>7 DAYS</span></h4>
+          <div class="bar-chart">
+            <span data-day="จ" data-val="6,420" style="height:45%"></span>
+            <span data-day="อ" data-val="9,200" style="height:66%"></span>
+            <span data-day="พ" data-val="7,540" style="height:54%"></span>
+            <span data-day="พฤ" data-val="11,300" style="height:82%"></span>
+            <span data-day="ศ" data-val="10,180" style="height:74%"></span>
+            <span data-day="ส" data-val="8,400" style="height:60%"></span>
+            <span data-day="อา" data-val="12,840" style="height:90%"></span>
+          </div>
+        </div>
+
+        <!-- System Health -->
+        <div class="dash-box">
+          <h4><b>สุขภาพระบบ</b><span>LIVE</span></h4>
+          <div class="health-list">
+            <div class="health-item">
+              <b>Sheet</b>
+              <span>อ่าน/เขียนปกติ</span>
+              <span class="health-pill">OK</span>
+            </div>
+            <div class="health-item">
+              <b>Supabase</b>
+              <span>sync ล่าสุด 16:04</span>
+              <span class="health-pill">OK</span>
+            </div>
+            <div class="health-item">
+              <b>Drive</b>
+              <span>สลิปค้าง 3 ไฟล์</span>
+              <span class="health-pill warn">CHECK</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Queue -->
+        <div class="dash-box" style="grid-column:1 / -1">
+          <h4><b>งานที่ต้องทำต่อ</b><span>ACTION QUEUE</span></h4>
+          <div class="dash-queue">
+            <div class="dash-task">
+              <span class="no">01</span>
+              <div>
+                <b>ยืนยันออเดอร์ใหม่</b>
+                <div class="desc">8 รายการยังไม่เปลี่ยนสถานะ — รอแอดมินคอนเฟิร์ม</div>
+              </div>
+              <span class="badge new">ใหม่ × 8</span>
+            </div>
+            <div class="dash-task">
+              <span class="no">02</span>
+              <div>
+                <b>สินค้าใกล้หมด</b>
+                <div class="desc">น้ำมันพืช · น้ำตาลทราย · ข้าวสาร — สต็อกต่ำกว่า 5</div>
+              </div>
+              <span class="badge check">เช็ก × 6</span>
+            </div>
+            <div class="dash-task">
+              <span class="no">03</span>
+              <div>
+                <b>พร้อมเคลียร์รอบส่งแล้ว</b>
+                <div class="desc">31 ออเดอร์สถานะส่งแล้ว · พร้อมเคลียร์รอบถัดไป (พฤ. 23:00)</div>
+              </div>
+              <span class="badge ready">พร้อม × 31</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- BUG 2 -->
-    <div class="bug-card" style="grid-template-columns:1fr">
-      <div class="bug-title-row">
-        <b>② ไอคอนฟันเฟือง · กากบาท</b>
-        <span>FLOAT · TOP-RIGHT</span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr">
-        <div class="before">
-          <h4><span class="x">✕</span> ก่อนแก้</h4>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5">ฟันเฟือง & ปุ่มกากบาทถูกเลื่อนกลบเหมือนกัน ไม่ลอย — กดยากเวลาดูข้อมูลกลางหน้า</div>
-          <div class="scene">
-            <div class="bar"><span style="margin-left:auto">⚙ · ✕</span></div>
-            <div class="content-fake" style="position:absolute;top:0;left:0;right:0;bottom:0;padding-top:30px">
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-            </div>
-          </div>
-        </div>
-        <div class="after">
-          <h4><span class="c">✓</span> หลังแก้</h4>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5">ลอยมุมขวาบนตลอด — หาง่าย กดง่าย ไม่ว่าจะเลื่อนถึงไหน</div>
-          <div class="scene">
-            <div class="floating" style="top:6px;right:6px">⚙ ✕</div>
-            <div class="content-fake" style="position:absolute;top:6px;left:0;right:0;bottom:0">
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-            </div>
-          </div>
-          <div class="css-hint">
-            <span class="comment">/* gear + close */</span><br>
-            position: fixed; top: 16px; right: 16px;<br>
-            z-index: 60;
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BUG 3 -->
-    <div class="bug-card" style="grid-template-columns:1fr">
-      <div class="bug-title-row">
-        <b>③ ปุ่มบันทึกทั้งหมด · ลูกศร ↑↓</b>
-        <span>FLOAT · BOTTOM</span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr">
-        <div class="before">
-          <h4><span class="x">✕</span> ก่อนแก้</h4>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5">ปุ่ม บันทึกทั้งหมด + ลูกศรอยู่ล่างสุด ต้องเลื่อนลงจนสุดเท่านั้นถึงจะเห็น</div>
-          <div class="scene">
-            <div class="content-fake" style="padding-top:6px">
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-            </div>
-            <div style="position:absolute;bottom:0;left:0;right:0;background:var(--paper-2);padding:4px 6px;font-size:9px;display:flex;justify-content:space-between;border-top:1.5px solid var(--line)">
-              <span style="background:var(--accent);color:#fff;padding:2px 6px">SAVE ALL</span>
-              <span>↑ ↓</span>
-            </div>
-            <div class="scroll-marker">SCROLL ↓</div>
-          </div>
-        </div>
-        <div class="after">
-          <h4><span class="c">✓</span> หลังแก้</h4>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5">Bottom bar ลอยติดล่างตลอด — บันทึกได้ทุกจุด · เลื่อนกลับขึ้น/ลงสะดวก</div>
-          <div class="scene">
-            <div class="content-fake" style="padding-top:6px">
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-              <p>━━━━━━━━━━━━━━</p>
-            </div>
-            <div class="floating" style="bottom:6px;left:6px;right:6px;display:flex;justify-content:space-between;background:var(--paper-2);color:var(--ink);border:1.5px solid var(--ink)">
-              <span style="background:var(--accent);color:#fff;padding:1px 6px">SAVE ALL</span>
-              <span>↑ ↓</span>
-            </div>
-          </div>
-          <div class="css-hint">
-            <span class="comment">/* action bar */</span><br>
-            position: fixed; bottom: 0; left: 0; right: 0;<br>
-            z-index: 50;
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <div>
-      <h3>STORYBORD PLAN A1 4 SCOPE</h3>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#bdb6a6;margin-top:6px;letter-spacing:1px">
-        SCOPE · 4 FRAMES &nbsp;·&nbsp; ARCH + 3-PHASE CLEAR + ADMIN PAGES + STICKY BUGS
-      </div>
+  <!-- Dashboard Flow side panel -->
+  <div class="dash-mini">
+    <span class="ph-num">SCENE C</span>
+    <h3>Dashboard Flow</h3>
+    <p class="intro">
+      หน้านี้เป็นแผงควบคุมกลางของหลังบ้าน วางก่อนแท็บออเดอร์เพื่อให้แอดมินรู้สถานะร้านทันที — แล้วค่อยกดเข้าไปทำงานเฉพาะจุด
+    </p>
+
+    <div class="insight-strip">
+      <div><span>ยอดขายวันนี้</span><b>12,840 ฿</b></div>
+      <div><span>ออเดอร์รอคอนเฟิร์ม</span><b>8</b></div>
+      <div><span>สลิป Drive ค้างเช็ก</span><b>3</b></div>
+      <div><span>รอบเคลียร์ถัดไป</span><b>พฤ. 23:00</b></div>
     </div>
-    <div class="stamp">END · FILE.</div>
+
+    <ul class="feature-list">
+      <li>เปิดหลังบ้านแล้วเจอ <b>Dashboard</b> เป็นหน้าแรก</li>
+      <li>คลิก KPI เพื่อไปหน้า <b>ออเดอร์ / สินค้า / เคลียร์รอบส่ง</b></li>
+      <li>เตือน <b>data drift</b> ถ้า Sheet · Supabase · Drive ไม่ตรงกัน</li>
+      <li>ปุ่ม <b>SYNC NOW</b> บังคับ sync ทั้ง 3 แหล่งทันที</li>
+      <li>ปุ่ม <b>EXPORT</b> ดึงยอดขาย/ออเดอร์ออกเป็น CSV</li>
+    </ul>
+
+    <div class="timing">
+      <span>RISK · <b>MEDIUM</b></span>
+      <span>SCOPE · <b>Metrics + Sync</b></span>
+    </div>
   </div>
+</div>
+
+<ul class="dash-feature-list">
+  <li><b>เห็นภาพรวมก่อนทำงาน</b> — ไม่ต้องเปิดหลายแท็บเพื่อตามยอด/คิว/สต็อก</li>
+  <li><b>ต่อกับงานเดิม</b> — ใช้ข้อมูลจาก Sheet + Supabase + Drive ชุดเดียวกัน ไม่ต้อง migration</li>
+  <li><b>บอกสิ่งที่ต้องทำต่อ</b> — ออเดอร์รอยืนยัน · สินค้าใกล้หมด · เคลียร์รอบส่ง</li>
+  <li><b>Single source of truth</b> — health check บอกว่า data drift ที่ไหนแล้วบ้าง</li>
+</ul>
+
+<div class="callout-row" style="margin-top:24px">
+  <div class="callout blue">
+    <b>KPI Cards</b>
+    4 ตัวหลัก · sales · orders · stock · clear queue · คลิกได้เพื่อ deep-dive
+  </div>
+  <div class="callout orange">
+    <b>Bar Chart</b>
+    ยอดขาย 7 วันล่าสุด · hover ดูตัวเลข · refresh ทุก 5 นาที
+  </div>
+  <div class="callout green">
+    <b>Health Check</b>
+    เช็ก Sheet · Supabase · Drive ทุก 60s · แดงทันทีถ้าพัง
+  </div>
+  <div class="callout purple">
+    <b>Action Queue</b>
+    Top 3 งานเร่งด่วน · ลำดับตาม priority + เวลา · คลิกเปิดหน้า detail
+  </div>
+</div>
+
+<!-- =============================================================
+   FOOTER
+   ============================================================= -->
+<div class="footer">
+  <div>
+    <h3>End of Storyboard</h3>
+    <div class="desc">ภาพโดยรวมชุดนี้ครอบคลุม 9 customer scenes + 2 admin scenes + state matrix + design tokens + Dashboard ภาพรวมหลังบ้าน (เฟสถัดไป) — ใช้เป็นเเพลน reference เพื่อ design</div>
+  </div>
+  <div class="stamp">
+    KodangLoeiSmartPetShop · STORYBOARD v9.1<br>
+    By. Kunanon Chaisamart 19 / 05 / 2026
+  </div>
+</div>
 
 </div>
 </body>
