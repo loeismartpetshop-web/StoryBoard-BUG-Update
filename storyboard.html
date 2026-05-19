@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storyboard UX/UI — แผน FINAL RAW (Sheet · Supabase · Drive)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0b0c;
+    --paper:#f3efe6;
+    --paper-2:#ebe5d6;
+    --line:#1a1a1a;
+    --accent:#ff5b1f;
+    --accent-2:#1f6feb;
+    --green:#1f8a4c;
+    --yellow:#f0c400;
+    --muted:#6a6359;
+    --grid:rgba(0,0,0,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Sarabun','IBM Plex Mono',sans-serif}
+  body{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:48px 28px 96px}
+
+  /* Header */
+  header.top{
+    border:2px solid var(--line);
+    background:var(--paper-2);
+    padding:28px 32px;
+    position:relative;
+    box-shadow: 8px 8px 0 var(--line);
+    margin-bottom:48px;
+  }
+  header.top::before{
+    content:"STORYBOARD · UX/UI · v1.0";
+    position:absolute; top:-13px; left:24px;
+    background:var(--ink); color:var(--paper);
+    font-family:'IBM Plex Mono',monospace; font-size:11px;
+    padding:4px 10px; letter-spacing:1.5px;
+  }
+  header.top h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800; font-size:clamp(32px,5vw,56px);
+    line-height:0.95; margin:0 0 10px; letter-spacing:-1.5px;
+  }
+  header.top h1 em{font-style:normal;color:var(--accent);font-family:'Bricolage Grotesque',sans-serif}
+  header.top p{font-size:15px;color:var(--muted);margin:6px 0 0;max-width:780px;line-height:1.55}
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+  }
+  .tag{
+    border:1.5px solid var(--line); padding:5px 10px;
+    background:var(--paper); letter-spacing:0.5px;
+  }
+  .tag.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .tag.accent{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+
+  /* Section title */
+  .section-title{
+    display:flex;align-items:flex-end;gap:14px;
+    margin:64px 0 24px;padding-bottom:12px;
+    border-bottom:2px solid var(--line);
+  }
+  .section-title .num{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    background:var(--ink);color:var(--paper);
+    padding:6px 12px;letter-spacing:1.5px;
+  }
+  .section-title h2{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;font-size:clamp(22px,3vw,34px);
+    margin:0;letter-spacing:-0.8px;line-height:1;
+  }
+  .section-title .sub{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    color:var(--muted);margin-left:auto;letter-spacing:0.5px;
+  }
+
+  /* Frame / Panel */
+  .frame{
+    border:2px solid var(--line);
+    background:var(--paper);
+    position:relative;
+    box-shadow: 6px 6px 0 var(--line);
+  }
+  .frame .label{
+    position:absolute;top:-12px;left:18px;
+    background:var(--paper-2);
+    border:1.5px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;padding:3px 10px;
+    letter-spacing:1.5px;
+  }
+  .frame .corner{
+    position:absolute;font-family:'IBM Plex Mono',monospace;
+    font-size:10px;color:var(--muted);letter-spacing:1px;
+  }
+  .frame .corner.tr{top:8px;right:14px}
+  .frame .corner.br{bottom:8px;right:14px}
+
+  /* SECTION 1 — Architecture */
+  .arch{
+    display:grid;grid-template-columns:1fr;gap:0;
+    padding:48px 32px 32px;
+  }
+  .arch-flow{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap:16px;align-items:stretch;
+    margin-top:8px;
+  }
+  .node{
+    border:2px solid var(--line);
+    padding:16px 14px;
+    background:var(--paper-2);
+    position:relative;
+    min-height:130px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .node.hero{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .node.hero .pill{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+  .node .pill{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;
+    font-size:10px;border:1.5px solid var(--line);
+    padding:2px 8px;letter-spacing:1px;margin-bottom:8px;
+    background:var(--paper);
+  }
+  .node h3{
+    font-family:'Bricolage Grotesque',sans-serif;
+    margin:0 0 4px;font-size:18px;letter-spacing:-0.3px;font-weight:700;
+  }
+  .node p{font-size:12px;line-height:1.45;margin:0;color:var(--muted)}
+  .node.hero p{color:#bdb6a6}
+  .node .speed{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;
+    margin-top:10px;
+  }
+  .speed .old{text-decoration:line-through;color:#b88}
+  .speed .new{color:var(--green);font-weight:600}
+  .node.hero .speed .new{color:#7ddc9e}
+
+  .arrow-row{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+    margin:8px 0 4px;align-items:center;
+  }
+  .arrow{
+    text-align:center;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--muted);position:relative;
+  }
+  .arrow::before{
+    content:"";display:block;height:2px;background:var(--line);
+    margin-bottom:6px;
+  }
+  .arrow span{background:var(--paper);padding:0 8px}
+
+  .arch-note{
+    margin-top:24px;
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;
+  }
+  .arch-note .item{
+    border-left:4px solid var(--accent);
+    padding:8px 14px;background:var(--paper-2);
+  }
+  .arch-note .item:nth-child(2){border-color:var(--accent-2)}
+  .arch-note .item:nth-child(3){border-color:var(--green)}
+  .arch-note .item b{
+    font-family:'Bricolage Grotesque',sans-serif;
+    display:block;font-size:14px;margin-bottom:2px;
+  }
+  .arch-note .item span{font-size:12px;color:var(--muted);line-height:1.5}
+
+  /* SECTION 2 — Phases */
+  .phases{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    margin-top:12px;
+  }
+  .phase{
+    border:2px solid var(--line);
+    background:var(--paper);
+    padding:0;
+    box-shadow:6px 6px 0 var(--line);
+    display:flex;flex-direction:column;
+  }
+  .phase header{
+    background:var(--ink);color:var(--paper);
+    padding:14px 18px;
+    display:flex;align-items:baseline;gap:10px;
+    border-bottom:2px solid var(--line);
+  }
+  .phase header .ph-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;background:var(--accent);
+    color:var(--paper);padding:3px 8px;letter-spacing:1px;
+  }
+  .phase:nth-child(2) header .ph-num{background:var(--accent-2)}
+  .phase:nth-child(3) header .ph-num{background:var(--green)}
+  .phase header h3{
+    font-family:'Bricolage Grotesque',sans-serif;
+    margin:0;font-size:18px;font-weight:700;letter-spacing:-0.3px;
+  }
+  .phase .body{padding:18px;flex:1;display:flex;flex-direction:column}
+  .phase .body p.lede{
+    font-size:13px;line-height:1.55;margin:0 0 14px;color:var(--muted);
+  }
+  .mock{
+    border:1.5px dashed var(--line);
+    background:var(--paper-2);
+    padding:14px;margin-bottom:14px;
+    position:relative;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+  }
+  .mock::before{
+    content:"MOCKUP";position:absolute;top:-9px;left:10px;
+    background:var(--paper);padding:0 6px;font-size:9px;
+    letter-spacing:1.5px;color:var(--muted);
+  }
+  .sheet-row{
+    display:grid;grid-template-columns:24px 1fr 70px 60px;
+    gap:6px;padding:5px 0;border-bottom:1px dotted #999;align-items:center;
+  }
+  .sheet-row.head{font-weight:600;color:var(--ink);border-bottom:1px solid var(--ink)}
+  .badge{
+    font-size:9px;padding:1px 6px;border:1px solid var(--line);
+    text-align:center;letter-spacing:0.5px;
+  }
+  .badge.sent{background:var(--green);color:#fff;border-color:var(--green)}
+  .badge.cancel{background:#999;color:#fff;border-color:#999}
+  .badge.new{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+  .badge.ship{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
+  .strike{text-decoration:line-through;opacity:0.5}
+
+  .menu-bar{
+    background:var(--ink);color:var(--paper);
+    padding:6px 10px;font-size:11px;margin-bottom:8px;
+    display:flex;gap:14px;
+  }
+  .menu-bar span:hover{color:var(--accent);cursor:pointer}
+  .clear-btn{
+    display:inline-block;background:var(--accent);color:var(--paper);
+    padding:6px 12px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:1px;border:1.5px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink);margin-top:8px;
+  }
+
+  .feature-list{margin:0;padding:0;list-style:none;font-size:13px}
+  .feature-list li{
+    padding:8px 0;border-bottom:1px dotted #aaa;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .feature-list li::before{
+    content:"→";font-family:'IBM Plex Mono',monospace;
+    color:var(--accent);font-weight:700;flex-shrink:0;
+  }
+  .feature-list li b{font-weight:600}
+
+  .timing{
+    margin-top:auto;padding-top:14px;border-top:2px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    display:flex;justify-content:space-between;color:var(--muted);
+  }
+  .timing b{color:var(--ink)}
+
+  /* SECTION 3 — Admin pages storyboard */
+  .panels{
+    display:grid;grid-template-columns: 1fr 1fr;gap:28px;margin-top:12px;
+  }
+  .panel-frame{
+    border:2px solid var(--line);background:var(--paper);
+    box-shadow:6px 6px 0 var(--line);overflow:hidden;
+  }
+  .panel-frame .ph-label{
+    background:var(--paper-2);border-bottom:2px solid var(--line);
+    padding:10px 16px;display:flex;justify-content:space-between;align-items:center;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;
+  }
+  .panel-frame .ph-label b{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:14px;font-weight:700;letter-spacing:-0.3px;
+  }
+  .panel-frame .ph-body{padding:18px}
+
+  /* Browser mock */
+  .browser{
+    border:1.5px solid var(--line);background:#fff;
+    margin-top:10px;font-family:'Sarabun',sans-serif;font-size:12px;
+  }
+  .browser .chrome{
+    background:var(--paper-2);padding:6px 10px;
+    border-bottom:1.5px solid var(--line);
+    display:flex;align-items:center;gap:6px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);display:inline-block}
+  .browser .url{
+    background:#fff;border:1px solid var(--line);
+    padding:2px 8px;font-family:'IBM Plex Mono',monospace;
+    font-size:10px;margin-left:8px;flex:1;color:var(--muted);
+  }
+
+  /* Admin layout mock */
+  .admin-mock{position:relative;background:#fff;min-height:340px;overflow:hidden}
+  .am-topbar{
+    background:var(--ink);color:var(--paper);padding:8px 12px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;
+  }
+  .am-topbar .gear{
+    width:22px;height:22px;border:1.5px solid var(--paper);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:13px;
+  }
+  .am-status{
+    background:var(--yellow);color:var(--ink);padding:8px 12px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;border-bottom:1.5px solid var(--line);
+  }
+  .am-status .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--green);
+    display:inline-block;margin-right:6px;
+    box-shadow:0 0 0 0 var(--green);
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(31,138,76,.6)}
+    70%{box-shadow:0 0 0 8px rgba(31,138,76,0)}
+    100%{box-shadow:0 0 0 0 rgba(31,138,76,0)}
+  }
+  .am-content{padding:14px;min-height:200px}
+  .am-card{
+    border:1.5px solid var(--line);padding:10px 12px;
+    margin-bottom:10px;background:var(--paper-2);
+    display:flex;justify-content:space-between;
+    font-size:11px;
+  }
+  .am-bottombar{
+    background:var(--paper-2);border-top:1.5px solid var(--line);
+    padding:10px 12px;display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;
+  }
+  .save-btn{
+    background:var(--accent);color:var(--paper);padding:5px 14px;
+    font-family:'IBM Plex Mono',monospace;font-size:10px;
+    border:1.5px solid var(--ink);letter-spacing:1px;
+  }
+  .arrow-btns{display:flex;gap:4px}
+  .arrow-btns span{
+    width:24px;height:24px;border:1.5px solid var(--line);
+    background:#fff;display:inline-flex;align-items:center;justify-content:center;
+  }
+
+  /* Fixed sticky markers */
+  .sticky-tag{
+    position:absolute;font-family:'IBM Plex Mono',monospace;
+    font-size:9px;background:var(--accent);color:var(--paper);
+    padding:2px 6px;letter-spacing:1px;z-index:5;
+    border:1.5px solid var(--ink);
+  }
+
+  /* Order queue mock */
+  .order-queue{font-size:11px}
+  .order-card{
+    border:1.5px solid var(--line);padding:8px 10px;margin-bottom:8px;
+    background:#fff;display:grid;
+    grid-template-columns: 60px 1fr auto;gap:10px;align-items:center;
+  }
+  .order-card .id{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;
+    background:var(--ink);color:var(--paper);padding:3px 6px;text-align:center;
+  }
+  .order-card .info b{font-family:'Bricolage Grotesque',sans-serif;display:block;margin-bottom:2px;font-size:12px}
+  .order-card .info span{color:var(--muted);font-size:10px}
+  .status-pick{
+    display:flex;gap:3px;
+  }
+  .status-pick span{
+    padding:2px 6px;font-size:9px;border:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;cursor:pointer;
+  }
+  .status-pick span.on{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
+
+  /* Receipt mock */
+  .receipt{
+    background:#fff;border:1.5px dashed var(--line);
+    padding:16px;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    line-height:1.7;position:relative;
+  }
+  .receipt::before,.receipt::after{
+    content:"";position:absolute;left:0;right:0;height:12px;
+    background:radial-gradient(circle at 6px 0,transparent 5px,#fff 5px) 0 0/12px 12px;
+  }
+  .receipt::before{top:-6px;transform:rotate(180deg)}
+  .receipt::after{bottom:-6px}
+  .receipt h4{
+    font-family:'Bricolage Grotesque',sans-serif;text-align:center;
+    margin:0 0 4px;font-size:16px;letter-spacing:-0.3px;
+  }
+  .receipt .ln{border-top:1px dashed var(--line);margin:8px 0}
+  .receipt .row{display:flex;justify-content:space-between}
+  .receipt .tot{font-weight:700;font-size:13px}
+
+  /* SECTION 4 — Bug fix */
+  .bugs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}
+  .bug-card{
+    border:2px solid var(--line);background:var(--paper);
+    box-shadow:6px 6px 0 var(--line);
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .bug-card .before,.bug-card .after{padding:18px;position:relative}
+  .bug-card .before{background:#fff3f0;border-right:2px dashed var(--line)}
+  .bug-card .after{background:#f0fff4}
+  .bug-card h4{
+    font-family:'Bricolage Grotesque',sans-serif;
+    margin:0 0 4px;font-size:13px;letter-spacing:0.5px;
+    text-transform:uppercase;
+  }
+  .bug-card h4 .x{color:#c33}
+  .bug-card h4 .c{color:var(--green)}
+  .bug-card .scene{
+    margin-top:10px;border:1.5px solid var(--line);background:#fff;
+    height:160px;position:relative;overflow:hidden;font-size:10px;
+  }
+  .scene .bar{
+    background:var(--ink);color:var(--paper);padding:4px 8px;
+    font-family:'IBM Plex Mono',monospace;font-size:9px;
+    display:flex;justify-content:space-between;
+  }
+  .scene .content-fake{
+    padding:8px;line-height:1.4;color:var(--muted);font-size:9px;
+  }
+  .scene .content-fake p{margin:0 0 6px}
+  .scene .floating{
+    position:absolute;background:var(--accent);color:#fff;
+    padding:3px 7px;font-family:'IBM Plex Mono',monospace;font-size:9px;
+    border:1.5px solid var(--ink);letter-spacing:1px;
+  }
+  .scroll-marker{
+    position:absolute;right:4px;top:50%;transform:translateY(-50%);
+    font-family:'IBM Plex Mono',monospace;font-size:8px;
+    writing-mode:vertical-rl;color:var(--accent);letter-spacing:2px;
+  }
+  .bug-title-row{
+    grid-column:1/3;background:var(--ink);color:var(--paper);
+    padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:1.5px;display:flex;justify-content:space-between;
+  }
+  .bug-title-row b{
+    font-family:'Bricolage Grotesque',sans-serif;font-size:14px;
+    letter-spacing:-0.3px;font-weight:700;text-transform:none;
+  }
+  .css-hint{
+    margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;
+    background:var(--ink);color:#7ddc9e;padding:8px 10px;line-height:1.5;
+  }
+  .css-hint .comment{color:#888}
+
+  /* Footer */
+  .footer{
+    margin-top:64px;padding:24px;border:2px solid var(--line);
+    background:var(--ink);color:var(--paper);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+    box-shadow:6px 6px 0 var(--accent);
+  }
+  .footer .stamp{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;
+  }
+  .footer h3{
+    font-family:'Bricolage Grotesque',sans-serif;margin:0;font-size:20px;
+    letter-spacing:-0.4px;
+  }
+
+  /* Decorative crosshairs */
+  .crosshair{
+    position:absolute;width:12px;height:12px;pointer-events:none;
+  }
+  .crosshair::before,.crosshair::after{
+    content:"";position:absolute;background:var(--line);
+  }
+  .crosshair::before{width:12px;height:1.5px;top:5px;left:0}
+  .crosshair::after{width:1.5px;height:12px;left:5px;top:0}
+
+  @media(max-width:980px){
+    .arch-flow,.arrow-row{grid-template-columns:repeat(2,1fr)}
+    .phases,.panels,.bugs,.arch-note{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="top">
+    <h1>Storyboard <em>UX/UI</em><br>เเพลนอัพเดท</h1>
+    <p>แผนพัฒนา 4 ส่วน ครอบคลุมตั้งแต่ข้อมูล (Sheet · Supabase · Drive) → ระบบเคลียร์ออเดอร์ 3 เฟส → หน้าเว็บ/หลังบ้านแอดมิน → การแก้บั๊ก sticky elements บนแถบหลังบ้าน</p>
+    <div class="meta-row">
+      <span class="tag dark">PROJECT · RAW</span>
+      <span class="tag">STACK · Vercel + Supabase + Drive + Sheet</span>
+      <span class="tag accent">FRAMES · 04</span>
+      <span class="tag">LAST UPDATE · 19 MAY 2026</span>
+    </div>
+  </header>
+
+  <!-- SECTION 1 -->
+  <div class="section-title">
+    <span class="num">01 / FRAME</span>
+    <h2>การวางดราฟ — เเพลนอัพเดทพัฒนา</h2>
+    <span class="sub">ARCHITECTURE · DATA FLOW</span>
+  </div>
+
+  <div class="frame arch">
+    <span class="label">SYSTEM MAP</span>
+    <span class="corner tr">FIG-01</span>
+
+    <div class="arch-flow">
+      <div class="node">
+        <div>
+          <span class="pill">USER</span>
+          <h3>ลูกค้า</h3>
+          <p>เปิดหน้าเว็บผ่านมือถือ / กดดูสินค้า · เลือกหมวด · สั่งซื้อ</p>
+        </div>
+        <div class="speed">CLIENT · BROWSER</div>
+      </div>
+
+      <div class="node hero">
+        <div>
+          <span class="pill">FRONT</span>
+          <h3>Vercel</h3>
+          <p>หน้าร้าน (Landing + หมวดสินค้า) · HTML/CSS/JS เป็นโครงสร้างบ้าน</p>
+        </div>
+        <div class="speed"><span class="new">⚡ Static · ms-level</span></div>
+      </div>
+
+      <div class="node">
+        <div>
+          <span class="pill">DB</span>
+          <h3>Supabase</h3>
+          <p>เก็บ ชื่อสินค้า · ราคา · หมวด · สต็อก · ลิงก์รูป (เบามาก ใช้ยาวๆได้)</p>
+        </div>
+        <div class="speed">
+          <span class="old">Sheet 5–10s</span>
+          <span class="new">→ Supabase &lt;1s</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div>
+          <span class="pill">FILES</span>
+          <h3>Google Drive</h3>
+          <p>โกดังรูปภาพ — ไม่เสีย storage เพิ่ม · Supabase เก็บแค่ URL</p>
+        </div>
+        <div class="speed">IMAGE CDN</div>
+      </div>
+
+      <div class="node">
+        <div>
+          <span class="pill">BACKUP</span>
+          <h3>Google Sheet</h3>
+          <p>ฐานหลังบ้าน/สำรองที่คนดูง่าย · Mirror ออเดอร์จาก Supabase</p>
+        </div>
+        <div class="speed">HUMAN-READABLE</div>
+      </div>
+    </div>
+
+    <div class="arrow-row">
+      <div class="arrow"><span>request</span></div>
+      <div class="arrow"><span>read · write</span></div>
+      <div class="arrow"><span>image url</span></div>
+      <div class="arrow"><span>fetch</span></div>
+      <div class="arrow"><span>mirror</span></div>
+    </div>
+
+    <div class="arch-note">
+      <div class="item">
+        <b>ทำไมถึงเปลี่ยน</b>
+        <span>เดิมเว็บถาม Sheet/GAS รถติด 5–10 วินาที · ย้ายไปถาม Supabase แทน โหลดสินค้า/หมวด/สต็อกเร็วขึ้นมาก</span>
+      </div>
+      <div class="item">
+        <b>ทำไมรูปยังอยู่ Drive</b>
+        <span>Supabase เก็บแค่ลิงก์ URL ขนาดเล็กมาก ไม่เสียค่า Storage เพิ่ม — ใช้ Drive เป็นโกดังต่อไปได้</span>
+      </div>
+      <div class="item">
+        <b>บทบาทของ Sheet</b>
+        <span>ยังเป็นฐานหลังบ้านสำรองที่ดูง่าย เปิดเช็คได้ทุกเมื่อ ไม่ทิ้ง — แค่ไม่ใช่ทางหลักของเว็บอีก</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-title">
+    <span class="num">02 / FRAME</span>
+    <h2>ระบบเคลียร์ออเดอร์ — 3 เฟส</h2>
+    <span class="sub">CLEARING WORKFLOW · PHASED ROLLOUT</span>
+  </div>
+
+  <div class="phases">
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <header>
+        <span class="ph-num">PHASE 01</span>
+        <h3>ปุ่มเคลียร์ใน Sheet (Manual)</h3>
+      </header>
+      <div class="body">
+        <p class="lede">เริ่มจากของง่าย — เพิ่มเมนูใน Google Sheet ให้กดเคลียร์เองได้ ลบเฉพาะออเดอร์ที่ส่งแล้ว/ยกเลิก</p>
+
+        <div class="mock">
+          <div class="menu-bar">
+            <span>ไฟล์</span><span>แก้ไข</span>
+            <span style="color:var(--accent)">▸ จัดการออเดอร์</span>
+            <span>มุมมอง</span>
+          </div>
+          <div style="background:#fff;border:1px solid #999;padding:6px;margin-bottom:6px;font-size:10px">
+            ↳ เคลียร์ออเดอร์ที่ <b>ส่งแล้ว</b> / <b>ยกเลิก</b><br>
+            ↳ ดูสรุปรอบที่ผ่านมา
+          </div>
+
+          <div class="sheet-row head">
+            <span>#</span><span>ออเดอร์</span><span>ยอด</span><span>สถานะ</span>
+          </div>
+          <div class="sheet-row strike">
+            <span>01</span><span>ร้านป้าน้อย</span><span>340</span><span class="badge sent">ส่งแล้ว</span>
+          </div>
+          <div class="sheet-row strike">
+            <span>02</span><span>RS-009</span><span>120</span><span class="badge cancel">ยกเลิก</span>
+          </div>
+          <div class="sheet-row">
+            <span>03</span><span>ร้านพี่กบ</span><span>890</span><span class="badge ship">จัดส่ง</span>
+          </div>
+          <div class="sheet-row">
+            <span>04</span><span>RS-012</span><span>250</span><span class="badge new">ใหม่</span>
+          </div>
+        </div>
+
+        <ul class="feature-list">
+          <li><b>ลบเฉพาะ</b> ส่งแล้ว · ยกเลิก</li>
+          <li><b>ห้ามแตะ</b> ออเดอร์ใหม่ · รอคอนเฟิร์ม · กำลังจัดส่ง</li>
+          <li>เก็บ <b>log เบา</b> — วันที่ · จำนวน · ยอดรวม · คนกดเคลียร์</li>
+          <li>ใช้ <b>รหัส/ชื่อร้าน</b> แทนชื่อ-เบอร์ลูกค้า</li>
+        </ul>
+
+        <div class="timing">
+          <span>RISK · <b>LOW</b></span>
+          <span>SCOPE · <b>Sheet only</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <header>
+        <span class="ph-num">PHASE 02</span>
+        <h3>Sync ทั้ง 3 แหล่งให้ตรงกัน</h3>
+      </header>
+      <div class="body">
+        <p class="lede">เคลียร์ทีเดียวต้องครอบ Sheet + Supabase + ไฟล์สลิปใน Drive ให้ข้อมูลตรงกันทุกที่</p>
+
+        <div class="mock">
+          <div style="font-weight:600;margin-bottom:6px">⌁ CLEAR ROUND #017</div>
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px;font-size:10px">
+            <span>①</span><span>Sheet — ลบแถว ส่งแล้ว/ยกเลิก</span><span style="color:var(--green)">✓ 12 rows</span>
+            <span>②</span><span>Supabase — mark <code>cleared = true</code></span><span style="color:var(--green)">✓ sync</span>
+            <span>③</span><span>Drive — ลบไฟล์สลิปที่เกี่ยว</span><span style="color:var(--green)">✓ 12 imgs</span>
+          </div>
+          <div class="clear-btn">▸ RUN CLEAR</div>
+        </div>
+
+        <ul class="feature-list">
+          <li>ทำใน <b>transaction เดียว</b> หรือ rollback ได้ถ้าพัง</li>
+          <li>เช็คตรงกัน 100% ก่อนปิดงาน — กัน data drift</li>
+          <li><b>ลบสลิปด้วย</b> เพื่อไม่ให้ Drive บวม</li>
+          <li>ส่งสรุปกลับเป็น <b>log แถวเดียว</b> ใน Sheet</li>
+        </ul>
+
+        <div class="timing">
+          <span>RISK · <b>MEDIUM</b></span>
+          <span>SCOPE · <b>3 systems</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <header>
+        <span class="ph-num">PHASE 03</span>
+        <h3>Auto Clear ตามรอบส่งของ</h3>
+      </header>
+      <div class="body">
+        <p class="lede">เมื่อระบบนิ่ง ตั้งเวลาอัตโนมัติ เคลียร์เฉพาะออเดอร์ ส่งแล้ว เท่านั้น</p>
+
+        <div class="mock">
+          <div style="font-weight:600;margin-bottom:8px">⏱ SCHEDULE</div>
+          <div style="background:#fff;border:1px solid #999;padding:8px;font-size:10px;line-height:1.7">
+            พฤหัสฯ <b>23:00</b> &nbsp;·&nbsp; ศุกร์ <b>00:05</b><br>
+            <span style="color:var(--muted)">→ ทุกสัปดาห์อัตโนมัติ</span>
+          </div>
+
+          <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:10px">
+            <div style="background:#e8f7ed;border:1px solid var(--green);padding:6px;text-align:center">
+              <b style="color:var(--green)">ส่งแล้ว</b><br>→ เคลียร์
+            </div>
+            <div style="background:#ffeae3;border:1px solid var(--accent);padding:6px;text-align:center">
+              <b style="color:var(--accent)">จัดส่ง</b><br>→ ข้าม
+            </div>
+          </div>
+        </div>
+
+        <ul class="feature-list">
+          <li>เคลียร์เฉพาะ <b>ส่งแล้ว</b> เท่านั้น</li>
+          <li>ออเดอร์ <b>กำลังจัดส่ง</b> รอรอบถัดไป</li>
+          <li>แจ้งเตือนทาง LINE/Email ก่อนเริ่ม</li>
+          <li><b>กดยกเลิกได้</b> ถ้ามีเหตุไม่คาดคิด</li>
+        </ul>
+
+        <div class="timing">
+          <span>RISK · <b>HIGH</b></span>
+          <span>SCOPE · <b>Cron + Hooks</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section-title">
+    <span class="num">03 / FRAME</span>
+    <h2>หน้าเว็บ & หลังบ้านแอดมิน</h2>
+    <span class="sub">PAGES STORYBOARD</span>
+  </div>
+
+  <div class="panels">
+
+    <!-- Left: หมวดสินค้า + คิวออเดอร์ -->
+    <div class="panel-frame">
+      <div class="ph-label">
+        <b>SCENE A · หลังบ้าน Admin</b>
+        <span>desktop · 1280w</span>
+      </div>
+      <div class="ph-body">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.55">
+          เดิมเป็น Landing เลื่อนลงอย่างเดียว → เพิ่ม <b>แท็บหมวดสินค้า</b> ให้แก้ไขแยกหมวด · เพิ่ม <b>แท็บออเดอร์</b> ให้เห็นคิวและปรับสถานะ
+        </p>
+
+        <div class="browser">
+          <div class="chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">raw-shop.app / admin / orders</span>
+          </div>
+          <div style="display:flex;background:var(--paper-2);border-bottom:1.5px solid var(--line);font-size:11px">
+            <span style="padding:8px 12px">หมวดสินค้า</span>
+            <span style="padding:8px 12px;background:var(--ink);color:var(--paper);font-weight:600">ออเดอร์คิว</span>
+            <span style="padding:8px 12px">รายงาน</span>
+          </div>
+
+          <div class="order-queue" style="padding:12px">
+            <div class="order-card">
+              <span class="id">#0421</span>
+              <div class="info">
+                <b>ร้านป้าน้อย · 4 รายการ</b>
+                <span>340 ฿ · 10 นาทีที่แล้ว</span>
+              </div>
+              <div class="status-pick">
+                <span>ใหม่</span><span class="on">ยืนยัน</span><span>จัดส่ง</span><span>ส่งแล้ว</span>
+              </div>
+            </div>
+            <div class="order-card">
+              <span class="id">#0422</span>
+              <div class="info">
+                <b>RS-012 · 2 รายการ</b>
+                <span>250 ฿ · 3 นาทีที่แล้ว</span>
+              </div>
+              <div class="status-pick">
+                <span class="on">ใหม่</span><span>ยืนยัน</span><span>จัดส่ง</span><span>ส่งแล้ว</span>
+              </div>
+            </div>
+            <div class="order-card">
+              <span class="id">#0420</span>
+              <div class="info">
+                <b>ร้านพี่กบ · 7 รายการ</b>
+                <span>890 ฿ · 1 ชม. ที่แล้ว</span>
+              </div>
+              <div class="status-pick">
+                <span>ใหม่</span><span>ยืนยัน</span><span class="on">จัดส่ง</span><span>ส่งแล้ว</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="feature-list" style="margin-top:14px">
+          <li><b>แอดมินเห็นคิวทั้งหมด</b> · เปลี่ยนสถานะ · ยกเลิกได้</li>
+          <li><b>ลูกค้าไม่เห็น</b> รายการหลังจากกดสั่งซื้อแล้ว</li>
+          <li>ระบบ <b>แมพ / ชื่อ / เบอร์</b> อาจเอาออก (พิจารณาภายหลัง)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right: ใบเสร็จ -->
+    <div class="panel-frame">
+      <div class="ph-label">
+        <b>SCENE B · ใบเสร็จลูกค้า</b>
+        <span>mobile · post-checkout</span>
+      </div>
+      <div class="ph-body">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.55">
+          หลังลูกค้ากดสั่งซื้อ → โชว์ใบเสร็จทันที <b>เซฟภาพได้</b> เพื่อยืนยันกับพนักงาน (รองรับเซลนอกพื้นที่ที่ลูกค้าดูในแอป + กดสั่งตอนนั้น)
+        </p>
+
+        <div class="receipt">
+          <h4>RAW · ใบเสร็จ</h4>
+          <div style="text-align:center;font-size:10px;color:var(--muted)">ORDER · #0422 · 19 MAY 26</div>
+          <div class="ln"></div>
+          <div class="row"><span>น้ำตาลทราย × 2</span><span>120</span></div>
+          <div class="row"><span>น้ำมันพืช × 1</span><span>130</span></div>
+          <div class="ln"></div>
+          <div class="row tot"><span>รวม</span><span>250 ฿</span></div>
+          <div class="ln"></div>
+          <div style="text-align:center;font-size:10px;color:var(--muted)">โปรดยืนยันกับพนักงาน</div>
+          <div style="text-align:center;margin-top:8px">
+            <span style="background:var(--ink);color:var(--paper);padding:4px 10px;font-size:10px">▸ เซฟภาพใบเสร็จ</span>
+          </div>
+        </div>
+
+        <ul class="feature-list" style="margin-top:14px">
+          <li>โชว์ <b>ทันที</b> หลังกดสั่งซื้อ</li>
+          <li>เซฟภาพได้เพื่อ <b>ยืนยันกับพนักงาน</b></li>
+          <li>รองรับ <b>เซลนอกพื้นที่</b> + ลูกค้าทั่วไป (LINE)</li>
+          <li>ลูกค้าประจำส่วนใหญ่สั่งผ่าน <b>LINE</b> อยู่แล้ว</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section-title">
+    <span class="num">04 / FRAME</span>
+    <h2>แก้บั๊ก — Sticky Elements บนแถบหลังบ้าน</h2>
+    <span class="sub">BUG FIX · BEFORE / AFTER</span>
+  </div>
+
+  <div class="bugs" style="grid-template-columns:1fr">
+
+    <!-- BUG 1 -->
+    <div class="bug-card" style="grid-template-columns:1fr">
+      <div class="bug-title-row">
+        <b>① แถบสถานะ Admin (Admin 1/3)</b>
+        <span>STICKY · TOP</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div class="before">
+          <h4><span class="x">✕</span> ก่อนแก้</h4>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">แถบ Admin 1/3 ไม่ถูกล็อค — เลื่อนลงแล้วโดนเลื่อนกลบ ต้องเลื่อนกลับขึ้นบนสุดถึงจะเห็น</div>
+          <div class="scene">
+            <div class="bar"><span>STATUS · Admin 1/3</span><span>↑</span></div>
+            <div class="content-fake" style="position:absolute;top:0;left:0;right:0;bottom:0;padding-top:30px">
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+            </div>
+            <div class="scroll-marker">SCROLL ↓</div>
+          </div>
+        </div>
+        <div class="after">
+          <h4><span class="c">✓</span> หลังแก้</h4>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">ลอยติดด้านบนตลอด — ไม่ว่าจะเลื่อนยาวขนาดไหนแถบสถานะยังเห็นชัด</div>
+          <div class="scene">
+            <div class="floating" style="top:6px;left:6px;right:6px"><span style="float:left">STATUS · Admin 1/3</span><span style="float:right">●</span></div>
+            <div class="content-fake" style="position:absolute;top:30px;left:0;right:0;bottom:0">
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+            </div>
+            <div class="scroll-marker">SCROLL ↓</div>
+          </div>
+          <div class="css-hint">
+            <span class="comment">/* status bar */</span><br>
+            position: sticky; top: 0;<br>
+            z-index: 50;
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUG 2 -->
+    <div class="bug-card" style="grid-template-columns:1fr">
+      <div class="bug-title-row">
+        <b>② ไอคอนฟันเฟือง · กากบาท</b>
+        <span>FLOAT · TOP-RIGHT</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div class="before">
+          <h4><span class="x">✕</span> ก่อนแก้</h4>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">ฟันเฟือง & ปุ่มกากบาทถูกเลื่อนกลบเหมือนกัน ไม่ลอย — กดยากเวลาดูข้อมูลกลางหน้า</div>
+          <div class="scene">
+            <div class="bar"><span style="margin-left:auto">⚙ · ✕</span></div>
+            <div class="content-fake" style="position:absolute;top:0;left:0;right:0;bottom:0;padding-top:30px">
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+            </div>
+          </div>
+        </div>
+        <div class="after">
+          <h4><span class="c">✓</span> หลังแก้</h4>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">ลอยมุมขวาบนตลอด — หาง่าย กดง่าย ไม่ว่าจะเลื่อนถึงไหน</div>
+          <div class="scene">
+            <div class="floating" style="top:6px;right:6px">⚙ ✕</div>
+            <div class="content-fake" style="position:absolute;top:6px;left:0;right:0;bottom:0">
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+            </div>
+          </div>
+          <div class="css-hint">
+            <span class="comment">/* gear + close */</span><br>
+            position: fixed; top: 16px; right: 16px;<br>
+            z-index: 60;
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUG 3 -->
+    <div class="bug-card" style="grid-template-columns:1fr">
+      <div class="bug-title-row">
+        <b>③ ปุ่มบันทึกทั้งหมด · ลูกศร ↑↓</b>
+        <span>FLOAT · BOTTOM</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div class="before">
+          <h4><span class="x">✕</span> ก่อนแก้</h4>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">ปุ่ม บันทึกทั้งหมด + ลูกศรอยู่ล่างสุด ต้องเลื่อนลงจนสุดเท่านั้นถึงจะเห็น</div>
+          <div class="scene">
+            <div class="content-fake" style="padding-top:6px">
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+            </div>
+            <div style="position:absolute;bottom:0;left:0;right:0;background:var(--paper-2);padding:4px 6px;font-size:9px;display:flex;justify-content:space-between;border-top:1.5px solid var(--line)">
+              <span style="background:var(--accent);color:#fff;padding:2px 6px">SAVE ALL</span>
+              <span>↑ ↓</span>
+            </div>
+            <div class="scroll-marker">SCROLL ↓</div>
+          </div>
+        </div>
+        <div class="after">
+          <h4><span class="c">✓</span> หลังแก้</h4>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">Bottom bar ลอยติดล่างตลอด — บันทึกได้ทุกจุด · เลื่อนกลับขึ้น/ลงสะดวก</div>
+          <div class="scene">
+            <div class="content-fake" style="padding-top:6px">
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+              <p>━━━━━━━━━━━━━━</p>
+            </div>
+            <div class="floating" style="bottom:6px;left:6px;right:6px;display:flex;justify-content:space-between;background:var(--paper-2);color:var(--ink);border:1.5px solid var(--ink)">
+              <span style="background:var(--accent);color:#fff;padding:1px 6px">SAVE ALL</span>
+              <span>↑ ↓</span>
+            </div>
+          </div>
+          <div class="css-hint">
+            <span class="comment">/* action bar */</span><br>
+            position: fixed; bottom: 0; left: 0; right: 0;<br>
+            z-index: 50;
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <h3>STORYBORD PLAN A1 4 SCOPE</h3>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#bdb6a6;margin-top:6px;letter-spacing:1px">
+        SCOPE · 4 FRAMES &nbsp;·&nbsp; ARCH + 3-PHASE CLEAR + ADMIN PAGES + STICKY BUGS
+      </div>
+    </div>
+    <div class="stamp">END · FILE.</div>
+  </div>
+
+</div>
+</body>
+</html>
