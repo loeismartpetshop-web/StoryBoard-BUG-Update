@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Storyboard UX/UI · Loei Smart — Line Catalog</title>
+<title>Storyboard UX/UI · KODANGLOEISMARTPETSHOP — Line Catalog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -61,14 +61,14 @@ header.top{
   position:relative;
   box-shadow:var(--shadow);
   margin-bottom:56px;
-  overflow:hidden;
 }
 header.top::before{
-  content:"STORYBOARD · UX/UI · LOEI SMART · v2.0 · MOBILE-FIRST";
-  position:absolute;top:-14px;left:28px;
+  content:"STORYBOARD · UX/UI · KODANGLOEISMARTPETSHOP · v2.0 · MOBILE-FIRST";
+  position:absolute;top:-13px;left:28px;
   background:var(--ink);color:var(--paper);
   font-family:'IBM Plex Mono',monospace;font-size:11px;
   padding:5px 12px;letter-spacing:1.8px;
+  white-space:nowrap;
 }
 header.top h1{
   font-family:'Bricolage Grotesque',sans-serif;
@@ -1302,6 +1302,532 @@ header.top .lede{
 }
 
 /* ============================================================
+   6.3 — DARK / LIGHT MODE TOGGLE
+   ============================================================ */
+.theme-showcase{
+  display:grid;grid-template-columns:auto 1fr;gap:36px;
+  align-items:flex-start;margin-top:20px;
+}
+.theme-phones{
+  display:flex;gap:24px;flex-wrap:wrap;justify-content:center;
+}
+.theme-screen{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  font-family:'Sarabun',sans-serif;
+  transition:background 0.3s ease, color 0.3s ease;
+}
+.theme-screen.light{
+  background:linear-gradient(180deg,#fdfcf8 0%,#f4f1e8 100%);
+  color:#0a0a0b;
+}
+.theme-screen.dark{
+  background:linear-gradient(180deg,#0b0d12 0%,#171a22 100%);
+  color:#f1ece1;
+}
+.theme-screen .t-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.theme-screen.light .t-nav{border-bottom-color:#e5e0d2}
+.theme-screen .t-brand{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:800;font-size:13px;letter-spacing:-0.4px;
+}
+.theme-screen.light .t-brand{color:#0a0a0b}
+.theme-screen.dark .t-brand{color:#f1ece1}
+.theme-screen .t-brand em{font-style:normal;color:var(--accent)}
+
+/* Theme toggle pill — sun ↔ moon */
+.theme-toggle{
+  width:54px;height:28px;border-radius:999px;
+  position:relative;cursor:pointer;
+  border:1.5px solid rgba(0,0,0,0.1);
+  transition:background 0.35s ease, border-color 0.35s ease;
+}
+.theme-toggle.light{
+  background:linear-gradient(135deg,#ffd770 0%,#ffae3d 50%,#ff7e3a 100%);
+  border-color:rgba(255,140,40,0.45);
+  box-shadow:0 0 14px rgba(255,170,60,0.55), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+.theme-toggle.dark{
+  background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#0f172a 100%);
+  border-color:rgba(99,102,241,0.45);
+  box-shadow:0 0 12px rgba(99,102,241,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.theme-toggle .knob{
+  position:absolute;top:1.5px;
+  width:23px;height:23px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:left 0.35s cubic-bezier(.6,.05,.3,1.1), background 0.35s ease;
+}
+.theme-toggle.light .knob{
+  left:2px;
+  background:radial-gradient(circle at 30% 30%,#fffbe6 0%,#ffe79a 45%,#ffb244 100%);
+  box-shadow:0 0 10px rgba(255,200,80,0.85);
+}
+.theme-toggle.dark .knob{
+  left:28px;
+  background:radial-gradient(circle at 35% 35%,#e8eaff 0%,#b6c0ff 45%,#7c83ff 100%);
+  box-shadow:0 0 10px rgba(140,150,255,0.7);
+}
+.theme-toggle svg{width:14px;height:14px;display:block}
+
+/* Inline SVG sun/moon icons used inside knob */
+.icon-sun-grad,.icon-moon-grad{filter:drop-shadow(0 1px 1px rgba(0,0,0,0.18))}
+
+/* Theme product card preview (inside phone) */
+.theme-screen .t-card-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px;
+}
+.theme-screen .t-card{
+  border-radius:10px;padding:8px;
+  display:flex;flex-direction:column;gap:5px;
+  transition:background 0.3s ease, border-color 0.3s ease;
+}
+.theme-screen.light .t-card{
+  background:#ffffff;border:1px solid #e7e2d1;
+  box-shadow:0 1px 0 rgba(0,0,0,0.04);
+}
+.theme-screen.dark .t-card{
+  background:#1c2030;border:1px solid #2c3142;
+}
+.theme-screen .t-card .img{
+  height:46px;border-radius:7px;
+  background:linear-gradient(135deg,#d9d1bb,#e6dfcd);
+}
+.theme-screen.dark .t-card .img{
+  background:linear-gradient(135deg,#2a3046,#1d2230);
+}
+.theme-screen .t-card .title{
+  font-size:9.5px;font-weight:700;line-height:1.25;
+}
+.theme-screen .t-card .price{
+  font-size:10px;font-weight:800;color:var(--accent);
+}
+.theme-screen.dark .t-card .price{color:#ff8a5b}
+.theme-screen .t-card .btn{
+  margin-top:auto;text-align:center;
+  font-size:8.5px;font-weight:700;padding:4px 0;border-radius:999px;
+}
+.theme-screen.light .t-card .btn{background:#2563eb;color:#fff}
+.theme-screen.dark .t-card .btn{background:#3b82f6;color:#fff}
+
+.theme-screen .t-search{
+  margin:10px 12px 0;padding:8px 12px;border-radius:999px;
+  font-size:10px;display:flex;align-items:center;gap:6px;
+}
+.theme-screen.light .t-search{background:#fff;border:1px solid #e5e0d2;color:#94896c}
+.theme-screen.dark .t-search{background:#161a26;border:1px solid #262b3a;color:#6c728a}
+
+.theme-screen .t-section-title{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+  font-size:11px;padding:10px 14px 4px;letter-spacing:-0.3px;
+}
+
+/* 6.3 callout */
+.theme-callouts{margin-top:18px}
+
+/* ============================================================
+   6.4 — SYSTEM AUDIT MATRIX
+   ============================================================ */
+.audit-shell{
+  border:2.5px solid var(--line);background:var(--paper);
+  box-shadow:var(--shadow);margin-top:20px;overflow:hidden;
+}
+.audit-header{
+  background:var(--ink);color:var(--paper);
+  display:grid;grid-template-columns:50px 1.4fr 0.9fr 1fr 1.2fr;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:1.5px;font-weight:600;
+}
+.audit-header > div{padding:12px 14px;border-right:1.5px solid #2a2a2a}
+.audit-header > div:last-child{border-right:none}
+.audit-row{
+  display:grid;grid-template-columns:50px 1.4fr 0.9fr 1fr 1.2fr;
+  border-bottom:1.5px solid var(--line);
+  background:#fff;
+}
+.audit-row:last-child{border-bottom:none}
+.audit-row > div{
+  padding:14px;border-right:1.5px solid var(--line);font-size:13px;line-height:1.5;
+}
+.audit-row > div:last-child{border-right:none}
+.audit-row .no{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+  font-weight:700;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+}
+.audit-row .feat b{
+  display:block;font-family:'Bricolage Grotesque',sans-serif;
+  font-size:14px;margin-bottom:3px;letter-spacing:-0.2px;
+}
+.audit-row .feat .sub{
+  font-size:11.5px;color:var(--muted);line-height:1.5;
+}
+.audit-status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  font-weight:700;letter-spacing:0.8px;
+  padding:4px 9px;border-radius:4px;
+}
+.audit-status.have{background:#dcfce7;color:#15803d}
+.audit-status.gap{background:#fee2e2;color:#b91c1c}
+.audit-status.partial{background:#fef3c7;color:#92400e}
+.audit-status::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:currentColor;
+}
+.audit-prio{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  font-weight:700;letter-spacing:1px;
+}
+.audit-prio.p1{color:#b91c1c}
+.audit-prio.p2{color:#ea580c}
+.audit-prio.p3{color:#0891b2}
+.audit-prio.p4{color:#6a6359}
+.audit-prio small{display:block;font-size:10px;font-weight:400;color:var(--muted);margin-top:2px;letter-spacing:0.5px}
+
+.audit-summary{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  margin-top:18px;
+}
+.audit-stat{
+  border:1.5px solid var(--line);background:#fff;padding:14px 16px;
+}
+.audit-stat .lab{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;
+}
+.audit-stat strong{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:30px;display:block;margin-top:3px;letter-spacing:-1px;
+}
+.audit-stat .delta{font-size:11px;color:var(--muted);margin-top:4px;display:block}
+.audit-stat.have strong{color:#15803d}
+.audit-stat.gap strong{color:#b91c1c}
+.audit-stat.partial strong{color:#b45309}
+.audit-stat.total strong{color:var(--ink)}
+
+/* ============================================================
+   6.5 — IDEAS DRAFT BOARD
+   ============================================================ */
+.ideas-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  margin-top:20px;
+}
+.idea-card{
+  border:2px solid var(--line);background:#fff;
+  box-shadow:var(--shadow-sm);
+  padding:20px 22px 18px;
+  position:relative;display:flex;flex-direction:column;
+}
+.idea-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+}
+.idea-card.c1::before{background:linear-gradient(90deg,#f59e0b,#dc2626)}
+.idea-card.c2::before{background:linear-gradient(90deg,#2563eb,#7c3aed)}
+.idea-card.c3::before{background:linear-gradient(90deg,#16a34a,#0891b2)}
+.idea-card.c4::before{background:linear-gradient(90deg,#7c3aed,#ec4899)}
+.idea-card.c5::before{background:linear-gradient(90deg,#0891b2,#2563eb)}
+.idea-card.c6::before{background:linear-gradient(90deg,#ea580c,#facc15)}
+.idea-num{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  color:var(--muted);letter-spacing:1.5px;margin-bottom:6px;
+}
+.idea-card h4{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+  font-size:18px;margin:0 0 10px;letter-spacing:-0.4px;line-height:1.2;
+}
+.idea-card .why{
+  font-size:13px;color:#3a3a3a;line-height:1.6;margin:0 0 12px;
+}
+.idea-card .mech{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  background:var(--paper-2);border:1px solid var(--line);
+  padding:8px 10px;color:var(--ink);line-height:1.5;
+  margin-bottom:12px;
+}
+.idea-card .mech b{color:var(--accent)}
+.idea-card .tags{
+  display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;
+  padding-top:10px;border-top:1px dashed #c5beae;
+}
+.idea-card .tags span{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  border:1px solid var(--line);padding:3px 8px;letter-spacing:0.5px;
+}
+.idea-card .tags .easy{background:#dcfce7;color:#15803d;border-color:#86efac}
+.idea-card .tags .med{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+.idea-card .tags .hard{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+.idea-card .tags .impact{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+@media (max-width:900px){
+  .ideas-grid{grid-template-columns:1fr 1fr}
+  .audit-header,.audit-row{grid-template-columns:40px 1.3fr 0.8fr 1fr}
+  .audit-header > div:nth-child(5),
+  .audit-row > div:nth-child(5){display:none}
+  .audit-summary{grid-template-columns:1fr 1fr}
+  .theme-showcase{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .ideas-grid{grid-template-columns:1fr}
+  .audit-header,.audit-row{grid-template-columns:30px 1fr 0.7fr}
+  .audit-header > div:nth-child(4),
+  .audit-row > div:nth-child(4){display:none}
+}
+
+/* ============================================================
+   FUTURE — Sub-heading divider (6.1 / 6.2 / 6.3)
+   ============================================================ */
+.future-subhead{
+  display:flex;align-items:flex-end;gap:14px;
+  margin:56px 0 10px;padding-bottom:10px;
+  border-bottom:1.5px dashed var(--line);flex-wrap:wrap;
+}
+.future-subhead .sub-num{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  background:var(--accent);color:#fff;
+  padding:5px 11px;letter-spacing:1.5px;flex-shrink:0;font-weight:600;
+}
+.future-subhead h3{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;font-size:clamp(20px,2.6vw,28px);
+  margin:0;letter-spacing:-0.6px;line-height:1;
+}
+.future-subhead .sub-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--muted);margin-left:auto;letter-spacing:1px;
+}
+
+/* ============================================================
+   6.2 — RECEIPT SECTION (3 device sizes)
+   ============================================================ */
+.receipt-showcase{
+  display:grid;grid-template-columns:auto 1fr;gap:36px;
+  align-items:flex-start;margin-top:20px;
+}
+.receipt-phone-stack{
+  display:flex;flex-direction:column;gap:18px;align-items:center;
+}
+
+/* ============================================================
+   6.3 — MULTI-ADMIN LOCK SYSTEM
+   ============================================================ */
+.lock-scenario{
+  border:2.5px solid var(--line);background:var(--paper);
+  box-shadow:var(--shadow);padding:36px 32px 32px;
+  position:relative;margin-top:24px;
+}
+
+/* Two-admin split view */
+.dual-admin{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  align-items:stretch;margin-bottom:24px;
+}
+.admin-side{
+  border:2px solid var(--line);background:#fff;
+  display:flex;flex-direction:column;position:relative;
+  box-shadow:var(--shadow-sm);
+}
+.admin-side .admin-tag{
+  position:absolute;top:-13px;left:18px;
+  background:var(--accent-2);color:#fff;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  padding:4px 11px;letter-spacing:1.5px;font-weight:600;
+  border:1.5px solid var(--ink);z-index:5;
+}
+.admin-side.lockee .admin-tag{background:var(--rose)}
+.admin-side .admin-hd{
+  background:var(--ink);color:var(--paper);
+  padding:10px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.8px;
+}
+.admin-side .admin-hd b{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:14px;
+  font-weight:700;letter-spacing:-0.2px;text-transform:none;
+}
+.admin-side .admin-body{
+  padding:14px;background:#fafafa;flex:1;position:relative;
+}
+
+/* Section lock bar (top) */
+.lock-bar-mock{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 11px;border-radius:10px;margin-bottom:14px;
+  border:1.5px solid #bbf7d0;background:#f0fdf4;color:#15803d;
+  font-size:12px;font-weight:500;
+}
+.lock-bar-mock.held{
+  background:#f0fdf4;border-color:#bbf7d0;color:#15803d;
+}
+.lock-bar-mock.blocked{
+  background:#fef2f2;border-color:#fecaca;color:#b91c1c;
+}
+.lock-bar-mock .lock-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+.lock-bar-mock.held .lock-dot{background:#22c55e}
+.lock-bar-mock.blocked .lock-dot{background:#ef4444;animation:dashpulse 1.6s infinite}
+.lock-bar-mock .lock-text{flex:1;min-width:0}
+.lock-bar-mock .force-btn{
+  font-size:10px;padding:3px 8px;background:#fff;color:#b91c1c;
+  border:1px solid #fecaca;font-weight:700;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;
+}
+
+/* Category tabs in admin */
+.cat-tabs-mock{
+  display:flex;flex-direction:column;gap:5px;
+  margin-bottom:14px;
+}
+.cat-tab-mock{
+  padding:8px 12px;border:1.5px solid #e5e7eb;background:#fff;
+  border-radius:8px;font-size:12px;font-weight:600;color:#374151;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;position:relative;
+}
+.cat-tab-mock.active{background:#1f2937;color:#fff;border-color:#1f2937}
+.cat-tab-mock.editing{
+  background:linear-gradient(135deg,#dbeafe,#e0e7ff);
+  border-color:var(--accent-2);color:#1e40af;
+}
+.cat-tab-mock.editing::after{
+  content:"กำลังแก้";
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  background:var(--accent-2);color:#fff;
+  padding:2px 6px;border-radius:4px;letter-spacing:0.5px;font-weight:600;
+}
+.cat-tab-mock.locked-other{
+  background:#fafafa;color:#9ca3af;border-style:dashed;
+  padding-left:32px;
+}
+.cat-tab-mock.locked-other::before{
+  content:"🔒";position:absolute;left:10px;top:50%;
+  transform:translateY(-50%);font-size:12px;opacity:0.8;
+}
+.cat-tab-mock.locked-other::after{
+  content:attr(data-by);
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  background:#fff;color:#6b7280;padding:2px 6px;border-radius:4px;
+  border:1px solid #e5e7eb;letter-spacing:0.3px;
+}
+
+/* Product card list in admin */
+.prod-edit-list{display:flex;flex-direction:column;gap:8px;position:relative}
+.prod-edit-card{
+  border:1.5px solid #e5e7eb;background:#fff;border-radius:10px;
+  padding:10px 12px;display:grid;grid-template-columns:48px 1fr auto;gap:10px;
+  align-items:center;position:relative;
+}
+.prod-edit-card .thumb{
+  width:48px;height:48px;background:linear-gradient(135deg,#fef3c7,#fed7aa);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+}
+.prod-edit-card .info b{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:13px;font-weight:700;display:block;margin-bottom:2px;
+}
+.prod-edit-card .info span{
+  font-size:10.5px;color:#6b7280;font-family:'IBM Plex Mono',monospace;
+}
+.prod-edit-card .ctrl{
+  display:flex;gap:4px;
+}
+.prod-edit-card .ctrl span{
+  width:24px;height:24px;border:1px solid #e5e7eb;
+  background:#fafafa;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#6b7280;
+}
+
+/* The big overlay — gray-black with lock icon */
+.locked-overlay-real{
+  position:absolute;inset:0;
+  background:rgba(31,41,55,0.78);
+  border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;padding:24px;text-align:center;
+  backdrop-filter:blur(2px);
+  z-index:10;
+}
+.locked-overlay-real .lock-ic{
+  width:56px;height:56px;color:#fff;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+.locked-overlay-real .lock-msg{
+  color:#fff;font-size:13px;font-weight:600;line-height:1.5;
+  max-width:280px;text-shadow:0 1px 4px rgba(0,0,0,0.5);
+}
+.locked-overlay-real .lock-msg strong{
+  font-weight:800;color:#fde68a;display:block;margin-top:4px;font-size:14px;
+}
+.locked-overlay-real .lock-hint{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:rgba(253,230,138,0.85);letter-spacing:0.5px;
+  margin-top:6px;
+}
+
+/* Floating bottom lock indicator */
+.lock-floating-mock{
+  position:relative;
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;background:#1f2937;border:1.5px solid #374151;
+  border-radius:12px;color:#fff;font-size:12.5px;line-height:1.4;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  margin-top:14px;
+}
+.lock-floating-mock .lock-ic{
+  width:18px;height:18px;color:#fde68a;flex-shrink:0;
+}
+.lock-floating-mock strong{color:#fde68a;font-weight:700}
+
+/* Cursor demo arrow */
+.cursor-demo{
+  position:absolute;width:18px;height:18px;
+  z-index:15;pointer-events:none;
+}
+.cursor-demo svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+
+/* Lock flow diagram */
+.lock-flow{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  margin:24px 0;align-items:stretch;
+}
+.lock-flow-step{
+  background:var(--paper);border:2px solid var(--line);
+  padding:14px 12px;position:relative;border-right:none;
+}
+.lock-flow-step:last-child{border-right:2px solid var(--line)}
+.lock-flow-step .ts{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  background:var(--ink);color:var(--paper);
+  padding:3px 7px;letter-spacing:1px;display:inline-block;margin-bottom:8px;
+}
+.lock-flow-step h5{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+  font-size:13px;margin:0 0 4px;letter-spacing:-0.2px;
+}
+.lock-flow-step p{font-size:11px;color:var(--muted);margin:0;line-height:1.45}
+.lock-flow-step::after{
+  content:"";position:absolute;top:50%;right:-10px;
+  width:0;height:0;border-style:solid;border-width:8px 0 8px 10px;
+  border-color:transparent transparent transparent var(--line);
+  z-index:2;
+}
+.lock-flow-step:last-child::after{display:none}
+.lock-flow-step.t1{background:#f0fdf4;border-color:var(--green)}
+.lock-flow-step.t1 .ts{background:var(--green)}
+.lock-flow-step.t1::after{border-left-color:var(--green)}
+.lock-flow-step.t2{background:#fffbeb;border-color:#f59e0b}
+.lock-flow-step.t2 .ts{background:#f59e0b}
+.lock-flow-step.t2::after{border-left-color:#f59e0b}
+.lock-flow-step.t3{background:#fef2f2;border-color:var(--rose)}
+.lock-flow-step.t3 .ts{background:var(--rose)}
+.lock-flow-step.t3::after{border-left-color:var(--rose)}
+
+/* ============================================================
    RESPONSIVE — Desktop · iPad · Mobile
    ============================================================ */
 
@@ -1338,6 +1864,16 @@ header.top .lede{
   .kpi-grid{grid-template-columns:repeat(2,1fr)}
   .dash-task{grid-template-columns:auto 1fr;gap:10px}
   .dash-task .badge{grid-column:2;justify-self:start;margin-top:4px}
+  /* Lock system + Receipt */
+  .lock-flow{grid-template-columns:repeat(2,1fr)}
+  .lock-flow-step{border-right:2px solid var(--line);border-bottom:none}
+  .lock-flow-step:nth-child(2n)::after,
+  .lock-flow-step:last-child::after{display:none}
+  .dual-admin{grid-template-columns:1fr;gap:32px}
+  .receipt-showcase{grid-template-columns:1fr;gap:32px}
+  .receipt-showcase > div:first-child{display:flex;justify-content:center}
+  .future-subhead{gap:10px;margin:44px 0 8px}
+  .future-subhead .sub-tag{display:none}
 }
 
 /* Small tablet / Large mobile (700px and below) */
@@ -1365,6 +1901,12 @@ header.top .lede{
   .bar-chart{height:130px;padding:18px 10px 22px;gap:6px}
   .dash-mini{padding:16px}
   .dash-mini h3{font-size:20px}
+  /* Lock system */
+  .lock-scenario{padding:28px 18px 22px}
+  .admin-side .admin-body{padding:12px}
+  .locked-overlay-real{padding:18px}
+  .locked-overlay-real .lock-ic{width:44px;height:44px}
+  .locked-overlay-real .lock-msg{font-size:12px}
 }
 
 /* Mobile (480px and below) */
@@ -1396,6 +1938,16 @@ header.top .lede{
   .dash-task .badge{justify-self:flex-start}
   .health-item{grid-template-columns:60px 1fr auto;font-size:9.5px;gap:6px}
   .health-item b{font-size:12px}
+  /* Lock system mobile */
+  .lock-flow{grid-template-columns:1fr}
+  .lock-flow-step{border-right:2px solid var(--line)}
+  .future-subhead .sub-num{font-size:10px;padding:4px 9px}
+  .future-subhead h3{font-size:18px}
+  .cat-tab-mock{font-size:11px;padding:7px 10px}
+  .cat-tab-mock.locked-other::after{display:none}
+  .prod-edit-card{grid-template-columns:40px 1fr;gap:8px;padding:8px 10px}
+  .prod-edit-card .thumb{width:40px;height:40px;font-size:18px}
+  .prod-edit-card .ctrl{grid-column:1/3;justify-content:flex-end;margin-top:4px}
   /* Footer */
   .footer{padding:20px;flex-direction:column;align-items:flex-start;gap:10px}
   .footer h3{font-size:20px}
@@ -1409,21 +1961,20 @@ header.top .lede{
    HEADER
    ============================================================= -->
 <header class="top">
-  <h1>Storyboard <em>UX/UI</em><br>KodangLoeiSmartPetShop</h1>
-  <br>KodangLoeiSmartPetShop</h1>
-  <p class="lede">storyboard ละเอียดของระบบสั่งซื้อสินค้าผ่านเว็บ + LINE — ครอบคลุมทุก scene ตั้งแต่ลูกค้าเข้าเว็บครั้งแรกจนสั่งซื้อเสร็จ + ระบบหลังบ้านแอดมินที่จัดการได้ทั้ง โลโก้ · โปรโมชั่น · บัญชีธนาคาร · QR · UI · สี · หมวดสินค้า — รองรับ multi-admin lock system</p>
+  <h1>Storyboard <em>UX/UI</em><br>KODANGLOEISMARTPETSHOP · Line Catalog</h1>
+  <p class="lede">เอกสาร storyboard ละเอียดของระบบสั่งซื้อสินค้าผ่านเว็บ + LINE — ครอบคลุมทุก scene ตั้งแต่ลูกค้าเข้าเว็บครั้งแรกจนสั่งซื้อเสร็จ + ระบบหลังบ้านแอดมินที่จัดการได้ทั้ง โลโก้ · โปรโมชั่น · บัญชีธนาคาร · QR · UI · สี · หมวดสินค้า — รองรับ multi-admin lock system</p>
   <div class="meta-row">
-    <span class="tag dark">PROJECT · LOEI SMART</span>
+    <span class="tag dark">PROJECT · KODANGLOEISMARTPETSHOP</span>
     <span class="tag">STACK · Vercel + Supabase + Drive + GAS</span>
     <span class="tag blue">PWA · iOS + Android</span>
-    <span class="tag accent">SCENES · 11 + 1 FUTURE</span>
+    <span class="tag accent">SCENES · 11 + 2 FUTURE</span>
     <span class="tag">MAP · Longdo TH</span>
     <span class="tag">PAYMENT · Bank · QR · COD</span>
   </div>
   <div class="corner-stamp">
-    FILE / KUNANON<br>
+    FILE / index.html<br>
     5,024 LINES<br>
-    LAST UPDATE 19/05/26
+    By.Kunanon Chiasamart
   </div>
 </header>
 
@@ -1432,7 +1983,7 @@ header.top .lede{
    ============================================================= -->
 <div class="section-head">
   <span class="num">01 / MAP</span>
-  <h2>WorkFlow ระบบโดยรวม</h2>
+  <h2>สถาปัตยกรรมระบบ</h2>
   <span class="sub">DATA & SERVICE LAYERS</span>
 </div>
 <p class="section-intro">
@@ -1598,7 +2149,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>01</b> · #splashScreen<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>Splash Skeleton Loader</h3>
@@ -1652,7 +2202,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>02</b> · #promoScreen<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>Promotion Modal</h3>
@@ -1743,7 +2292,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>03</b> · #catalogContent<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>Catalog · หน้าหลัก</h3>
@@ -1807,7 +2355,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>04</b> · #productPopupModal<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>Product Popup</h3>
@@ -1884,7 +2431,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>05</b> · #cartDrawer [view=cart]<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>Cart Drawer</h3>
@@ -1980,7 +2526,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>06</b> · #cartDrawer [view=checkout]<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>Checkout</h3>
@@ -2037,7 +2582,7 @@ header.top .lede{
                     <span style="font-size:9px;padding:5px 8px;border:1px solid #ddd;border-radius:8px;font-weight:600">SCB</span>
                   </div>
                   <div class="qr-display">
-                    <div class="bank-nm">📱 PromptPay (Loei Smart)</div>
+                    <div class="bank-nm">📱 PromptPay (KODANGLOEISMARTPETSHOP)</div>
                     <div class="qr-code-img"></div>
                     <div style="font-size:9px;color:#6b7280;margin-top:8px">สแกนเพื่อชำระเงิน</div>
                   </div>
@@ -2056,7 +2601,6 @@ header.top .lede{
             <div class="home-indicator"></div>
           </div>
         </div>
-        <div class="phone-label"><b>07</b> · #payQrPanel<span class="device">iPhone 17 Pro Max</span></div>
       </div>
       <div class="scene-info">
         <h3>QR Payment Sub-flow</h3>
@@ -2116,8 +2660,8 @@ header.top .lede{
       </div>
       <div class="flow-step success">
         <span class="n">06</span>
-        <h5>Show Receipt</h5>
-        <p>Toast "ส่งสำเร็จ" + รหัสคำสั่งซื้อ</p>
+        <h5>Show Confirmation</h5>
+        <p>Toast "ส่งสำเร็จ" + รหัสคำสั่งซื้อ → ลูกค้าทราบทันที</p>
       </div>
     </div>
 
@@ -2138,74 +2682,6 @@ header.top .lede{
   </div>
 </div>
 
-<!-- SCENE 9 - RECEIPT -->
-<div class="scene">
-  <span class="scene-label alt">SCENE 09</span>
-  <span class="scene-num">RECEIPT</span>
-  <div class="scene-body">
-    <div class="scene-grid">
-      <div>
-        <div class="phone">
-          <div class="screen">
-            <div class="status-bar">
-              <span class="time">9:43</span>
-              <div class="right">
-                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
-                <span class="ios-wifi"></span>
-                <span class="ios-battery"><i></i></span>
-              </div>
-            </div>
-            <div class="receipt-screen">
-              <div class="receipt">
-                <h4>LOEI SMART</h4>
-                <div style="text-align:center;font-size:8px;color:#6b7280">ใบเสร็จคำสั่งซื้อ</div>
-                <div class="ln"></div>
-                <div class="row"><span>ORDER</span><span>LS-0822</span></div>
-                <div class="row"><span>วันที่</span><span>19/05/2026</span></div>
-                <div class="row"><span>ลูกค้า</span><span>LS-A7F9D2</span></div>
-                <div class="ln"></div>
-                <div class="row"><span>อาหารสุนัข Pre × 2</span><span>640</span></div>
-                <div class="row"><span style="padding-left:6px;color:#6b7280">ขนาด 5kg</span><span></span></div>
-                <div class="row"><span>ขนมขัดฟัน × 1</span><span>85</span></div>
-                <div class="ln"></div>
-                <div class="row tot"><span>รวม</span><span>฿725</span></div>
-                <div class="ln"></div>
-                <div class="row"><span>การจัดส่ง</span><span>Delivery</span></div>
-                <div class="row"><span>การชำระ</span><span>โอน · KBank</span></div>
-                <div class="ln"></div>
-                <div style="text-align:center;font-size:8px;color:#6b7280;margin-top:4px">ยืนยันคำสั่งซื้อกับพนักงานใน LINE</div>
-                <div style="text-align:center;margin-top:8px">
-                  <span style="background:#1f2937;color:#fff;padding:4px 10px;font-size:9px;border-radius:4px;display:inline-flex;align-items:center;gap:4px">📥 เซฟภาพใบเสร็จ</span>
-                </div>
-              </div>
-              <div style="font-size:9px;color:#9ca3af;text-align:center;margin-top:12px">ขอบคุณที่สั่งซื้อ · แอดมินจะติดต่อกลับเร็วๆนี้</div>
-            </div>
-            <div class="home-indicator"></div>
-          </div>
-        </div>
-        <div class="phone-label"><b>09</b> · #receiptScreen<span class="device">iPhone 17 Pro Max</span></div>
-      </div>
-      <div class="scene-info">
-        <h3>ใบเสร็จ + Confirmation</h3>
-        <div class="role">PURPOSE · CONFIRM & ARCHIVE</div>
-        <p class="desc">ใบเสร็จหลังกดสั่งซื้อ — โชว์ทันทีในหน้าเว็บ ไม่ต้องเปิดอีเมล — รองรับการ <b>เซฟภาพ</b> เพื่อยืนยันกับพนักงานใน LINE (สำหรับลูกค้าประจำ + เซลนอกพื้นที่)</p>
-        <div class="spec-table">
-          <div class="row"><b>order id</b><span class="hl">LS-XXXX · auto generate</span></div>
-          <div class="row"><b>customer id</b><span>persistent · จาก localStorage</span></div>
-          <div class="row"><b>save image</b><span>html2canvas → download PNG</span></div>
-          <div class="row"><b>style</b><span>thermal receipt look · jagged edges</span></div>
-          <div class="row"><b>data source</b><span>cart snapshot + customer + payment</span></div>
-        </div>
-        <ul class="bullets">
-          <li>ใช้ ID สั้น อ่านง่าย (LS-0822) ไม่ใช่ UUID เต็ม</li>
-          <li>โชว์ผ่าน toast หรือ inline section หลัง cart drawer ปิด</li>
-          <li>เซฟภาพ → ลูกค้าส่งในไลน์แอดมินทันที (workflow จริง)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- =============================================================
    SECTION 03 — ADMIN PANEL STORYBOARD
    ============================================================= -->
@@ -2218,53 +2694,321 @@ header.top .lede{
   แอดมินเข้าผ่านโลโก้มุมบน → ใส่รหัสผ่าน → เข้า admin modal — มีระบบ <b>Multi-Admin Lock</b> ป้องกันแก้พร้อมกัน · เห็นว่าใครยึด lock อยู่ · มีปุ่ม "บังคับยึด" · ทุกการแก้ไขมี dirty tracking + sync indicator
 </p>
 
-<div class="admin-panels">
-  <div class="admin-panel">
-    <div class="ah">
-      <b>SCENE 10 · LOGIN + LOCK</b>
-      <span>ENTRY</span>
-    </div>
-    <div class="ab">
-      <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.55">
-        คลิกโลโก้มุมบนซ้าย → auth modal ถามรหัสผ่าน — ถูก → เปิด admin modal + ตรวจ lock อัตโนมัติ
-      </p>
-      <div class="admin-mock">
-        <div class="am-head">
-          <h6>หลังบ้าน (Admin)</h6>
-          <span class="x">✕</span>
+<!-- ============================================================
+   SCENE 10 — MULTI-ADMIN LOCK SYSTEM
+   ============================================================ -->
+<div class="future-subhead" style="margin-top:24px">
+  <span class="sub-num" style="background:var(--accent-2)">SCENE 10</span>
+  <h3>ระบบล็อกแอดมิน (Multi-Admin Lock)</h3>
+  <span class="sub-tag">CONCURRENT EDIT PROTECTION</span>
+</div>
+<p class="section-intro" style="margin-top:8px">
+  ป้องกัน <b>data race</b> เมื่อมีแอดมิน 2-3 คนเข้าระบบหลังบ้านพร้อมกัน — ระบบจะล็อกหมวด/สินค้าที่กำลังถูกแก้ และแสดง <b>overlay สีดำ-เทา + ไอคอน lock</b> ให้แอดมินคนอื่นเห็นทันทีว่ามีใครกำลังทำงานอยู่
+</p>
+
+<!-- Lock Flow Timeline -->
+<div class="lock-flow">
+  <div class="lock-flow-step t1">
+    <span class="ts">T = 0s</span>
+    <h5>Admin 1 เข้าระบบ</h5>
+    <p>คลิกหมวด "อาหารสุนัข" เพื่อเริ่มแก้ → ระบบขอ lock</p>
+  </div>
+  <div class="lock-flow-step t1">
+    <span class="ts">T = 0.3s</span>
+    <h5>Lock Acquired ✓</h5>
+    <p>Admin 1 ได้สิทธิ์แก้ · แถบสถานะเขียว · เริ่มแก้ชื่อ/ภาพ</p>
+  </div>
+  <div class="lock-flow-step t2">
+    <span class="ts">T = 5s</span>
+    <h5>Admin 2 เข้า</h5>
+    <p>เปิดหลังบ้าน → poll สถานะ → เห็นว่า "อาหารสุนัข" lockedอยู่</p>
+  </div>
+  <div class="lock-flow-step t3">
+    <span class="ts">T = 5.1s</span>
+    <h5>Overlay ขึ้น</h5>
+    <p>Admin 2 เห็น overlay สีดำ + ไอคอน lock + ชื่อ Admin 1</p>
+  </div>
+  <div class="lock-flow-step t1">
+    <span class="ts">T = 90s</span>
+    <h5>Auto Release</h5>
+    <p>Admin 1 ออกจากหน้า → lock ปล่อยอัตโนมัติ · Admin 2 เห็นทันที</p>
+  </div>
+</div>
+
+<!-- Dual Admin View -->
+<div class="lock-scenario">
+  <span class="scene-label">DUAL VIEW · เปรียบเทียบ Admin 1 vs Admin 2 ในเวลาเดียวกัน</span>
+  <span class="scene-num">LOCK</span>
+
+  <div class="dual-admin" style="margin-top:24px">
+
+    <!-- Admin 1 — Editor (lock holder) -->
+    <div class="admin-side">
+      <span class="admin-tag">ADMIN 1 · EDITOR</span>
+      <div class="admin-hd">
+        <b>หลังบ้าน — Admin (พี่กบ)</b>
+        <span>HOLDS LOCK</span>
+      </div>
+      <div class="admin-body">
+        <div class="lock-bar-mock held">
+          <span class="lock-dot"></span>
+          <span class="lock-text">คุณมีสิทธิ์แก้ไข · session active · heartbeat ทุก 30s</span>
         </div>
-        <div class="am-lock checking">
-          <div class="dot"></div>
-          <span>กำลังตรวจสอบสิทธิ์แก้ไข...</span>
+
+        <div class="cat-tabs-mock">
+          <div class="cat-tab-mock editing">
+            <span>อาหารสุนัข</span>
+          </div>
+          <div class="cat-tab-mock">
+            <span>อาหารแมว</span>
+            <span style="font-size:10px;opacity:0.6">8</span>
+          </div>
+          <div class="cat-tab-mock">
+            <span>ของเล่น</span>
+            <span style="font-size:10px;opacity:0.6">5</span>
+          </div>
         </div>
-        <div class="am-section">
-          <div class="t">สถานะ Lock — 3 states</div>
-          <div style="display:flex;flex-direction:column;gap:5px">
-            <div class="am-lock" style="margin:0">
-              <div class="dot"></div>
-              <span>คุณมีสิทธิ์แก้ไข (Admin 1/3)</span>
+
+        <div class="prod-edit-list">
+          <div class="prod-edit-card" style="border-color:var(--accent-2);background:#fef3c7">
+            <div class="thumb">🐕</div>
+            <div class="info">
+              <b>อาหารสุนัข Premium</b>
+              <span>กำลังแก้ราคา + ภาพ ✏️</span>
             </div>
-            <div class="am-lock checking" style="margin:0">
-              <div class="dot"></div>
-              <span>กำลังตรวจสอบ...</span>
+            <div class="ctrl">
+              <span>✏️</span>
+              <span>📷</span>
+              <span>✕</span>
             </div>
-            <div class="am-lock blocked" style="margin:0">
-              <div class="dot"></div>
-              <span style="flex:1">Admin อื่นกำลังแก้ไข</span>
-              <span style="font-size:9px;background:#fff;border:1px solid #ef4444;color:#ef4444;padding:2px 6px;border-radius:4px;font-weight:700">บังคับยึด</span>
+          </div>
+          <div class="prod-edit-card">
+            <div class="thumb">🐩</div>
+            <div class="info">
+              <b>อาหารลูกสุนัข</b>
+              <span>฿280 · สต็อก 18</span>
+            </div>
+            <div class="ctrl">
+              <span>✏️</span>
+              <span>📷</span>
+              <span>✕</span>
+            </div>
+          </div>
+          <div class="prod-edit-card">
+            <div class="thumb">🦴</div>
+            <div class="info">
+              <b>ขนมขัดฟัน</b>
+              <span>฿85 · สต็อก 42</span>
+            </div>
+            <div class="ctrl">
+              <span>✏️</span>
+              <span>📷</span>
+              <span>✕</span>
             </div>
           </div>
         </div>
       </div>
-      <ul class="bullets" style="margin-top:12px">
-        <li><b>Heartbeat lock</b> renew ทุก ~30s · timeout → ปล่อย lock</li>
-        <li><b>3 states</b>: held (เขียว) · checking (เหลือง) · blocked/lost/offline (แดง)</li>
-        <li>Lock <b>per category</b> — admin หลายคนแก้ต่างหมวดพร้อมกันได้</li>
-        <li>ปุ่ม <b>"บังคับยึด Lock"</b> สำหรับกรณีฉุกเฉิน</li>
-      </ul>
+    </div>
+
+    <!-- Admin 2 — Blocked (sees overlay) -->
+    <div class="admin-side lockee">
+      <span class="admin-tag">ADMIN 2 · BLOCKED</span>
+      <div class="admin-hd">
+        <b>หลังบ้าน — Admin (น้องสมพร)</b>
+        <span>LOCKED OUT</span>
+      </div>
+      <div class="admin-body">
+        <div class="lock-bar-mock blocked">
+          <span class="lock-dot"></span>
+          <span class="lock-text">รายการนี้กำลังถูกแก้โดย: <b>พี่ปุ้ย</b></span>
+          <span class="force-btn">บังคับยึด</span>
+        </div>
+
+        <div class="cat-tabs-mock">
+          <div class="cat-tab-mock locked-other" data-by="พี่ปุ้ย">
+            <span>อาหารสุนัข</span>
+          </div>
+          <div class="cat-tab-mock active">
+            <span>อาหารแมว</span>
+            <span style="font-size:10px;opacity:0.6">8</span>
+          </div>
+          <div class="cat-tab-mock">
+            <span>ของเล่น</span>
+            <span style="font-size:10px;opacity:0.6">5</span>
+          </div>
+        </div>
+
+        <!-- This is the key: if Admin 2 clicks "อาหารสุนัข" they see this overlay -->
+        <div class="prod-edit-list">
+          <div class="prod-edit-card">
+            <div class="thumb">🐕</div>
+            <div class="info">
+              <b>อาหารสุนัข Premium</b>
+              <span>฿320 · สต็อก 12</span>
+            </div>
+            <div class="ctrl">
+              <span>✏️</span>
+              <span>📷</span>
+              <span>✕</span>
+            </div>
+          </div>
+          <div class="prod-edit-card">
+            <div class="thumb">🐩</div>
+            <div class="info">
+              <b>อาหารลูกสุนัข</b>
+              <span>฿280 · สต็อก 18</span>
+            </div>
+            <div class="ctrl">
+              <span>✏️</span>
+              <span>📷</span>
+              <span>✕</span>
+            </div>
+          </div>
+          <div class="prod-edit-card">
+            <div class="thumb">🦴</div>
+            <div class="info">
+              <b>ขนมขัดฟัน</b>
+              <span>฿85 · สต็อก 42</span>
+            </div>
+            <div class="ctrl">
+              <span>✏️</span>
+              <span>📷</span>
+              <span>✕</span>
+            </div>
+          </div>
+
+          <!-- THE BIG OVERLAY -->
+          <div class="locked-overlay-real">
+            <svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <div class="lock-msg">
+              หมวดนี้กำลังถูกแก้ไขโดย
+              <strong>พี่ปุ้ย</strong>
+            </div>
+            <div class="lock-hint">ระบบจะปลดล็อกอัตโนมัติเมื่อแอดมินคนนั้นออกจากหน้าแอดมิน</div>
+          </div>
+        </div>
+
+        <!-- Floating bottom lock indicator -->
+        <div class="lock-floating-mock">
+          <svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span class="floating-text">หมวดนี้กำลังถูกแก้ไขโดย <strong>พี่ปุ้ย</strong> — รอให้ปลดล็อกอัตโนมัติ</span>
+        </div>
+
+      </div>
     </div>
   </div>
 
+  <!-- Spec callouts -->
+  <div class="callout-row" style="grid-template-columns:repeat(3,1fr)">
+    <div class="callout orange">
+      <b>Overlay Visual</b>
+      bg <code>rgba(31,41,55,0.78)</code> · backdrop-blur 2px · lock icon ขาว 56px · ข้อความขาว · ชื่อแอดมินสีเหลือง <code>#fde68a</code>
+    </div>
+    <div class="callout blue">
+      <b>3 จุด Feedback</b>
+      Top bar (lock status) · Section overlay (ทับ content) · Floating bottom (สไตล์ toast ค้าง)
+    </div>
+    <div class="callout green">
+      <b>Auto Release</b>
+      Heartbeat ทุก 30s · timeout 90s → ปล่อย lock อัตโนมัติ · แอดมินคนอื่นเห็นทันที (poll)
+    </div>
+  </div>
+</div>
+
+<!-- Detailed Behavior Table -->
+<h3 class="display" style="margin:40px 0 16px;font-size:20px">พฤติกรรมระบบ Lock — ตามสถานการณ์</h3>
+<div class="matrix">
+  <div class="matrix-row head">
+    <div class="matrix-cell"><b>SCENARIO</b></div>
+    <div class="matrix-cell"><b>ADMIN 1 (HOLDER)</b></div>
+    <div class="matrix-cell"><b>ADMIN 2 (BLOCKED)</b></div>
+    <div class="matrix-cell"><b>SYSTEM ACTION</b></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>เข้าครั้งแรก</b><div class="mono-s">first click on หมวด</div></div>
+    <div class="matrix-cell">ขอ acquireResourceLock<br>→ ได้ lock<br><span class="state-pill ok">HELD</span></div>
+    <div class="matrix-cell">ยังไม่ได้คลิก → ปกติ<br>เห็น tab เป็น 🔒 หมวด<br><span class="state-pill warn">ICON ONLY</span></div>
+    <div class="matrix-cell">สร้าง row ใน <code>resource_locks</code> table<br>เก็บ <code>lockedBy</code> + <code>expiresAt</code></div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>แตะหมวดที่ lock</b><div class="mono-s">click locked category</div></div>
+    <div class="matrix-cell">ไม่กระทบ — ยังแก้ได้ปกติ<br><span class="state-pill ok">EDITING</span></div>
+    <div class="matrix-cell">เห็น overlay สีดำ + lock icon<br>+ ชื่อ "พี่ปุ้ย"<br><span class="state-pill err">OVERLAY</span></div>
+    <div class="matrix-cell">Toast "หมวดนี้กำลังถูกแอดมินคนอื่นแก้ไขอยู่"<br>+ overlay ทับ content area</div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Admin 1 บันทึก</b><div class="mono-s">save & continue</div></div>
+    <div class="matrix-cell">บันทึก → sync indicator เขียว<br>ยังถือ lock ต่อ<br><span class="state-pill ok">HELD</span></div>
+    <div class="matrix-cell">ยังเห็น overlay เหมือนเดิม<br>(lock ยังไม่ปลด)<br><span class="state-pill err">LOCKED</span></div>
+    <div class="matrix-cell">Heartbeat renew · lock <code>expiresAt</code> ขยับไปข้างหน้า</div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Admin 1 ออก</b><div class="mono-s">close admin panel</div></div>
+    <div class="matrix-cell">releaseLock → ปล่อย<br>กลับเป็นโหมดอ่าน<br><span class="state-pill info">RELEASED</span></div>
+    <div class="matrix-cell">overlay หายไป<br>เริ่มแก้ได้<br><span class="state-pill ok">UNLOCKED</span></div>
+    <div class="matrix-cell">ลบ row ใน <code>resource_locks</code><br>· Admin 2 poll รอบถัดไปเห็น</div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>Admin 1 disconnect</b><div class="mono-s">เน็ตหลุด / ปิด browser</div></div>
+    <div class="matrix-cell">หยุด heartbeat<br>session lost<br><span class="state-pill err">LOST</span></div>
+    <div class="matrix-cell">รอ 90s → overlay หาย<br>หรือกด "บังคับยึด"<br><span class="state-pill warn">WAIT/FORCE</span></div>
+    <div class="matrix-cell">TTL expire ที่ 90s<br>· cleanup job ลบ stale locks</div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-cell"><b>บังคับยึด Lock</b><div class="mono-s">force acquire</div></div>
+    <div class="matrix-cell">โดน revoke ทันที<br>เห็นข้อความ "ถูกยึด lock"<br><span class="state-pill err">REVOKED</span></div>
+    <div class="matrix-cell">ได้ lock มา<br>เริ่มแก้ได้<br><span class="state-pill ok">HELD</span></div>
+    <div class="matrix-cell">forceAcquireResourceLock<br>· log ไว้ใน audit table</div>
+  </div>
+</div>
+
+<!-- Implementation Notes -->
+<div class="callout-row" style="grid-template-columns:repeat(4,1fr);margin-top:24px">
+  <div class="callout blue">
+    <b>Backend</b>
+    Supabase table <code>resource_locks</code> · key = <code>type:id</code> (เช่น <code>category:dog-food</code>)
+  </div>
+  <div class="callout orange">
+    <b>Polling</b>
+    Admin 2 poll สถานะทุก 5s · debounce 600ms · TTL cache 30s · exponential backoff
+  </div>
+  <div class="callout green">
+    <b>Heartbeat</b>
+    Admin 1 renew lock ทุก 30s · soft-fail เมื่อ user active (พิมพ์/คลิก)
+  </div>
+  <div class="callout purple">
+    <b>Granularity</b>
+    Lock <b>per resource</b> — หมวดเดียวแก้ได้แค่คนเดียว · แต่หมวดอื่นแก้ได้พร้อมกัน
+  </div>
+</div>
+
+<ul class="dash-feature-list" style="margin-top:20px">
+  <li><b>ไม่ block ทั้งหลังบ้าน</b> — แอดมิน 2-3 คนเข้าพร้อมกันได้ แค่แก้คนละหมวด</li>
+  <li><b>มี 3 จุดบอก state</b> — top bar (text), section overlay (visual), floating bottom (persistent)</li>
+  <li><b>Recovery friendly</b> — ถ้า admin คนเดิม disconnect ไม่ได้ถูก stuck ตลอด · มี TTL + force acquire</li>
+  <li><b>Audit trail</b> — บันทึก force acquire ทุกครั้ง เพื่อสอบทานได้ภายหลัง</li>
+  <li><b>Optimistic UI</b> — Admin 1 ไม่รู้สึกหน่วง · Admin 2 รู้ทันทีไม่เกิน 5 วินาที</li>
+</ul>
+
+<!-- ============================================================
+   SCENE 11 — CONTROL PANEL
+   ============================================================ -->
+<div class="future-subhead" style="margin-top:48px">
+  <span class="sub-num" style="background:var(--accent-2)">SCENE 11</span>
+  <h3>Admin Control Panel — แก้ไขข้อมูลร้าน</h3>
+  <span class="sub-tag">EDIT MODE · STICKY SAVE</span>
+</div>
+<p class="section-intro" style="margin-top:8px">
+  Admin modal เลื่อนยาว — 8 section ต่อเนื่องกัน (โลโก้ · โปรโมชั่น · ธนาคาร · QR · UI · สี · หมวด · save bar) — รองรับ <b>sticky save bar</b> ที่ลอยอยู่ล่างสุดเวลา scroll
+</p>
+
+<div class="admin-panels">
   <div class="admin-panel">
     <div class="ah">
       <b>SCENE 11 · CONTROL PANEL</b>
@@ -2324,12 +3068,38 @@ header.top .lede{
           <span class="am-scroll-btn">↓</span>
         </div>
       </div>
-      <ul class="bullets" style="margin-top:12px">
+    </div>
+  </div>
+
+  <div class="admin-panel">
+    <div class="ah">
+      <b>SCENE 11.1 · BEHAVIOR</b>
+      <span>INTERACTIONS</span>
+    </div>
+    <div class="ab">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.55">
+        Section ทั้ง 8 ใน Admin Control Panel — แต่ละ section ปรับได้แยกกัน · บันทึกทั้งหมดในครั้งเดียว
+      </p>
+      <ul class="bullets" style="margin-top:0">
         <li><b>Save bar sticky</b> ที่ bottom + scroll toggle (↓/↑)</li>
         <li>Slider ปรับ UI แยก <b>มือถือ / เดสก์ท็อป</b></li>
-        <li>หมวดที่ admin อื่นยึดอยู่ → 🔒 + opacity 0.6</li>
+        <li>หมวดที่ admin อื่นยึดอยู่ → 🔒 + opacity 0.6 (ดู Scene 10)</li>
         <li>Dirty tracking → <code>markAdminDirty</code> ทุกการเปลี่ยนแปลง</li>
+        <li><b>Sync indicator</b> ลอยบนสุด — กำลังบันทึก / สำเร็จ / ผิดพลาด</li>
+        <li>Theme color + gradient + radius บันทึกเข้า <code>app_settings</code> table</li>
+        <li>Card style preview update ทันที (live preview)</li>
+        <li>Toast confirm หลังกด "บันทึกทั้งหมด" สำเร็จ</li>
       </ul>
+      <div class="callout-row" style="grid-template-columns:1fr;margin-top:16px;gap:10px">
+        <div class="callout blue" style="font-size:12px">
+          <b>Auto-save (Optional)</b>
+          ในอนาคต — auto save ทุก 30s ถ้ามี dirty change · ไม่ต้องกดปุ่ม
+        </div>
+        <div class="callout orange" style="font-size:12px">
+          <b>Version History</b>
+          เก็บ snapshot 10 รุ่นล่าสุด · กด rollback ได้ถ้าตั้งค่าผิด
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2522,15 +3292,27 @@ header.top .lede{
 </div>
 
 <!-- =============================================================
-   SECTION 06 — DASHBOARD (FUTURE UPDATE)
+   SECTION 06 — FUTURE UPDATES (Dashboard + Receipt)
    ============================================================= -->
 <div class="section-head">
   <span class="num">06 / FUTURE</span>
-  <h2>Dashboard ภาพรวมหลังบ้าน</h2>
-  <span class="sub">ADMIN DASHBOARD · OPERATIONS</span>
+  <h2>ระบบที่จะพัฒนาเพิ่ม</h2>
+  <span class="sub">FUTURE UPDATES · ROADMAP</span>
 </div>
 <p class="section-intro">
-  แผนงานเฟสถัดไป — หน้า <b>Dashboard กลาง</b> ที่รวบยอดขาย · ออเดอร์ · สต็อก · สถานะ sync ระหว่าง Sheet · Supabase · Drive ไว้หน้าเดียว เพื่อให้แอดมินเห็นภาพรวมก่อนเข้าไปทำงานเฉพาะจุด (แทนที่ landing page เลื่อนลงแบบเดิม)
+  รวมระบบที่วางแผนพัฒนาในเฟสถัดไป — <b>Dashboard ภาพรวม</b> (6.1) · <b>ใบเสร็จ + Confirmation</b> (6.2) — ทั้งหมดเป็น roadmap ที่ต่อยอดจากระบบหลักปัจจุบัน
+</p>
+
+<!-- =============================================================
+   6.1 — DASHBOARD
+   ============================================================= -->
+<div class="future-subhead">
+  <span class="sub-num">6.1</span>
+  <h3>Dashboard ภาพรวมหลังบ้าน</h3>
+  <span class="sub-tag">ADMIN DASHBOARD · OPERATIONS</span>
+</div>
+<p class="section-intro" style="margin-top:8px">
+  หน้า <b>Dashboard กลาง</b> ที่รวบยอดขาย · ออเดอร์ · สต็อก · สถานะ sync ระหว่าง Sheet · Supabase · Drive ไว้หน้าเดียว เพื่อให้แอดมินเห็นภาพรวมก่อนเข้าไปทำงานเฉพาะจุด (แทนที่ landing page เลื่อนลงแบบเดิม)
 </p>
 
 <div class="dashboard-grid">
@@ -2546,7 +3328,7 @@ header.top .lede{
 
     <div class="dash-shell">
       <div class="dash-top">
-        <b>LOEI SMART · DASHBOARD</b>
+        <b>KODANGLOEISMARTPETSHOP · DASHBOARD</b>
         <div class="dash-actions">
           <span>SYNC NOW</span>
           <span>EXPORT</span>
@@ -2711,17 +3493,91 @@ header.top .lede{
 </div>
 
 <!-- =============================================================
+   6.2 — RECEIPT SYSTEM (ย้ายจาก Scene 09 เดิม)
+   ============================================================= -->
+<div class="future-subhead">
+  <span class="sub-num">6.2</span>
+  <h3>ระบบใบเสร็จ + Confirmation</h3>
+  <span class="sub-tag">RECEIPT · POST-CHECKOUT</span>
+</div>
+<p class="section-intro" style="margin-top:8px">
+  ใบเสร็จดิจิทัลที่โชว์ทันทีหลังกดสั่งซื้อ — รองรับการ <b>เซฟภาพ</b> เพื่อยืนยันกับพนักงานใน LINE (สำหรับลูกค้าประจำ + เซลนอกพื้นที่) — ไม่ต้องเปิดอีเมล ไม่ต้องรอ
+</p>
+
+<div class="receipt-showcase">
+  <div>
+    <div class="phone">
+      <div class="screen">
+        <div class="status-bar">
+          <span class="time">9:43</span>
+          <div class="right">
+            <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+            <span class="ios-wifi"></span>
+            <span class="ios-battery"><i></i></span>
+          </div>
+        </div>
+        <div class="receipt-screen">
+          <div class="receipt">
+            <h4>KODANGLOEISMARTPETSHOP</h4>
+            <div style="text-align:center;font-size:8px;color:#6b7280">ใบเสร็จคำสั่งซื้อ-ใบเสนอราคา</div>
+            <div class="ln"></div>
+            <div class="row"><span>ORDER</span><span>LS-0822</span></div>
+            <div class="row"><span>วันที่</span><span>19/05/2026</span></div>
+            <div class="row"><span>ลูกค้า</span><span>LS-A7F9D2</span></div>
+            <div class="ln"></div>
+            <div class="row"><span>อาหารสุนัข Pre × 2</span><span>640</span></div>
+            <div class="row"><span style="padding-left:6px;color:#6b7280">ขนาด 5kg</span><span></span></div>
+            <div class="row"><span>ขนมขัดฟัน × 1</span><span>85</span></div>
+            <div class="ln"></div>
+            <div class="row tot"><span>รวม</span><span>฿725</span></div>
+            <div class="ln"></div>
+            <div class="row"><span>การจัดส่ง</span><span>Delivery</span></div>
+            <div class="row"><span>การชำระ</span><span>โอน · KBank</span></div>
+            <div class="ln"></div>
+            <div style="text-align:center;font-size:8px;color:#6b7280;margin-top:4px">ยืนยันคำสั่งซื้อกับพนักงานใน LINE</div>
+            <div style="text-align:center;margin-top:8px">
+              <span style="background:#1f2937;color:#fff;padding:4px 10px;font-size:9px;border-radius:4px;display:inline-flex;align-items:center;gap:4px">📥 เซฟภาพใบเสร็จ</span>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#9ca3af;text-align:center;margin-top:12px">ขอบคุณที่สั่งซื้อ · แอดมินจะติดต่อกลับเร็วๆนี้</div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-info">
+    <h3>Receipt Specifications</h3>
+    <div class="role">PURPOSE · CONFIRM & ARCHIVE</div>
+    <p class="desc">หลังกดสั่งซื้อ — โชว์ใบเสร็จทันทีในหน้าเว็บ ไม่ต้องเปิดอีเมล รองรับการ <b>เซฟภาพ</b> ส่งในไลน์แอดมินทันที (เป็น workflow จริงของร้านที่ลูกค้าส่วนใหญ่สั่งผ่าน LINE อยู่แล้ว)</p>
+    <div class="spec-table">
+      <div class="row"><b>order id</b><span class="hl">LS-XXXX · auto generate</span></div>
+      <div class="row"><b>customer id</b><span>persistent · จาก localStorage</span></div>
+      <div class="row"><b>save image</b><span>html2canvas → download PNG</span></div>
+      <div class="row"><b>style</b><span>thermal receipt · jagged edges</span></div>
+      <div class="row"><b>data source</b><span>cart snapshot + customer + payment</span></div>
+      <div class="row"><b>display</b><span>toast หรือ inline หลัง cart drawer ปิด</span></div>
+    </div>
+    <ul class="bullets">
+      <li>ใช้ ID สั้น อ่านง่าย (LS-0822) ไม่ใช่ UUID เต็ม</li>
+      <li>เซฟภาพ → ลูกค้าส่งในไลน์แอดมินทันที (workflow จริง)</li>
+      <li>รองรับ <b>เซลนอกพื้นที่</b> ที่ลูกค้าดูในแอป + กดสั่งตอนนั้น</li>
+      <li>ใบเสร็จเก็บ snapshot ของ cart ตอนนั้น ไม่กระทบราคาในอนาคต</li>
+    </ul>
+  </div>
+</div>
+
+<!-- =============================================================
    FOOTER
    ============================================================= -->
 <div class="footer">
   <div>
     <h3>End of Storyboard</h3>
-    <div class="desc">ภาพโดยรวมชุดนี้ครอบคลุม 9 customer scenes + 2 admin scenes + state matrix + design tokens + Dashboard ภาพรวมหลังบ้าน (เฟสถัดไป) — ใช้เป็นเเพลน reference เพื่อ design</div>
+    <div class="desc">เอกสารชุดนี้ครอบคลุม 8 customer scenes + Scene 10 Multi-Admin Lock + Scene 11 Control Panel + state matrix + design tokens + Future Updates (Dashboard · Receipt) — design</div>
   </div>
   <div class="stamp">
-    KodangLoeiSmartPetShop · STORYBOARD v9.1<br>
-    By. Kunanon Chaisamart 19 / 05 / 2026
-  </div>
+    KODANGLOEISMARTPETSHOP · STORYBOARD v1.0<br>
+    Created 19 / 05 / 2026
+    DATA Time 21:32:43 
 </div>
 
 </div>
